@@ -1,0 +1,22 @@
+{
+  "tool": "count-literals.mjs generalization check (Claude Code / P03)",
+  "measuredUtc": "2026-09-26T23:48Z",
+  "purpose": "Show the independent literal counter generalizes: run UNMODIFIED on a popular, public, English-only React app it has never seen, it still finds hard-coded user-visible strings.",
+  "app": {
+    "name": "bulletproof-react",
+    "repo": "alan2207/bulletproof-react",
+    "url": "https://github.com/alan2207/bulletproof-react",
+    "stars": 35895,
+    "license": "MIT",
+    "commit": "9506629ed003a561c6627735480cce4994244bb4",
+    "measuredPath": "apps/react-vite",
+    "englishOnly": true,
+    "englishOnlyEvidence": "No i18n dependency (i18next / react-intl / react-i18next) in apps/react-vite/package.json and no locales/i18n directories."
+  },
+  "result": {
+    "hardCodedUserVisibleStrings": 105,
+    "byPass": { "jsxTextAndAttributes": 105, "dataFileStrings": 0, "toastLiteralArgs": 0 }
+  },
+  "command": "node scripts/count-literals.mjs --dir <clone>/apps/react-vite --json <out>",
+  "note": "Clone was made to %TEMP% (outside the repo). The counter and its ESLint config were used exactly as committed; nothing app-specific was tuned."
+}
