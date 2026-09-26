@@ -7,7 +7,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "count-literals": "node scripts/count-literals.mjs",
+    "lint:i18n": "node scripts/count-literals.mjs --staged",
+    "score-traps": "node scripts/score-traps.mjs",
+    "key-parity": "node scripts/key-parity.mjs",
+    "english-parity": "node scripts/english-parity.mjs",
+    "pseudo": "node scripts/pseudo.mjs"
   },
   "dependencies": {
     "axios": "^1.13.2",
@@ -28,9 +34,11 @@
     "@vitejs/plugin-react": "^5.1.1",
     "autoprefixer": "^10.4.23",
     "eslint": "^9.39.1",
+    "eslint-plugin-i18next": "^6.1.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "playwright": "^1.63.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.19",
     "typescript": "~5.9.3",

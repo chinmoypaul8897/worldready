@@ -1,0 +1,76 @@
+{
+  "tool": "WorldReady baseline (independent verifiers, authored by Claude Code / P03)",
+  "measuredUtc": "2026-09-26T23:40Z",
+  "target": {
+    "description": "IBM Galaxium Travels frontend, English-only, before any Bob i18n work.",
+    "gitTag": "v0-before",
+    "commit": "f053de3245a8374482dbd67e21adc8a58ce74813",
+    "note": "v0-before is an annotated tag pointing to commit f053de3; measured on the checked-out working tree, which is byte-identical to v0-before (git diff v0-before HEAD is empty)."
+  },
+  "metrics": {
+    "hardCodedUserVisibleStrings": {
+      "total": 320,
+      "byPass": { "jsxTextAndAttributes": 168, "dataFileStrings": 130, "toastLiteralArgs": 22 },
+      "detail": "evidence/literals-before.json",
+      "measuredBy": "scripts/count-literals.mjs"
+    },
+    "heldOutTrapsFixed": {
+      "fixed": 0,
+      "total": 30,
+      "perCategory": {
+        "plural": "0/3",
+        "reltime": "0/2",
+        "format": "0/3",
+        "toast": "0/5",
+        "attr": "0/4",
+        "data": "0/4",
+        "rtl": "0/6",
+        "backend": "0/3"
+      },
+      "detail": "evidence/traps-before.json",
+      "keySha256": "ef68d1a6e1ba4d320b3071b187cb838ac59b943af69186157f99e55ec5d5ae3e",
+      "keyPath": "C:\\Users\\chinm\\worldready-key\\traps.json (held out; not in repo)",
+      "measuredBy": "scripts/score-traps.mjs"
+    },
+    "physicalLeftRightClasses": {
+      "positionalAndMargin": 7,
+      "positionalAndMarginHits": [
+        "src/components/bookings/BookingModal.tsx: ml-auto, ml-auto",
+        "src/components/layout/Header.tsx: left-0, right-0",
+        "src/pages/Flights.tsx: left-3, pl-10, pr-4"
+      ],
+      "textAlign": 5,
+      "total": 12,
+      "note": "positionalAndMargin matches regex /\\b(ml-|mr-|pl-|pr-|left-|right-)/ across src/**/*.{ts,tsx,js,jsx}; textAlign matches /\\btext-(left|right)\\b/. The RTL retrofit must convert these to logical utilities (ms-/me-, ps-/pe-, start-/end-, text-start/text-end)."
+    },
+    "arrowLeftCount": {
+      "occurrences": 5,
+      "note": "String 'ArrowLeft' across src: 2 imports + 3 rendered icons (DestinationDetail x2, BookingModal x1). Directional icons must mirror in RTL."
+    },
+    "languages": {
+      "count": 1,
+      "note": "Only English; no src/locales directory exists in v0-before."
+    },
+    "htmlLangDir": {
+      "lang": "en",
+      "dir": null,
+      "raw": "<html lang=\"en\">",
+      "note": "No dir attribute and no runtime dir switching, so Arabic would render left-to-right."
+    }
+  },
+  "commands": {
+    "hardCodedUserVisibleStrings": "node scripts/count-literals.mjs --dir . --json evidence/literals-before.json",
+    "heldOutTrapsFixed": "node scripts/score-traps.mjs --key <path-to-held-out>/traps.json --dir . --json evidence/traps-before.json",
+    "physicalLeftRightClasses": "node -e \"walk src for /\\\\b(ml-|mr-|pl-|pr-|left-|right-)/ and /\\\\btext-(left|right)\\\\b/\" (see report)",
+    "arrowLeftCount": "node -e \"count /\\\\bArrowLeft\\\\b/ across src\"",
+    "htmlLangDir": "grep -i \"<html\" index.html",
+    "languages": "ls src/locales (absent => 1 language)"
+  },
+  "environment": {
+    "node": "v24.14.1",
+    "eslint-plugin-i18next": "6.1.5",
+    "typescript": "5.9.3",
+    "playwright": "1.63.0",
+    "os": "Windows 11"
+  }
+}

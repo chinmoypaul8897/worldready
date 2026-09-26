@@ -1,0 +1,29 @@
+{
+  "tool": "count-literals.mjs",
+  "dir": "C:\\Users\\chinm\\bob-hackathon-app",
+  "staged": false,
+  "generatedUtc": "2026-09-26T23:38:10.652Z",
+  "total": 320,
+  "byPass": {
+    "jsx": 168,
+    "data": 130,
+    "toasts": 22
+  },
+  "perFile": {
+    "src/components/bookings/BookingCard.tsx": 9,
+    "src/components/bookings/BookingModal.tsx": 35,
+    "src/components/bookings/HoldCard.tsx": 11,
+    "src/components/common/Button.tsx": 1,
+    "src/components/common/Modal.tsx": 1,
+    "src/components/flights/FlightCard.tsx": 10,
+    "src/components/flights/FlightFilters.tsx": 40,
+    "src/components/layout/Footer.tsx": 3,
+    "src/components/layout/Header.tsx": 10,
+    "src/components/user/UserIdentification.tsx": 15,
+    "src/pages/DestinationDetail.tsx": 18,
+    "src/pages/Flights.tsx": 10,
+    "src/pages/Home.tsx": 11,
+    "src/pages/MyBookings.tsx": 16,
+    "src/data/destinations.ts": 130
+  }
+}
