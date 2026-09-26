@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WorldReady</title>
+    <style>
+      :root { color-scheme: dark; }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        background: #0b0f1a;
+        color: #e8ecf5;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        padding: 0.9rem 1.25rem;
+        border-bottom: 1px solid #232a3d;
+        background: #10162a;
+      }
+      h1 { font-size: 1.1rem; margin: 0; font-weight: 700; }
+      h1 span { color: #a78bfa; }
+      .tag {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #f59e0b;
+        border: 1px solid #f59e0b55;
+        background: #f59e0b11;
+        padding: 0.15rem 0.5rem;
+        border-radius: 999px;
+      }
+      label { font-size: 0.85rem; color: #9aa4bd; }
+      select {
+        background: #1a2138;
+        color: #e8ecf5;
+        border: 1px solid #2c3550;
+        border-radius: 6px;
+        padding: 0.35rem 0.6rem;
+        font-size: 0.85rem;
+      }
+      .frames {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1px;
+        background: #232a3d;
+        height: calc(100vh - 108px);
+      }
+      @media (max-width: 800px) {
+        .frames { grid-template-columns: 1fr; height: auto; }
+        iframe { height: 70vh; }
+      }
+      .pane { display: flex; flex-direction: column; background: #0b0f1a; }
+      .pane h2 {
+        margin: 0;
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 0.5rem 0.9rem;
+        color: #9aa4bd;
+        border-bottom: 1px solid #1a2138;
+      }
+      iframe { border: 0; width: 100%; height: 100%; flex: 1; background: #0b0f1a; }
+      .note {
+        padding: 0.5rem 1.25rem;
+        font-size: 0.75rem;
+        color: #6b7590;
+        background: #0d1324;
+        border-top: 1px solid #1a2138;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Placeholder viewer — Bob builds the real comparison viewer in a later task.
+         Keep this minimal and clearly temporary. -->
+    <header>
+      <h1>World<span>Ready</span></h1>
+      <span class="tag">Placeholder viewer</span>
+      <div style="margin-left:auto; display:flex; align-items:center; gap:0.5rem;">
+        <label for="lang">Language</label>
+        <select id="lang" aria-label="Language (not wired up yet)">
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="ar">العربية</option>
+        </select>
+      </div>
+    </header>
+
+    <div class="frames">
+      <div class="pane">
+        <h2>Before — IBM Galaxium (English only)</h2>
+        <iframe src="before/" title="Before: original English-only Galaxium app"></iframe>
+      </div>
+      <div class="pane">
+        <h2>After — WorldReady</h2>
+        <iframe src="after/" title="After: WorldReady internationalized app"></iframe>
+      </div>
+    </div>
+
+    <p class="note">
+      Temporary shell. The language picker is not wired up yet; the real viewer
+      (language switching, RTL flip, trap highlights) is built later by Bob.
+    </p>
+  </body>
+</html>

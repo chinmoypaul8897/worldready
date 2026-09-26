@@ -1,0 +1,97 @@
+name: Deploy WorldReady to GitHub Pages
+
+# Builds two static bundles of the Galaxium demo and publishes them plus the
+# viewer to GitHub Pages:
+#   /worldready/            -> viewer/ (before vs after comparison shell)
+#   /worldready/before/     -> the app at git tag v0-before (IBM app, no i18n)
+#   /worldready/after/      -> the app at the pushed commit (i18n as it lands)
+# Both app builds run in demo mode (VITE_DEMO=1) so no backend is needed.
+# HashRouter is used, so no SPA rewrites are required.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; don't cancel an in-progress publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout AFTER (pushed commit)
+        uses: actions/checkout@v4
+        with:
+          path: after-src
+
+      - name: Checkout BEFORE (tag v0-before)
+        uses: actions/checkout@v4
+        with:
+          ref: v0-before
+          path: before-src
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Build BEFORE (v0-before, no i18n)
+        run: |
+          set -euo pipefail
+          cd before-src
+          npm ci
+          VITE_DEMO=1 VITE_BASE=/worldready/before/ npm run build
+          test -f dist/index.html
+
+      - name: Build AFTER (pushed commit)
+        run: |
+          set -euo pipefail
+          cd after-src
+          npm ci
+          VITE_DEMO=1 VITE_BASE=/worldready/after/ npm run build
+          test -f dist/index.html
+
+      - name: Assemble site
+        run: |
+          set -euo pipefail
+          mkdir -p site/before site/after
+          # Viewer (latest, from the pushed commit) at the site root.
+          cp -r after-src/viewer/* site/
+          cp -r before-src/dist/* site/before/
+          cp -r after-src/dist/* site/after/
+          # Optional evidence JSON (owned by another worker's lane).
+          if compgen -G "after-src/evidence/*.json" > /dev/null; then
+            mkdir -p site/evidence
+            cp after-src/evidence/*.json site/evidence/
+            echo "Copied evidence JSON."
+          else
+            echo "No evidence/*.json present — skipping."
+          fi
+          # Prevent any Jekyll processing of the static assets.
+          touch site/.nojekyll
+          echo "Assembled site:"
+          find site -maxdepth 2 -type d
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
