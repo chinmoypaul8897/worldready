@@ -130,3 +130,8 @@ lerna-debug.log*
 *.njsproj
 *.sln
 *.sw?
+# WorldReady: never commit detailed trap-scorer output (it names files + check
+# patterns and would leak the held-out key). Only counts-only summaries belong in
+# evidence/ (e.g. baseline.json). Full detail lives outside the repo, next to the key.
+evidence/traps-before*.json
+evidence/*trap*detail*.json

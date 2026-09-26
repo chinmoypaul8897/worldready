@@ -27,7 +27,7 @@
         "rtl": "0/6",
         "backend": "0/3"
       },
-      "detail": "evidence/traps-before.json",
+      "detail": "held out with the key (per-trap report names files + check patterns, so NOT committed; lives at C:\\Users\\chinm\\worldready-key\\traps-before-detail.json until final scoring)",
       "keySha256": "ef68d1a6e1ba4d320b3071b187cb838ac59b943af69186157f99e55ec5d5ae3e",
       "keyPath": "C:\\Users\\chinm\\worldready-key\\traps.json (held out; not in repo)",
       "measuredBy": "scripts/score-traps.mjs"
