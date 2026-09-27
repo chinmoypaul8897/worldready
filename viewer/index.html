@@ -816,16 +816,20 @@
       b.setAttribute('aria-pressed', String(active));
     });
 
-    // Switch After iframe via localStorage → reload
+    // Switch After iframe: persist the language (localStorage is shared across the
+    // whole same origin, including /after/), then FORCE a real reload. A hash-only
+    // src change does NOT reload an iframe, so a cache-busting query param is used to
+    // guarantee the After app re-initialises and re-reads i18nextLng.
+    try { localStorage.setItem('i18nextLng', lng); } catch (_) {}
     const afterIframe = document.getElementById('iframe-after');
     try {
       if (afterIframe.contentWindow) {
         afterIframe.contentWindow.localStorage.setItem('i18nextLng', lng);
       }
     } catch (_) {}
-    // Force reload by reassigning src (preserves route)
     const route = currentRoute || '/';
-    afterIframe.src = 'after/#' + (route.startsWith('/') ? route : '/' + route);
+    const hash = route.startsWith('/') ? route : '/' + route;
+    afterIframe.src = 'after/?wr=' + Date.now() + '#' + hash;
 
     // Schedule scan after iframe loads
     scheduleScan(600);
@@ -1108,20 +1112,12 @@
     const afterIframe  = document.getElementById('iframe-after');
 
     const route = currentRoute.startsWith('/') ? currentRoute : '/' + currentRoute;
+    // localStorage is shared across the whole same origin, so set the language BEFORE
+    // the After iframe first loads; a cache-busting query guarantees a full load that
+    // re-reads it. (A hash-only change would not reload the iframe.)
+    try { localStorage.setItem('i18nextLng', currentLng); } catch (_) {}
     beforeIframe.src = 'before/#' + route;
-    afterIframe.src  = 'after/#' + route;
-
-    // If non-English deep link, set localStorage before iframe loads
-    if (currentLng !== 'en') {
-      // We can't reliably set it before first load, but set it in the load event
-      afterIframe.addEventListener('load', function onFirstLoad() {
-        try {
-          afterIframe.contentWindow.localStorage.setItem('i18nextLng', currentLng);
-          afterIframe.src = 'after/#' + route;
-        } catch (_) {}
-        afterIframe.removeEventListener('load', onFirstLoad);
-      }, { once: true });
-    }
+    afterIframe.src  = 'after/?wr=' + Date.now() + '#' + route;
 
     await Promise.all([loadEvidence(), loadLocales()]);
   })();
