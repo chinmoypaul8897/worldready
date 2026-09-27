@@ -846,15 +846,15 @@
   document.getElementById('scan-btn').addEventListener('click', runScan);
 
   function runScan() {
-    const statusEl = document.getElementById('scan-status');
-    statusEl.textContent = 'Scanning…';
-    statusEl.className = 'scan-status';
+    const scanBar = document.getElementById('scan-bar');
+    if (!scanBar) return;
 
     const beforeCount = scanIframe('iframe-before', currentLng, true);
     const afterCount  = scanIframe('iframe-after',  currentLng, false);
 
-    // Build result line
-    const scanBar = document.getElementById('scan-bar');
+    // Rebuild the result line. NOTE: this replaces the whole scan-bar content,
+    // including the initial #scan-status span — so we must NOT reference that span
+    // afterwards (doing so caused "Cannot set textContent of null" on re-scan).
     scanBar.innerHTML = '';
 
     const lbl = document.createElement('span');
