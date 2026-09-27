@@ -1,0 +1,20 @@
+WorldReady — submission links (paste into the lablab.ai form)
+
+Public code repository (GitHub):
+  https://github.com/chinmoypaul8897/worldready
+
+Demo application platform:
+  Other
+
+Application URL (the live comparison viewer):
+  https://chinmoypaul8897.github.io/worldready/
+
+  Direct panes:
+    Before (original English-only app):  https://chinmoypaul8897.github.io/worldready/before/
+    After  (internationalized app):      https://chinmoypaul8897.github.io/worldready/after/
+
+CI gate (GitHub Actions):
+  https://github.com/chinmoypaul8897/worldready/actions
+
+Red -> green gate demo (public PR, left open as living evidence):
+  https://github.com/chinmoypaul8897/worldready/pull/1

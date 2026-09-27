@@ -1,0 +1,13 @@
+IBM
+IBM Bob
+Internationalization
+Localization
+i18next
+React
+TypeScript
+Vite
+Tailwind CSS
+GitHub Actions
+RTL
+Developer Tools
+Productivity

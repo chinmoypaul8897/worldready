@@ -1,0 +1,1 @@
+IBM Bob turned an English-only React app into English, French (Quebec) and Arabic (RTL): every string moved into i18next, plurals, formatting and layout fixed, plus a gate that blocks new hard-coded English. 305 strings to 0; 24/30 i18n traps fixed.

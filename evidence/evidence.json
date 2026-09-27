@@ -44,8 +44,10 @@
     },
     "bobcoins": {
       "usedTotal": 17.67,
+      "itemizedTasks": 17,
+      "itemizedBobcoins": 16.58,
       "label": "Bobcoins IBM Bob spent building this (of 40)",
-      "note": "All Bob tasks T01-T13 + the T10 CI gate & on-camera commit-hook demo; balance ~22.3/40.",
+      "note": "17.67 is the DB-verified account total (sum of costs in ~/.bob/db/bob.db); balance ~22.3/40. The 17 itemized product tasks below sum to ~16.58; the ~1.09 difference is retried/exploratory/diagnostic Bob runs (e.g. the P06 first-attempt crash before the API outage, T03 reruns, and the P08 pre-restart badge take + echo probe) documented in the P06 & P08 reports.",
       "source": "Bob task DB (~/.bob/db/bob.db)"
     }
   },
@@ -96,13 +98,21 @@
   "bobSessions": [
     { "id": "T01", "task": "i18n plan (key convention, 5-worker ownership map, Intl/RTL/data rules)", "mode": "Plan + Explore subagent + document understanding", "bobcoins": 0.576, "taskId": "4593193355a8c601be89e9368f417114" },
     { "id": "T02", "task": ".bob kit: i18n-extractor mode (fileRegex), i18n-extract skill, PreToolUse commit-gate hook", "mode": "Agent", "bobcoins": 0.400, "taskId": "1da972e2c73ac0b46b3757e612b08bea" },
-    { "id": "T02b", "task": "Mode-restriction proof: Bob refused to edit a Claude-owned checker", "mode": "i18n Extractor", "bobcoins": 0.024, "taskId": "243260a8b02b2935a12e62c5a1fde565" },
+    { "id": "T02-fix", "task": "Pre-diagnosed fix: hook read stdin via ESM import (was require, failed open)", "mode": "Agent", "bobcoins": 0.130, "taskId": "e19859aae3c49bbf2e283a680053d5f7" },
+    { "id": "T02-fix-2", "task": "Pre-diagnosed fix: gate key-parity only once src/locales/en exists (no false blocks)", "mode": "Agent", "bobcoins": 0.134, "taskId": "6f08e5d552503c8dfa7f3613189424db" },
+    { "id": "T02b", "task": "Mode-restriction proof: in i18n Extractor mode Bob refused to edit a Claude-owned checker (fileRegex)", "mode": "i18n Extractor", "bobcoins": 0.024, "taskId": "243260a8b02b2935a12e62c5a1fde565" },
     { "id": "T11", "task": "Plain-Bob baseline (no kit): 3/5 bookings traps, literals 55->14, stopped by cap", "mode": "Agent (no kit)", "bobcoins": 1.064, "taskId": "090ce6865907faf00e558d448673a5ff" },
-    { "id": "T03", "task": "Parallel i18n extraction - 5 general subagents at once (348 en strings)", "mode": "i18n Extractor + 5 parallel subagents", "bobcoins": 5.16, "taskId": "f44585c5aed55170d1beb12b66454ab6" },
+    { "id": "T03", "task": "Parallel i18n extraction - 5 general subagents at once (348 en strings) - the hero moment", "mode": "i18n Extractor + i18n-extract skill + 5 parallel subagents", "bobcoins": 5.16, "taskId": "f44585c5aed55170d1beb12b66454ab6" },
     { "id": "T04", "task": "Runtime wiring: i18next + LanguageDetector, LanguageSwitcher, Intl formatters", "mode": "Agent (parallel task)", "bobcoins": 0.675, "taskId": "ba080509d8970ec1abd49ef8614d5bc9" },
     { "id": "T05a", "task": "Merge fixes: nsSeparator '.', destination key resolution", "mode": "i18n Extractor", "bobcoins": 1.094, "taskId": "26647736b7e88b2bcd01d5ea0db1f9d5" },
     { "id": "T05b", "task": "Place LanguageSwitcher in the header", "mode": "i18n Extractor", "bobcoins": 0.106, "taskId": "8e3b8c75eb676be5b7fd96dd4f77e958" },
-    { "id": "T06", "task": "French (Quebec) + Arabic translation of all 5 namespaces + translator.csv", "mode": "Agent + document understanding + Office write", "bobcoins": 3.62, "taskId": "60fa3dfe0da14b05066c173069cb3efb" },
-    { "id": "T08", "task": "RTL layout pass: logical utilities, mirrored icons, Noto Sans Arabic", "mode": "Agent + Explore subagent", "bobcoins": 1.34, "taskId": "d8984dc930b951148242923f8bb9bdd4" }
-  ]
+    { "id": "T06", "task": "French (Quebec) + Arabic translation of all 5 namespaces + translator.csv", "mode": "Agent + document understanding (glossary.xlsx + style-guide.pdf) + Office-file write", "bobcoins": 3.62, "taskId": "60fa3dfe0da14b05066c173069cb3efb" },
+    { "id": "T08", "task": "RTL layout pass: logical utilities, mirrored icons, Noto Sans Arabic", "mode": "Agent + Explore subagent", "bobcoins": 1.34, "taskId": "d8984dc930b951148242923f8bb9bdd4" },
+    { "id": "T13", "task": "Sweep fix: render raw English flight-route planet names through i18next in 5 display sites", "mode": "i18n Extractor", "bobcoins": 0.974, "taskId": "c452b8c22e4e125414863610f848d24a" },
+    { "id": "T09", "task": "The live comparison viewer (picker, Scan, 6-form Arabic plural showcase, evidence drawer)", "mode": "Agent", "bobcoins": 0.756, "taskId": "6be2caca4e0a29e05a1e1a5571938917" },
+    { "id": "T10-gate", "task": "CI gate (.github/workflows/i18n-gate.yml) + commit-hook block message names count + file", "mode": "Agent", "bobcoins": 0.146, "taskId": "52a6efbf6e16fbfb7fdbeca16d2c6eef" },
+    { "id": "T10-block", "task": "On-camera commit block: hard-coded New! badge -> PreToolUse hook blocked the commit (exit 2)", "mode": "i18n Extractor + PreToolUse hook", "bobcoins": 0.175, "taskId": "ea99824c110c97ad1ba6b834dc44093f" },
+    { "id": "T10-fix", "task": "Then the fix commits cleanly: t('header.newBadge') added to en/fr/ar/pseudo", "mode": "i18n Extractor + PreToolUse hook", "bobcoins": 0.203, "taskId": "200d749b6ce9d0e83c4b82e96fe6985b" }
+  ],
+  "bobSessionsNote": "17 itemized product tasks summing to ~16.58 Bobcoins; DB-verified account total is 17.67 (see headline.bobcoins.note). Full per-task table with modes, wall-clock, main files and screenshots is in bob_sessions/README.md. Two pre-diagnosed T02 hook fixes and the plain-Bob baseline (T11) are included for honesty."
 }
