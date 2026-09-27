@@ -10,11 +10,17 @@
   },
   "englishParity": {
     "tool": "scripts/english-parity.mjs",
-    "before": "https://chinmoypaul8897.github.io/worldready/before/ (live v0-before)",
-    "after": "local dist (VITE_DEMO=1)",
     "routes": ["/", "/flights", "/bookings", "/destinations/mars", "/destinations/europa"],
-    "totalChangedCharacters": 0,
-    "result": "PASS — English renders byte-identical to the original app"
+    "contentParity": {
+      "before": "https://chinmoypaul8897.github.io/worldready/before/ (live v0-before)",
+      "after": "https://chinmoypaul8897.github.io/worldready/after/ (deployed commit c5c2caa, pre-switcher)",
+      "totalChangedCharacters": 0,
+      "result": "PASS — existing English content renders byte-identical to the original app (verified live before-vs-after)"
+    },
+    "withLanguageSwitcher": {
+      "totalChangedCharacters": 45,
+      "note": "After placing the EN/FR/AR LanguageSwitcher in the header (T05b), the tool reports 9 chars/route x 5 routes = 45. The diff is 100% ADDITIONS of the labels 'EN','FR','AR' (zero removals or changes to existing copy) — a new UI control, not a change to existing English. Content parity is still 0. A literal 0 could be restored by masking the switcher node in english-parity (as it masks timer nodes); the verifier was left unmodified."
+    }
   },
   "literals": {
     "tool": "scripts/count-literals.mjs",

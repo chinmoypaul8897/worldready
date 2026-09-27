@@ -6,6 +6,7 @@ import { Button } from '../common';
 import { UserIdentification } from '../user/UserIdentification';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../common/LanguageSwitcher';
 
 export const Header = () => {
   const location = useLocation();
@@ -71,6 +72,7 @@ export const Header = () => {
 
           {/* User Section */}
           <div className="flex items-center gap-4">
+            <LanguageSwitcher />
             {user ? (
               <div className="flex items-center gap-3">
                 <div className="hidden md:flex items-center gap-2 text-sm">
