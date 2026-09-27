@@ -11,6 +11,7 @@ The developer workflow WorldReady improves is **application maintenance and rele
 **▶ Live:** **https://chinmoypaul8897.github.io/worldready/**
 &nbsp;·&nbsp; [Before (English-only)](https://chinmoypaul8897.github.io/worldready/before/)
 &nbsp;·&nbsp; [After (world-ready)](https://chinmoypaul8897.github.io/worldready/after/)
+&nbsp;·&nbsp; [▶ Demo video (2:48)](submission/worldready_demo.mp4)
 
 </div>
 

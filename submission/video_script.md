@@ -1,50 +1,19 @@
-# WorldReady — video script (voice recorded in the morning)
+# WorldReady — demo video script (final, as recorded)
 
-**Target: ≤ 2:50** of narration at ~140 words/min (~370 words). MP4, 1920×1080, H.264, ≤ 3:00 and < 300 MB.
-Human voice-over, no dead air. `[CAPTION: ...]` marks an on-screen text overlay (used for the numbers).
-Cold open follows NIGHT_CONTEXT red-team fix 3: lead with **"Bob built this app English-only; Bob made it
-world-ready"**, the Arabic RTL flip, and the Arabic plural showcase — red outlines are secondary.
+**Final video:** `submission/worldready_demo.mp4`, 1920×1080 H.264 + AAC 48 kHz, **2:47.7**, loudness −16 LUFS. Captions file: `submission/worldready_demo.srt`.
+**Narration: AI-generated voice (Microsoft neural TTS, en-US Andrew), chosen by the project owner.** No background music.
+Footage: the live viewer recorded at 1920×1080 on the public site; Bob task screenshots from `bob_sessions/`; GitHub Actions run pages for PR #1. All numbers are the measured values in `evidence/evidence.json`.
 
-All numbers are the **measured** values from `evidence/evidence.json`. Do not change them.
-
----
-
-### 0:00–0:16 · Cold open (live viewer) — ~35 words
-> "Bob built this app — IBM's own demo — English-only. Watch Bob make it world-ready. Here it is in English. Now pick **Arabic**."
-- **On screen:** the live viewer at English → click **العربية** → the After pane mirrors to right-to-left.
-- `[CAPTION: Bob built this app English-only. Bob made it world-ready.]`
-
-### 0:16–0:30 · Name, tagline, what it beats — ~34 words
-> "**WorldReady.** World-ready in a day — proven, and kept that way. Translating text is the easy part. The weeks go into glued plurals, hard-coded prices, left-to-right layout, and English creeping back in."
-- **On screen:** title card / the viewer counters strip.
-- `[CAPTION: WorldReady — world-ready in a day. Proven, and kept that way.]`
-
-### 0:30–2:00 · Product in action, 90 s, one golden path (live viewer) — ~155 words
-> "Start with the live viewer. Before — IBM's English-only app — press **Scan**: forty-seven hard-coded strings light up. After — WorldReady: zero."
-- **On screen:** Scan; Before pane red outlines, After pane clean. `[CAPTION: Scan — Before: 47 · After: 0]`
-> "Flip to **Arabic** and the whole space-themed app flips with it — navigation mirrored, icons flipped, dates and numbers in Arabic format, destinations translated. **Français**: also clean."
-- **On screen:** Arabic RTL home, then French.
-> "Here's what machine translation can't do. Arabic has **six** plural forms — showing zero flights, one, two, a few, many, one hundred — all six, rendered from the real shipped bundle. 'One seats left' never happens."
-- **On screen:** the Arabic Plural Showcase card (0/1/2/3/11/100). `[CAPTION: Arabic plurals — all 6 forms]`
-> "On the flights page the planet route names are translated — but the search filter still finds the same flights. And it holds up on a phone: right-to-left at three-hundred-ninety pixels."
-- **On screen:** flights page in Arabic; then the phone-width clip.
-> "The proof travels with the app — an evidence drawer with the trap scores, the held-out key's fingerprint, the translator sheet, and every Bob session."
-- **On screen:** open the Evidence Drawer → Traps tab.
-
-### 2:00–2:33 · Bob on screen — ~72 words
-> "How? All of it was built in **IBM Bob**. Bob planned the retrofit reading the glossary and style guide, then authored a custom **i18n-extractor mode**, a **skill**, and a **commit hook**. **Five subagents** fanned out in parallel and moved three-hundred-five strings into keys. Bob translated to French and Arabic, did the right-to-left pass, and built this viewer."
-- **On screen:** Bob IDE — `.bob/` (mode YAML with `fileRegex`, the skill, the hook), the `bob_sessions/` folder, the Tasks list (stills from `bob_sessions/*.png`; do **not** start new paid tasks).
-> "Watch the gate. Bob adds a hard-coded badge and commits — the **hook blocks it**. Bob moves it into a key — now it commits."
-- **On screen:** `worldready_task10_hook_blocks_commit_chat.png` → `worldready_task10_hook_fix_summary.png`; then PR #1 red → green. `[CAPTION: 17 tasks · 17.67 / 40 Bobcoins]`
-
-### 2:33–2:50 · Recap + call to action — ~58 words
-> "What you saw: **three-hundred-five** hard-coded strings to **zero**. **Twenty-four of thirty** i18n traps fixed — scored against a key committed **before** Bob ran, never fed the answers. **Zero** characters of existing English changed. **One** language to **three**. And a gate that keeps it there. Translations are machine drafts for native review. Try it — pick Arabic."
-- `[CAPTION: 305 → 0 · 24/30 traps · 0 English changed · 1 → 3 languages · a gate]`
-- `[CAPTION: chinmoypaul8897.github.io/worldready]`
-
----
-
-## Notes for the recorder (morning)
-- The **translator read-back beat** (human edits 5 cells → Bob applies "5/5") happens in the morning (P10, task T07). If you record it, drop a ~10 s clip into beat 3 after the plural showcase; otherwise the script works without it.
-- Keep total ≤ 3:00 (judges stop at 3:00). This script runs ~2:40 at 140 wpm, leaving headroom.
-- Raw clips already captured are listed in `bob-hackathon-tools/video/EDIT_NOTES.md`. A silent first cut with number captions is at `bob-hackathon-tools/video/worldready_cut1_silent.mp4` — lay the voice on top of it.
+| # | Time | Beat | Narration (spoken) | On screen | Caption |
+|---|---|---|---|---|---|
+| S01 | 0:00.0–0:10.6 | Cold open | Bob built this app, IBM's own demo, in English only. Watch Bob make it world ready. Here it is in English. Now, pick Arabic. | Live viewer in English → click العربية → the After pane mirrors to right-to-left. | Bob built this app English-only. Bob made it world-ready. |
+| S02 | 0:10.6–0:28.0 | Name + tagline | This is WorldReady. IBM Bob takes an app global, proves it, and keeps it that way. Translating text is the easy part. The real work is glued plurals, hard-coded prices, left-to-right layout, and English creeping back in. | Title card; the four "real work" traps appear as they are spoken. | (built into the card) |
+| S03 | 0:28.0–0:39.3 | Product: Scan | On the left is IBM's English-only app. The scan outlines forty-seven hard-coded strings in red. On the right is WorldReady. Zero. | Live viewer (Arabic): Before pane outlined in red (Scan: Before 47), After pane clean (0); Scan re-run on camera. | Scan: Before 47 hard-coded · After 0 |
+| S04 | 0:39.3–0:52.4 | Product: Arabic + French | In Arabic, the whole app flips. Navigation is mirrored. On the flights page, dates and prices follow the Arabic locale, and planet names are translated. French is clean too. | After pane: mirrored Arabic nav → Flights page (Arabic-locale dates/prices, translated planet names) → Français. | Arabic: mirrored layout · Arabic-locale dates & prices / Français (Québec): clean too |
+| S05 | 0:52.4–1:09.2 | Product: plural showcase | Here is what machine translation can't do. Arabic has six plural forms: zero, one, two, a few, many, and other. All six are rendered from the real shipped bundle. One seats left never happens. | Arabic Plural Showcase; the cursor walks the six AR rows (zero/one/two/few/many/other). | Arabic plurals: all 6 forms, from the real shipped bundle |
+| S06 | 1:09.2–1:14.8 | Product: phone | It holds up on a phone too, right to left, at three hundred ninety pixels. | Phone view (390 px, العربية): After pane mirrored, plural showcase stacked below. | (built into the card) |
+| S07 | 1:14.8–1:27.9 | Product: translator read-back | Translations start as machine drafts, so a human reviews them. Our reviewer changed seven cells in the translator spreadsheet. Bob read the sheet back and applied all seven. | docs/translator.xlsx with the reviewer's 7 cells highlighted → Bob T07 task summary + "Reviewer edits applied" table. | Bob read the .xlsx back: 7/7 reviewer edits applied |
+| S08 | 1:27.9–1:38.3 | Product: evidence drawer | The proof travels with the app: an evidence drawer with the trap scores, the held-out key's fingerprint, the translator sheet, and every Bob session. | Evidence drawer opens: Traps (24/30 + key SHA-256) → Translator Sheet → Bob Sessions. | Evidence drawer: traps · key fingerprint · translator sheet · Bob sessions |
+| S09 | 1:38.3–2:05.3 | Bob on screen: build | How was it built? The product work was done in IBM Bob. Bob planned the retrofit from a glossary and a style guide. It wrote a custom mode, a skill, and a commit hook. Then five sub-agents ran in parallel and moved three hundred forty-eight strings into keys, in about twelve minutes. Bob translated to French and Arabic, fixed the layout for right to left, and built this viewer. | Bob task summaries: Tasks panel → T01 plan → T02 kit → T03 five subagents → T06 → T08 → T09. | one caption per Bob task (T01 … T09) |
+| S10 | 2:05.3–2:21.8 | Bob on screen: gate | Now the gate. Bob adds a hard-coded badge and tries to commit. The hook blocks it. Bob moves the text into a key, and the commit goes through. On GitHub, a pull request with hard-coded English goes red, and the fix turns it green. | T10 chat: the PreToolUse hook blocks the commit → T10 fix summary → GitHub Actions run on PR #1: red → green. | hook BLOCKS the commit (exit 2) / moved into a key → commit allowed / PR #1 red → green |
+| S11 | 2:21.8–2:47.7 | Recap + call to action | What you saw: three hundred five hard-coded strings, down to zero. Twenty-four of thirty traps fixed, scored against a held-out key that was fingerprinted before Bob ran. Zero characters of English changed. One language to three. Nineteen Bob tasks, and nineteen point four of forty Bob coins. Try it yourself, and pick Arabic. | Recap card; numbers appear as spoken; URL; "Narration: AI-generated voice (Microsoft neural TTS)". | (built into the card) |

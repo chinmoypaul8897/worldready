@@ -1,0 +1,167 @@
+1
+00:00:00,450 --> 00:00:04,676
+Bob built this app, IBM's own demo, in English only.
+
+2
+00:00:04,676 --> 00:00:06,755
+Watch Bob make it world ready.
+
+3
+00:00:06,755 --> 00:00:08,110
+Here it is in English.
+
+4
+00:00:08,110 --> 00:00:09,755
+Now, pick Arabic.
+
+5
+00:00:10,680 --> 00:00:12,432
+This is WorldReady.
+
+6
+00:00:12,432 --> 00:00:16,919
+IBM Bob takes an app global, proves it, and keeps it that way.
+
+7
+00:00:16,919 --> 00:00:19,893
+Translating text is the easy part.
+
+8
+00:00:19,893 --> 00:00:27,103
+The real work is glued plurals, hard-coded prices, left-to-right layout, and English creeping back in.
+
+9
+00:00:28,020 --> 00:00:31,364
+On the left is IBM's English-only app.
+
+10
+00:00:31,364 --> 00:00:35,509
+The scan outlines forty-seven hard-coded strings in red.
+
+11
+00:00:35,509 --> 00:00:37,601
+On the right is WorldReady.
+
+12
+00:00:37,601 --> 00:00:38,443
+Zero.
+
+13
+00:00:39,360 --> 00:00:41,967
+In Arabic, the whole app flips.
+
+14
+00:00:41,967 --> 00:00:43,757
+Navigation is mirrored.
+
+15
+00:00:43,757 --> 00:00:50,060
+On the flights page, dates and prices follow the Arabic locale, and planet names are translated.
+
+16
+00:00:50,060 --> 00:00:51,520
+French is clean too.
+
+17
+00:00:52,450 --> 00:00:55,321
+Here is what machine translation can't do.
+
+18
+00:00:55,321 --> 00:01:02,886
+Arabic has six plural forms: zero, one, two, a few, many, and other.
+
+19
+00:01:02,886 --> 00:01:06,057
+All six are rendered from the real shipped bundle.
+
+20
+00:01:06,057 --> 00:01:08,334
+One seats left never happens.
+
+21
+00:01:09,260 --> 00:01:13,907
+It holds up on a phone too, right to left, at three hundred ninety pixels.
+
+22
+00:01:14,810 --> 00:01:19,128
+Translations start as machine drafts, so a human reviews them.
+
+23
+00:01:19,128 --> 00:01:23,786
+Our reviewer changed seven cells in the translator spreadsheet.
+
+24
+00:01:23,786 --> 00:01:27,023
+Bob read the sheet back and applied all seven.
+
+25
+00:01:27,950 --> 00:01:37,426
+The proof travels with the app: an evidence drawer with the trap scores, the held-out key's fingerprint, the translator sheet, and every Bob session.
+
+26
+00:01:38,350 --> 00:01:39,405
+How was it built?
+
+27
+00:01:39,405 --> 00:01:41,997
+The product work was done in IBM Bob.
+
+28
+00:01:41,997 --> 00:01:45,918
+Bob planned the retrofit from a glossary and a style guide.
+
+29
+00:01:45,918 --> 00:01:49,589
+It wrote a custom mode, a skill, and a commit hook.
+
+30
+00:01:49,589 --> 00:01:57,313
+Then five sub-agents ran in parallel and moved three hundred forty-eight strings into keys, in about twelve minutes.
+
+31
+00:01:57,313 --> 00:02:04,418
+Bob translated to French and Arabic, fixed the layout for right to left, and built this viewer.
+
+32
+00:02:05,330 --> 00:02:06,345
+Now the gate.
+
+33
+00:02:06,345 --> 00:02:09,608
+Bob adds a hard-coded badge and tries to commit.
+
+34
+00:02:09,608 --> 00:02:10,858
+The hook blocks it.
+
+35
+00:02:10,858 --> 00:02:14,872
+Bob moves the text into a key, and the commit goes through.
+
+36
+00:02:14,872 --> 00:02:20,924
+On GitHub, a pull request with hard-coded English goes red, and the fix turns it green.
+
+37
+00:02:21,830 --> 00:02:26,280
+What you saw: three hundred five hard-coded strings, down to zero.
+
+38
+00:02:26,280 --> 00:02:32,740
+Twenty-four of thirty traps fixed, scored against a held-out key that was fingerprinted before Bob ran.
+
+39
+00:02:32,740 --> 00:02:35,293
+Zero characters of English changed.
+
+40
+00:02:35,293 --> 00:02:36,924
+One language to three.
+
+41
+00:02:36,924 --> 00:02:41,806
+Nineteen Bob tasks, and nineteen point four of forty Bob coins.
+
+42
+00:02:41,806 --> 00:02:44,635
+Try it yourself, and pick Arabic.
