@@ -43,9 +43,9 @@
       "source": "src/locales/{en,fr,ar,pseudo}; scripts/key-parity.mjs"
     },
     "bobcoins": {
-      "usedTotal": 16.89,
+      "usedTotal": 17.67,
       "label": "Bobcoins IBM Bob spent building this (of 40)",
-      "note": "All Bob tasks T01-T13; balance ~23.1/40.",
+      "note": "All Bob tasks T01-T13 + the T10 CI gate & on-camera commit-hook demo; balance ~22.3/40.",
       "source": "Bob task DB (~/.bob/db/bob.db)"
     }
   },
@@ -65,6 +65,33 @@
     "arabicPlural": { "key": "pages.flights.showingCount", "categories": ["zero", "one", "two", "few", "many", "other"], "counts": [0, 1, 2, 3, 11, 100], "note": "all six Arabic CLDR plural categories exercised by the real after bundle" },
     "translatorRoundTrip": { "file": "docs/translator.csv", "rows": 352, "note": "human-review edits land in the morning (P10)" },
     "provenance": { "trapKeyEarlyExposure": "An early commit (918222d) accidentally contained the trap list for ~3 minutes before any Bob task ran; no Bob prompt ever referenced it; the plain-Bob baseline on the same folder is the fairness control.", "trapKeySha256": "ef68d1a6e1ba4d320b3071b187cb838ac59b943af69186157f99e55ec5d5ae3e" }
+  },
+  "proof": {
+    "_comment": "P08 — proof the result STAYS at 0 (the gate). CI gate + local commit hook + a public red→green PR.",
+    "ciGate": {
+      "workflow": ".github/workflows/i18n-gate.yml",
+      "runsOn": ["pull_request", "push:main"],
+      "checks": ["count-literals total = 0", "key-parity (en/fr/ar/pseudo)", "npm run build", "frozen-baseline diff of scripts/ + demo-mock services (api.ts, demoApi.ts)"],
+      "frozenBaseline": "bd87f41ec49b747915d2f3967a35fa488fac97ba",
+      "greenOnMain": "https://github.com/chinmoypaul8897/worldready/actions/runs/36301505919"
+    },
+    "demoPr": {
+      "url": "https://github.com/chinmoypaul8897/worldready/pull/1",
+      "title": "Demo: a hard-coded string is blocked by the WorldReady gate",
+      "status": "open, unmerged (kept as living evidence)",
+      "redRun": "https://github.com/chinmoypaul8897/worldready/actions/runs/36301560876",
+      "redRunFailedStep": "No hard-coded English strings (must be 0) — count-literals reported 1 > 0",
+      "greenRun": "https://github.com/chinmoypaul8897/worldready/actions/runs/36301656831",
+      "greenRunNote": "after moving the string into common.footer.promo (en/fr/ar/pseudo); count-literals 0, key-parity PASS, build OK"
+    },
+    "commitHook": {
+      "file": ".bob/hooks/gate-commit.mjs",
+      "event": "PreToolUse on execute_command; exit 2 blocks the commit before it is created",
+      "blockMessage": "Blocked: 1 hard-coded string in src/components/layout/Header.tsx (1) — move it into an i18next key (t(...)).",
+      "blockedProof": ["bob_sessions/worldready_task10_hook_blocks_commit_chat.png", "bob_sessions/worldready_task10_hook_blocks_commit_summary.png"],
+      "fixCommit": "b4b2d55 — badge moved to t('header.newBadge') + en/fr/ar/pseudo; commit then allowed",
+      "recording": "bob-hackathon-tools/video/raw/task10_hook_block.mp4 (private, not published)"
+    }
   },
   "bobSessions": [
     { "id": "T01", "task": "i18n plan (key convention, 5-worker ownership map, Intl/RTL/data rules)", "mode": "Plan + Explore subagent + document understanding", "bobcoins": 0.576, "taskId": "4593193355a8c601be89e9368f417114" },
