@@ -32,8 +32,8 @@ flights.loadingText,pages,Loading flights...,Chargement des vols…,جارٍ ت�
 flights.noResults,pages,No flights found matching your criteria,Aucun vol trouvé correspondant à vos critères,لم يتم العثور على رحلات تطابق معاييرك,52,Flights empty state,
 flights.retryError,pages,Failed to load flights. Retrying... ({{attempt}}/{{max}}),Échec du chargement des vols. Nouvelle tentative… ({{attempt}}/{{max}}),فشل تحميل الرحلات. إعادة المحاولة... ({{attempt}}/{{max}}),80,Flights retry error toast,{{attempt}} and {{max}} preserved
 flights.maxRetriesError,pages,Failed to load flights after multiple attempts,Impossible de charger les vols après plusieurs tentatives,فشل تحميل الرحلات بعد محاولات متعددة,60,Flights max retry error toast,
-myBookings.titlePart1,pages,My,Mes,حجوزاتي,12,My Bookings page title line 1,AR uses single word covering both lines
-myBookings.titlePart2,pages,Bookings,réservations,,14,My Bookings page title line 2,AR titlePart2 is empty string; reviewer should confirm layout
+myBookings.titlePart1,pages,My,Mes,,12,My Bookings page title line 1,REVIEWED (human): AR word moved to the accented part 2
+myBookings.titlePart2,pages,Bookings,réservations,حجوزاتي,14,My Bookings page title line 2,REVIEWED (human): AR title now in the accented part
 myBookings.subtitle,pages,Manage your space travel reservations,Gérez vos réservations de voyage spatial,إدارة حجوزات سفرك الفضائي,46,My Bookings subtitle,
 myBookings.loadingText,pages,Loading your bookings...,Chargement de vos réservations…,جارٍ تحميل حجوزاتك...,38,My Bookings loading state,
 myBookings.pendingHolds,pages,Pending Holds ({{count}}),Réservations temporaires en attente ({{count}}),الحجوزات المؤقتة المعلّقة ({{count}}),52,My Bookings pending holds section heading,hold→réservation temporaire / حجز مؤقت per glossary
@@ -78,12 +78,12 @@ card.arrival,flights,Arrival,Arrivée,الوصول,10,Flight card field label,
 card.duration,flights,Duration: {{duration}},Durée : {{duration}},المدة: {{duration}},24,Flight card duration field,{{duration}} preserved
 card.availableSeatClasses,flights,Available Seat Classes,Classes de places disponibles,درجات المقاعد المتاحة,36,Flight card section heading,"seat→place in FR per glossary; AR uses مقعد"
 card.classEconomy,flights,Economy,Économique,الدرجة الاقتصادية,24,Flight card seat class label,
-card.classBusiness,flights,Business,Affaires,درجة رجال الأعمال,28,Flight card seat class label,
+card.classBusiness,flights,Business,Affaires,درجة الأعمال,28,Flight card seat class label,REVIEWED (human): neutral airline term
 card.classGalaxium,flights,Galaxium Class,Galaxium Class,Galaxium Class,14,Flight card seat class label,Brand term kept verbatim in all languages
 card.soldOut,flights,Sold Out,Complet,نفدت التذاكر,16,Flight card sold-out badge,
 card.seatsLeft,flights,{{count}} left,{{count}} restante(s),{{count}} متبقية,18,Flight card seats remaining,"{{count}} preserved; not pluralized per spec; FR restante(s) — reviewer may want gender-neutral fix"
 card.allSoldOut,flights,All Classes Sold Out,Toutes les classes sont complètes,نفدت جميع الدرجات,36,Flight card all sold-out state,
-card.selectSeatClass,flights,Select Seat Class,Choisir une classe,اختر درجة المقعد,22,Flight card seat selection button,
+card.selectSeatClass,flights,Select Seat Class,Choisir une classe de place,اختر درجة المقعد,22,Flight card seat selection button,REVIEWED (human): same wording as the booking modal
 filters.title,flights,Filters,Filtres,الفلاتر,10,Flights filter panel heading,
 filters.resetAll,flights,Reset All,Réinitialiser tout,إعادة تعيين الكل,20,Flights filter reset button,
 filters.sortBy,flights,Sort By,Trier par,ترتيب حسب,12,Flights sort dropdown label,
@@ -101,7 +101,7 @@ filters.minPlaceholder,flights,Min,Min,الحد الأدنى,14,Flights price ra
 filters.maxPlaceholder,flights,Max,Max,الحد الأقصى,14,Flights price range max input placeholder,
 filters.seatClass,flights,Seat Class,Classe de place,درجة المقعد,16,Flights seat class filter label,
 filters.seatEconomy,flights,Economy,Économique,الدرجة الاقتصادية,24,Flights seat class filter option,
-filters.seatBusiness,flights,Business,Affaires,درجة رجال الأعمال,28,Flights seat class filter option,
+filters.seatBusiness,flights,Business,Affaires,درجة الأعمال,28,Flights seat class filter option,REVIEWED (human): neutral airline term
 filters.seatGalaxium,flights,Galaxium,Galaxium,Galaxium,8,Flights seat class filter option (short),Brand kept verbatim
 filters.timeOfDay,flights,Time of Day,Heure de la journée,وقت اليوم,20,Flights time of day filter label,
 filters.timeMorning,flights,Morning (6-12),Matin (6 h – 12 h),الصباح (6-12),18,Flights time filter option,
@@ -118,7 +118,7 @@ filters.routeInnerPlanets,flights,Inner Planets,Planètes intérieures,الكو�
 filters.routeOuterPlanets,flights,Outer Planets,Planètes extérieures,الكواكب الخارجية,20,Flights route category option,
 filters.routeMoons,flights,Moons,Lunes,الأقمار,8,Flights route category option,
 seatClass.economy,bookings,Economy,Économique,الدرجة الاقتصادية,24,Booking seat class display,
-seatClass.business,bookings,Business,Affaires,درجة رجال الأعمال,28,Booking seat class display,
+seatClass.business,bookings,Business,Affaires,درجة الأعمال,28,Booking seat class display,REVIEWED (human): neutral airline term
 seatClass.galaxiumClass,bookings,Galaxium Class,Galaxium Class,Galaxium Class,14,Booking seat class display,Brand kept verbatim
 features.economy.standardSeating,bookings,Standard seating,Places standard,مقاعد قياسية,20,Booking economy feature,seat→place in FR per glossary
 features.economy.entertainment,bookings,In-flight entertainment,Divertissement à bord,ترفيه على متن الرحلة,26,Booking economy feature,
@@ -126,7 +126,7 @@ features.economy.snacks,bookings,Complimentary snacks,Collations offertes,وجب
 features.business.premiumSeating,bookings,Premium seating,Places premium,مقاعد مميزة,18,Booking business feature,seat→place in FR per glossary
 features.business.priorityBoarding,bookings,Priority boarding,Embarquement prioritaire,صعود ذو أولوية,28,Booking business feature,
 features.business.gourmetMeals,bookings,Gourmet meals,Repas gastronomiques,وجبات فاخرة,22,Booking business feature,
-features.business.extraLegroom,bookings,Extra legroom,Espace supplémentaire pour les jambes,مساحة إضافية للقدمين,44,Booking business feature,
+features.business.extraLegroom,bookings,Extra legroom,Plus d'espace pour les jambes,مساحة إضافية للقدمين,44,Booking business feature,REVIEWED (human): shorter Quebec phrasing
 features.galaxium.luxuryPods,bookings,Luxury pods,Cabines de luxe,كابينات فاخرة,16,Booking Galaxium Class feature,
 features.galaxium.vipLounge,bookings,VIP lounge access,Accès au salon VIP,دخول صالة VIP,22,Booking Galaxium Class feature,
 features.galaxium.concierge,bookings,Personal concierge,Concierge personnel,خدمة كونسيرج شخصية,22,Booking Galaxium Class feature,
@@ -225,7 +225,7 @@ earth.facts.moons,destinations,1 (Luna),1 (Luna),1 (لونا),10,Destination fac
 earth.facts.atmosphere,destinations,Nitrogen 78 % Oxygen 21 %,Azote 78 % Oxygène 21 %,نيتروجين 78٪ أكسجين 21٪,26,Destination fact value,
 earth.hazards.item0,destinations,Dense air traffic in low-Earth orbit — strict approach corridors enforced,Trafic aérien dense en orbite basse terrestre — couloirs d'approche stricts imposés,حركة مرور جوية كثيفة في المدار المنخفض للأرض — ممرات اقتراب صارمة مفروضة,90,Destination hazard list item,
 earth.hazards.item1,destinations,Electromagnetic interference from surface networks may disrupt navigation,Les interférences électromagnétiques provenant des réseaux terrestres peuvent perturber la navigation,قد تتداخل التشويشات الكهرومغناطيسية من الشبكات الأرضية مع الملاحة,100,Destination hazard list item,
-earth.hazards.item2,destinations,Weather re-entry delays are common at equatorial spaceports,Les retards de rentrée atmosphérique liés à la météo sont fréquents aux astroports équatoriaux,تأخيرات إعادة الدخول الجوي بسبب الطقس شائعة في الموانئ الفضائية الاستوائية,100,Destination hazard list item,spaceport→astroport in FR per glossary
+earth.hazards.item2,destinations,Weather re-entry delays are common at equatorial spaceports,Les retards de rentrée atmosphérique liés à la météo sont fréquents aux astroports équatoriaux,تأخيرات إعادة الدخول الجوي بسبب الطقس شائعة في الموانئ الفضائية الاستوائية,100,Destination hazard list item,REVIEWED (human): astroport approved (no change)
 earth.hazards.item3,destinations,Customs and biosecurity screening required for all interplanetary arrivals,Contrôle douanier et inspection biosécurité obligatoires pour toutes les arrivées interplanétaires,الفحص الجمركي وإجراءات الأمن البيولوجي إلزامية لجميع الوافدين بين الكواكب,100,Destination hazard list item,
 earth.gallery.item0.alt,destinations,Blue Marble view,Vue Bille bleue,منظر الكرة الزرقاء,22,Destination gallery image alt text,
 earth.gallery.item0.description,destinations,Blue Marble — Atlantic from orbit,Bille bleue — Atlantique depuis l'orbite,الكرة الزرقاء — المحيط الأطلسي من المدار,44,Destination gallery caption,
