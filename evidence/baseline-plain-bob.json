@@ -1,0 +1,51 @@
+{
+  "what": "Plain-Bob baseline (red-team fix 2): IBM Bob run with NO WorldReady .bob kit — no i18n-extractor custom mode, no i18n-extract skill, no commit-gate hook, no plan, no hints. One folder only, for an honest comparison against the kit-driven WorldReady run.",
+  "generatedUtc": "2026-09-27T00:30:00Z",
+  "author": "Claude Code (worker P04) — scored with the independent held-out key; Bob did the i18n edits",
+  "bob": {
+    "workspace": "C:\\Users\\chinm\\bob-hackathon-tools\\bob-sandbox (trusted, no .bob kit)",
+    "appCopy": "baseline-app = git archive of tag v0-before (commit f053de3); clean tree, no .git/.bob/scripts",
+    "mode": "Agent (default) — no custom mode/skill/hook available in this workspace",
+    "promptVerbatim": "Internationalize `baseline-app/src/components/bookings/` with react-i18next (English strings into a JSON file, components use t()).",
+    "taskId": "090ce6865907faf00e558d448673a5ff",
+    "costBobcoins": 1.063832,
+    "wallClockSec": 166,
+    "stopReason": "stopped_cost — hit the 1.0-Bobcoin watchdog cap (overshot to 1.06 by one model call) BEFORE finishing; HoldCard.tsx was never reached (todo showed 'Internationalize BookingModal.tsx 5/8', 'Internationalize HoldCard.tsx' still pending)."
+  },
+  "scope": {
+    "folder": "src/components/bookings/",
+    "files": ["BookingModal.tsx", "HoldCard.tsx", "BookingCard.tsx"]
+  },
+  "traps": {
+    "scorer": "scripts/score-traps.mjs --only-dir src/components/bookings (independent held-out key)",
+    "keySha256": "ef68d1a6e1ba4d320b3071b187cb838ac59b943af69186157f99e55ec5d5ae3e",
+    "fixed": 3,
+    "total": 5,
+    "perCategory": {
+      "plural": { "fixed": 1, "total": 1 },
+      "toast":  { "fixed": 2, "total": 3 },
+      "rtl":    { "fixed": 0, "total": 1 }
+    },
+    "notFixed": [
+      "one toast trap in HoldCard.tsx — HoldCard was never reached before the cost cap stopped the run",
+      "the RTL-layout trap in BookingModal.tsx — plain text-only i18n does not touch physical left/right layout classes (this is exactly a 'trap that text translation alone cannot fix')"
+    ]
+  },
+  "literals": {
+    "counter": "scripts/count-literals.mjs (eslint-plugin-i18next + TS-scan + toast pass), bookings files only",
+    "before": 55,
+    "after": 14,
+    "perFile": {
+      "BookingModal.tsx": { "before": 35, "after": 3 },
+      "HoldCard.tsx":     { "before": 11, "after": 11 },
+      "BookingCard.tsx":  { "before": 9,  "after": 0 }
+    }
+  },
+  "whatPlainBobDid": [
+    "Created src/i18n.ts (i18next + react-i18next + i18next-http-backend, ns 'bookings', loadPath /locales/{{lng}}/{{ns}}.json).",
+    "Added deps to package.json: i18next, react-i18next, i18next-http-backend.",
+    "Created public/locales/en/bookings.json and moved BookingModal + BookingCard strings into t() calls.",
+    "Did NOT reach HoldCard.tsx (cost cap) and did NOT address RTL layout."
+  ],
+  "takeaway": "Plain Bob, on a SINGLE folder, spent >1 Bobcoin and was cut off at 3/5 traps and 14 residual literals, leaving one file untouched and RTL unfixed — and it invented an ad-hoc structure (http-backend + public/locales, single 'bookings' namespace) instead of the plan's 5-worker src/locales namespace convention. The WorldReady kit (i18n-extractor mode + skill + 5-worker plan + commit gate) is what makes the whole app finish cheaply, consistently, and with the RTL/format/plural traps covered."
+}
