@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { Flight, SeatClass, Quote, Hold } from '../../types';
+import { getDestinationByName } from '../../data/destinations';
 import { Modal, Button } from '../common';
 import {
   Plane,
@@ -122,6 +123,9 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
   const timerDisplay = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   const isExpired = hold !== null && timeLeft === 0;
 
+  const originData = getDestinationByName(flight.origin);
+  const destData = getDestinationByName(flight.destination);
+
   const flightSummary = (
     <div className="glass-card p-4 bg-white/5">
       <div className="flex items-center gap-3 mb-3">
@@ -130,7 +134,7 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
         </div>
         <div>
           <h3 className="text-lg font-bold text-star-white">
-            {flight.origin} → {flight.destination}
+            {originData ? t(originData.name) : flight.origin} → {destData ? t(destData.name) : flight.destination}
           </h3>
           <p className="text-xs text-star-white/60">{t('bookings.card.flightId', { id: flight.flight_id })}</p>
         </div>

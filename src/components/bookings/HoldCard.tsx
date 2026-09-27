@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { Flight, StoredHold } from '../../types';
+import { getDestinationByName } from '../../data/destinations';
 import { Card, Button } from '../common';
 import { Zap, Plane, Crown, Rocket, Timer, CheckCircle, XCircle } from 'lucide-react';
 import { formatCurrency } from '../../utils/formatters';
@@ -140,7 +141,7 @@ export const HoldCard = ({ storedHold, flight, onAction }: HoldCardProps) => {
           {flight ? (
             <div>
               <h3 className="text-xl font-bold text-star-white mb-1">
-                {flight.origin} → {flight.destination}
+                {(() => { const o = getDestinationByName(flight.origin); return o ? t(o.name) : flight.origin; })()} → {(() => { const d = getDestinationByName(flight.destination); return d ? t(d.name) : flight.destination; })()}
               </h3>
               <p className="text-sm text-star-white/60">{t('bookings.card.flightId', { id: flight.flight_id })}</p>
             </div>

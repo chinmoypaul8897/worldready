@@ -4,7 +4,7 @@ import { useTranslation, Trans } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { AlertTriangle, ArrowLeft, Rocket } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { getDestinationBySlug } from '../data/destinations';
+import { getDestinationBySlug, getDestinationByName } from '../data/destinations';
 import type { DestinationData } from '../data/destinations';
 import { getFlights } from '../services/api';
 import type { Flight } from '../types';
@@ -210,7 +210,7 @@ export const DestinationDetail = () => {
                 >
                   <div>
                     <p className="text-star-white font-semibold">
-                      {flight.origin} → {flight.destination}
+                      {(() => { const o = getDestinationByName(flight.origin); return o ? t(o.name) : flight.origin; })()} → {(() => { const d = getDestinationByName(flight.destination); return d ? t(d.name) : flight.destination; })()}
                     </p>
                     <p className="text-star-white/60 text-sm">
                       {formatDate(flight.departure_time, 'MMM dd, yyyy')} · {formatTime(flight.departure_time)}

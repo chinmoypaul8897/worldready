@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import type { Booking, Flight } from '../../types';
+import { getDestinationByName } from '../../data/destinations';
 import { Card, Button } from '../common';
 import { Plane, Calendar, CheckCircle, XCircle, Clock, Crown, Rocket } from 'lucide-react';
 import { formatDate, formatCurrency } from '../../utils/formatters';
@@ -119,7 +120,7 @@ export const BookingCard = ({ booking, flight, onCancel, isCancelling }: Booking
           <div className="space-y-3 mb-4">
             <div>
               <h3 className="text-xl font-bold text-star-white mb-1">
-                {flight.origin} → {flight.destination}
+                {(() => { const o = getDestinationByName(flight.origin); return o ? t(o.name) : flight.origin; })()} → {(() => { const d = getDestinationByName(flight.destination); return d ? t(d.name) : flight.destination; })()}
               </h3>
               <p className="text-sm text-star-white/60">{t('bookings.card.flightId', { id: flight.flight_id })}</p>
             </div>

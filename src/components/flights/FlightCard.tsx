@@ -17,13 +17,14 @@ export const FlightCard = ({ flight, onBook }: FlightCardProps) => {
   const totalSeats = flight.economy_seats_available + flight.business_seats_available + flight.galaxium_seats_available;
   const isSoldOut = totalSeats === 0;
   const destData = getDestinationByName(flight.destination);
+  const originData = getDestinationByName(flight.origin);
   const destLabel = destData ? (
     <Link
       to={`/destinations/${destData.slug}`}
       className="hover:text-cosmic-purple underline-offset-2 hover:underline transition-colors"
       onClick={(e) => e.stopPropagation()}
     >
-      {flight.destination}
+      {t(destData.name)}
     </Link>
   ) : (
     <span>{flight.destination}</span>
@@ -78,7 +79,7 @@ export const FlightCard = ({ flight, onBook }: FlightCardProps) => {
             </div>
             <div>
               <h3 className="text-xl font-bold text-star-white">
-                {flight.origin} → {destLabel}
+                {originData ? t(originData.name) : flight.origin} → {destLabel}
               </h3>
               <p className="text-sm text-star-white/60">
                 {t('flights.card.flightNumber', { id: flight.flight_id })}
