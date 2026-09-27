@@ -9,5 +9,6 @@ Vite
 Tailwind CSS
 GitHub Actions
 RTL
+Arabic
 Developer Tools
 Productivity

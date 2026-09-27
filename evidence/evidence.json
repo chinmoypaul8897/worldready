@@ -43,11 +43,11 @@
       "source": "src/locales/{en,fr,ar,pseudo}; scripts/key-parity.mjs"
     },
     "bobcoins": {
-      "usedTotal": 17.67,
-      "itemizedTasks": 17,
-      "itemizedBobcoins": 16.58,
+      "usedTotal": 19.41,
+      "itemizedTasks": 19,
+      "itemizedBobcoins": 18.32,
       "label": "Bobcoins IBM Bob spent building this (of 40)",
-      "note": "17.67 is the DB-verified account total (sum of costs in ~/.bob/db/bob.db); balance ~22.3/40. The 17 itemized product tasks below sum to ~16.58; the ~1.09 difference is retried/exploratory/diagnostic Bob runs (e.g. the P06 first-attempt crash before the API outage, T03 reruns, and the P08 pre-restart badge take + echo probe) documented in the P06 & P08 reports.",
+      "note": "19.41 is the DB-verified account total (sum of costs in ~/.bob/db/bob.db); balance ~20.59/40. The 19 itemized tasks below (incl. the plain-Bob baseline T11 as a fairness control, the mode-restriction proof T02b, the T07 translator read-back and the T09b viewer polish) sum to ~18.32; the ~1.09 difference is retried/exploratory/diagnostic Bob runs (e.g. the P06 first-attempt crash before the API outage, T03 reruns, and the P08 pre-restart badge take + echo probe) documented in the P06 & P08 reports.",
       "source": "Bob task DB (~/.bob/db/bob.db)"
     }
   },
@@ -65,7 +65,8 @@
     "keyParity": { "result": "PASS", "locales": { "fr": "{one,many,other}", "ar": "{zero,one,two,few,many,other}", "pseudo": "{one,other}" }, "missing": 0, "extra": 0, "source": "scripts/key-parity.mjs", "file": "evidence/after-key-parity.json" },
     "rtl": { "physicalClassesBefore": 12, "physicalClassesAfter": 0, "directionalArrows": "3/3 mirrored (rtl:-scale-x-100)", "htmlDirBefore": "ltr, no dir attribute", "htmlDirAfter": "rtl for ar", "arabicFont": "Noto Sans Arabic, scoped to [lang=ar]/[dir=rtl]", "source": "evidence/after-translation.json" },
     "arabicPlural": { "key": "pages.flights.showingCount", "categories": ["zero", "one", "two", "few", "many", "other"], "counts": [0, 1, 2, 3, 11, 100], "note": "all six Arabic CLDR plural categories exercised by the real after bundle" },
-    "translatorRoundTrip": { "file": "docs/translator.csv", "rows": 352, "note": "human-review edits land in the morning (P10)" },
+    "translatorRoundTrip": { "file": "docs/translator.csv", "rows": 352, "note": "The human reviewer's 5 review items (7 cells) were applied by Bob T07 (7/7): Claude Code typed the reviewer's decisions into docs/translator.csv and generated docs/translator.xlsx (commit 2571aac, the sheet); Bob read the .xlsx back with its Office tool and applied the 7 cells to src/locales/{fr,ar} (commit debd7e2, the locales)." },
+    "effort": { "extraction": { "strings": 348, "seconds": 740, "approxMinutes": 12, "subagents": 5, "task": "T03" }, "productTasks": { "approxMinutes": 40, "seconds": 2395, "tasks": 16, "includes": "T03 (the 740 s extraction)", "excludes": "T06 (translation): its clock includes a ~3-hour API outage, so it cannot be measured; the T11 baseline and the T02b proof are not product tasks" }, "summary": "348 strings extracted into keys in about 12 minutes of Bob time (five parallel subagents); the whole retrofit's 16 product tasks, including that extraction, took about 40 minutes of Bob time in total (translation not timed: an API outage broke its clock).", "source": "Bob task wall-clock (updated_at - created_at) from Bob's task DB (~/.bob/db/bob.db); no manual baseline is claimed" },
     "provenance": { "trapKeyEarlyExposure": "An early commit (918222d) accidentally contained the trap list for ~3 minutes before any Bob task ran; no Bob prompt ever referenced it; the plain-Bob baseline on the same folder is the fairness control.", "trapKeySha256": "ef68d1a6e1ba4d320b3071b187cb838ac59b943af69186157f99e55ec5d5ae3e" }
   },
   "proof": {
@@ -112,7 +113,9 @@
     { "id": "T09", "task": "The live comparison viewer (picker, Scan, 6-form Arabic plural showcase, evidence drawer)", "mode": "Agent", "bobcoins": 0.756, "taskId": "6be2caca4e0a29e05a1e1a5571938917" },
     { "id": "T10-gate", "task": "CI gate (.github/workflows/i18n-gate.yml) + commit-hook block message names count + file", "mode": "Agent", "bobcoins": 0.146, "taskId": "52a6efbf6e16fbfb7fdbeca16d2c6eef" },
     { "id": "T10-block", "task": "On-camera commit block: hard-coded New! badge -> PreToolUse hook blocked the commit (exit 2)", "mode": "i18n Extractor + PreToolUse hook", "bobcoins": 0.175, "taskId": "ea99824c110c97ad1ba6b834dc44093f" },
-    { "id": "T10-fix", "task": "Then the fix commits cleanly: t('header.newBadge') added to en/fr/ar/pseudo", "mode": "i18n Extractor + PreToolUse hook", "bobcoins": 0.203, "taskId": "200d749b6ce9d0e83c4b82e96fe6985b" }
+    { "id": "T10-fix", "task": "Then the fix commits cleanly: t('header.newBadge') added to en/fr/ar/pseudo", "mode": "i18n Extractor + PreToolUse hook", "bobcoins": 0.203, "taskId": "200d749b6ce9d0e83c4b82e96fe6985b" },
+    { "id": "T07", "task": "translator read-back: apply the human reviewer's 7 cells from docs/translator.xlsx", "mode": "i18n Extractor + document understanding (office_read .xlsx)", "bobcoins": 1.29, "taskId": "fa7bcd8a303eb1cc61252af1b2548606" },
+    { "id": "T09b", "task": "viewer polish: taller Before/After panes + body height auto", "mode": "Agent", "bobcoins": 0.449, "taskId": "95d87050bfdb03191148ad4544d9a9d5" }
   ],
-  "bobSessionsNote": "17 itemized product tasks summing to ~16.58 Bobcoins; DB-verified account total is 17.67 (see headline.bobcoins.note). Full per-task table with modes, wall-clock, main files and screenshots is in bob_sessions/README.md. Two pre-diagnosed T02 hook fixes and the plain-Bob baseline (T11) are included for honesty."
+  "bobSessionsNote": "19 itemized tasks summing to ~18.32 Bobcoins; DB-verified account total is 19.41 (see headline.bobcoins.note). Full per-task table with modes, wall-clock, main files and screenshots is in bob_sessions/README.md. Two pre-diagnosed T02 hook fixes and the plain-Bob baseline (T11) are included for honesty. T07 (248 s; src/locales/{fr,ar}/*.json; bob_sessions/worldready_task07_translator_readback_summary.png) and T09b (164 s; viewer/index.html; bob_sessions/worldready_task09b_viewer_taller_panes_summary.png) were added in P10."
 }

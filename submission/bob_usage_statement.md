@@ -1,22 +1,28 @@
 # How we used IBM Bob
 
-**IBM Bob wrote the product.** The entire internationalization retrofit — planning, the reusable kit, extraction, runtime wiring, translations, RTL, the live viewer, and the gate — was done in IBM Bob 2.0 across **17 tasks (17.67 of 40 Bobcoins)**. Every task's consumption summary is screenshotted and its history exported in [`bob_sessions/`](../bob_sessions).
+**Who wrote what.** The product i18n work was done by IBM Bob 2.0 across **19 tasks (19.41 of 40 Bobcoins)**; independent verifiers, the demo mock and deploy plumbing were written separately so Bob never graded itself. The 19 include the plain-Bob baseline (T11: no kit, a fairness control) and the T02b proof; ~1.09 of the Bobcoins (Bob's DB total) were retried/diagnostic runs. Evidence: `bob_sessions/`.
 
 **Bob 2.0 features, by task:**
 
-- **Plan mode + Explore subagent + document understanding** (T01): read `docs/glossary.xlsx` and `docs/style-guide.pdf` to produce the i18n plan, key convention, and a 5-area ownership map.
-- **Custom mode + custom skill + PreToolUse hook** (T02): Bob authored a `.bob/` kit — an `i18n-extractor` mode whose edit scope is limited by `fileRegex`, an `i18n-extract` skill (i18next/Intl rules), and a commit-gate hook. A mode-restriction proof (T02b): in that mode Bob *refused* to edit a checker outside its `fileRegex`.
-- **Five parallel subagents** (T03, the hero moment): one subagent per app area moved every user-visible JSX/attribute/toast/data string into `src/locales/en/*.json` and replaced it with `t()`/`<Trans>` — 348 keys.
-- **Parallel task** (T04): concurrently wired i18next + language detector, a language switcher, and locale-aware Intl formatters.
-- **Document understanding + Office-file write** (T06): translated all five namespaces to French (Québec) and Arabic following the glossary/style guide, including Arabic's six plural forms, and wrote the translator round-trip sheet.
-- **Agent + Explore subagent** (T08): RTL pass — physical→logical Tailwind utilities, mirrored icons, Noto Sans Arabic.
-- **Agent mode** (T09): built the entire live comparison viewer (picker, scan, plural showcase, evidence drawer) as one self-contained file.
-- **Agent + i18n-extractor** (T10, T13): a GitHub Actions i18n gate; an on-camera demo where the PreToolUse hook *blocked* a commit containing a hard-coded "New!" badge, then allowed it after Bob moved it into a key across all four locales; and a runtime sweep fix for leftover English planet names.
+- **Plan mode, Explore subagent, document understanding** (T01): read the glossary (.xlsx) and style guide (.pdf) to write the i18n plan.
+- **Custom mode, skill, PreToolUse hook** (T02): Bob authored the `.bob/` kit: an `i18n-extractor` mode scoped by `fileRegex`, an `i18n-extract` skill and a commit-gate hook. In T02b, that mode *refused* to edit a checker outside its scope.
+- **Five parallel subagents** (T03): one per app area, 348 strings into i18next keys in about 12 minutes.
+- **Parallel task** (T04): wired i18next, a language switcher and Intl formatters.
+- **Document understanding, Office-file write** (T06): French (Québec) and Arabic translations per the glossary and style guide, six Arabic plural forms, and the translator sheet.
+- **Agent, Explore subagent** (T08): RTL pass: logical Tailwind utilities, mirrored icons, Noto Sans Arabic.
+- **Agent mode** (T09, T09b): the live comparison viewer, then polish (taller panes, no overlap at 390 px).
+- **Agent, i18n-extractor, PreToolUse hook** (T10, T13): the GitHub Actions gate; on camera the hook *blocked* a commit with a hard-coded "New!" badge, then passed once Bob moved it into a key; a sweep fix for English planet names.
+- **i18n-extractor, document understanding** (T07, human in the loop): Bob read the human-reviewed `docs/translator.xlsx` with its Office tool and applied the 7 differing cells ("7/7 reviewer edits applied").
 
-We also ran an **honest plain-Bob baseline** (T11): the same task with *no* kit, committed as a fairness control.
+**Claude Code (not Bob) wrote** the independent verifiers (`scripts/`), the demo mock, deploy plumbing, the held-out trap key, evidence JSON, docs, submission texts and the video.
 
-**What Claude Code (not Bob) did — disclosed for honesty.** Claude wrote only the *scaffolding around* Bob's work: copying the app in, the demo mock and deploy plumbing (Vite base, HashRouter, GitHub Pages workflow), the **independent verifier scripts in `scripts/`** ("the checker is not written by the agent it grades"), the held-out trap key, the evidence JSON, and these submission documents. Claude also made two small bug-fixes to Bob's viewer and trivial TypeScript annotations so Bob's code compiled; all are noted in `bob_sessions/README.md`.
+**Disclosures:**
 
-**One disclosure:** an early commit (`918222d`) accidentally contained the trap list for about three minutes *before any Bob task ran*; no Bob prompt ever referenced it, and the plain-Bob baseline on the same folder is the fairness control. The trap key's SHA-256 was committed up front (`evidence/traps-key.sha256`) and matches the now-published key.
+- An early commit (`918222d`) accidentally contained the trap list for about 3 minutes *before any Bob task ran*. No Bob prompt referenced it; the trap score was frozen before the key was published; the plain-Bob baseline on the same folder is the fairness control.
+- 24/30 is honest: the 6 residual traps were never answer-fed.
+- Translations are machine drafts. The human reviewer (project owner) decided 5 flagged items (7 cells); Claude Code typed the decisions into `docs/translator.csv` and generated the `.xlsx`; Bob applied them (T07).
+- Claude made two small bug-fixes to Bob's viewer (an iframe reload; a null reference on re-scan) and two trivial TypeScript type annotations so Bob's code compiled, and pre-diagnosed some small Bob fix tasks (stated in their prompts).
+- The demo PR #1 commits were made by hand to demonstrate the gate, not by Bob.
+- Narration in the demo video: AI-generated voice (Microsoft neural TTS).
 
 No watsonx.ai or watsonx Orchestrate was used.
