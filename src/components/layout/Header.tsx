@@ -32,6 +32,9 @@ export const Header = () => {
             <span className="text-2xl font-bold bg-cosmic-gradient bg-clip-text text-transparent">
               {t('common.header.brandName')}
             </span>
+            <span className="ms-2 rounded-full bg-cosmic-purple px-2 py-0.5 text-xs font-semibold text-white">
+              {t('header.newBadge')}
+            </span>
           </Link>
 
           {/* Navigation */}
