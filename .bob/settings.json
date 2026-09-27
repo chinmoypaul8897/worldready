@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "^execute_command$",
+        "hooks": [
+          { "type": "command", "command": "node .bob/hooks/gate-commit.mjs", "timeout": 60 }
+        ]
+      }
+    ]
+  }
+}
