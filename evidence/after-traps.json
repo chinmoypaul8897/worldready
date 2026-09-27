@@ -1,0 +1,262 @@
+{
+  "tool": "score-traps.mjs",
+  "dir": ".",
+  "key": "C:/Users/chinm/worldready-key/traps.json",
+  "generatedUtc": "2026-09-27T06:04:33.722Z",
+  "totalFixed": 24,
+  "total": 30,
+  "perCategory": {
+    "plural": {
+      "name": "1. Glued plurals (ternary '+ s' / interpolated count)",
+      "fixed": 3,
+      "total": 3
+    },
+    "reltime": {
+      "name": "2. Hand-made relative time strings",
+      "fixed": 0,
+      "total": 2
+    },
+    "format": {
+      "name": "3. Hard-coded locale formatting (Intl / date-fns)",
+      "fixed": 1,
+      "total": 3
+    },
+    "toast": {
+      "name": "4. Template-literal toasts carrying variables",
+      "fixed": 5,
+      "total": 5
+    },
+    "attr": {
+      "name": "5. Untranslated attributes (placeholder / aria-label / title / alt)",
+      "fixed": 4,
+      "total": 4
+    },
+    "data": {
+      "name": "6. Data-file copy & planet-name filter values",
+      "fixed": 4,
+      "total": 4
+    },
+    "rtl": {
+      "name": "7. RTL layout (physical left/right classes, arrows, html dir)",
+      "fixed": 6,
+      "total": 6
+    },
+    "backend": {
+      "name": "8. Raw backend English shown to users",
+      "fixed": 1,
+      "total": 3
+    }
+  },
+  "traps": [
+    {
+      "id": "PL-01",
+      "category": "plural",
+      "file": "src/pages/Flights.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "PL-02",
+      "category": "plural",
+      "file": "src/components/flights/FlightCard.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "PL-03",
+      "category": "plural",
+      "file": "src/components/bookings/BookingModal.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "RT-01",
+      "category": "reltime",
+      "file": "src/utils/formatters.ts",
+      "fixed": false,
+      "reason": "still present: /minutes ago/; still present: /hours ago/; still present: /days ago/"
+    },
+    {
+      "id": "RT-02",
+      "category": "reltime",
+      "file": "src/utils/formatters.ts",
+      "fixed": false,
+      "reason": "still present: /just now/"
+    },
+    {
+      "id": "FM-01",
+      "category": "format",
+      "file": "src/utils/formatters.ts",
+      "fixed": false,
+      "reason": "still present: /currency:\\s*'USD'/"
+    },
+    {
+      "id": "FM-02",
+      "category": "format",
+      "file": "src/utils/formatters.ts",
+      "fixed": false,
+      "reason": "still present: /'en-US'/"
+    },
+    {
+      "id": "FM-03",
+      "category": "format",
+      "file": "src/utils/formatters.ts",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "TO-01",
+      "category": "toast",
+      "file": "src/components/user/UserIdentification.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "TO-02",
+      "category": "toast",
+      "file": "src/components/bookings/BookingModal.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "TO-03",
+      "category": "toast",
+      "file": "src/components/bookings/HoldCard.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "TO-04",
+      "category": "toast",
+      "file": "src/pages/Flights.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "TO-05",
+      "category": "toast",
+      "file": "src/components/bookings/BookingModal.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "AT-01",
+      "category": "attr",
+      "file": "src/pages/Flights.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "AT-02",
+      "category": "attr",
+      "file": "src/components/user/UserIdentification.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "AT-03",
+      "category": "attr",
+      "file": "src/components/flights/FlightFilters.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "AT-04",
+      "category": "attr",
+      "file": "src/components/common/Modal.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "DA-01",
+      "category": "data",
+      "file": "src/pages/DestinationDetail.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "DA-02",
+      "category": "data",
+      "file": "src/pages/Home.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "DA-03",
+      "category": "data",
+      "file": "src/data/destinations.ts",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "DA-04",
+      "category": "data",
+      "file": "src/pages/DestinationDetail.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "RL-01",
+      "category": "rtl",
+      "file": "index.html",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "RL-02",
+      "category": "rtl",
+      "file": "src/components/layout/Header.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "RL-03",
+      "category": "rtl",
+      "file": "src/pages/Flights.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "RL-04",
+      "category": "rtl",
+      "file": "src/pages/Flights.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "RL-05",
+      "category": "rtl",
+      "file": "src/components/bookings/BookingModal.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "RL-06",
+      "category": "rtl",
+      "file": "src/pages/DestinationDetail.tsx",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "BK-01",
+      "category": "backend",
+      "file": "index.html",
+      "fixed": true,
+      "reason": "ok"
+    },
+    {
+      "id": "BK-02",
+      "category": "backend",
+      "file": "src/components/user/UserIdentification.tsx",
+      "fixed": false,
+      "reason": "still present: /toast\\.error\\(result\\.details/; still present: /toast\\.error\\(error\\.details/"
+    },
+    {
+      "id": "BK-03",
+      "category": "backend",
+      "file": "src/pages/MyBookings.tsx",
+      "fixed": false,
+      "reason": "still present: /toast\\.error\\(result\\.details/; still present: /toast\\.error\\(error\\.details/"
+    }
+  ]
+}

@@ -17,18 +17,45 @@ every Bob workspace, and is never placed in any prompt Bob can read. Only its SH
 is committed here, *before* Bob's i18n work begins. The full key is published next to this
 hash **after final scoring**, so anyone can verify the hash matches and audit every trap.
 
-- **Key location (uncommitted):** `C:\Users\chinm\worldready-key\traps.json`
-- **Committed hash:** [`traps-key.sha256`](./traps-key.sha256)
+- **Committed hash:** [`traps-key.sha256`](./traps-key.sha256) =
+  `ef68d1a6e1ba4d320b3071b187cb838ac59b943af69186157f99e55ec5d5ae3e`, first committed in
+  `918222d` — **before any Bob i18n task ran**.
+- **Published key (after final scoring):** [`traps-key.json`](./traps-key.json) — its SHA-256 matches
+  the committed hash above.
 - **Trap count:** 30, across the 8 categories below.
 
-### Verify the hash (after the key is published)
+### Verify the hash
 
 ```
-# from the folder containing the published traps.json
-sha256sum -c traps-key.sha256
-# or, cross-platform:
-node -e "const c=require('crypto'),fs=require('fs');console.log(c.createHash('sha256').update(fs.readFileSync('traps.json')).digest('hex'))"
+# from evidence/ :
+node -e "const c=require('crypto'),fs=require('fs');console.log(c.createHash('sha256').update(fs.readFileSync('traps-key.json')).digest('hex'))"
+# -> ef68d1a6e1ba4d320b3071b187cb838ac59b943af69186157f99e55ec5d5ae3e
 ```
+
+## Final score (frozen 2026-09-27 by worker P07)
+
+**24 / 30 traps fixed.** Per category: plural 3/3 · reltime 0/2 · format 1/3 · toast 5/5 ·
+attr 4/4 · data 4/4 · rtl 6/6 · backend 1/3. Full machine-readable result:
+[`after-traps.json`](./after-traps.json). The original English-only app scores **0/30**
+([`baseline.json`](./baseline.json)).
+
+The 6 residual traps (2 relative-time, 2 formatting, 2 backend-error strings) are on
+error/format code paths the autonomous kit+Bob run did not reach. They were **not** answer-fed:
+per the project's fairness rules, no Bob prompt ever named a trap, a file:line from the key, or
+"the traps you'll be scored on", and pre-diagnosed fixes were never written for trap items before
+the score was frozen. The **plain-Bob baseline** (`baseline-plain-bob.json`), run on the same
+folder with the same rules and no kit, is the fairness control.
+
+### Provenance disclosure (held-out-key hygiene)
+
+An early commit, **`918222d`** (worker P03's first commit), accidentally contained the detailed
+trap list (`evidence/traps-before.json`) for about **3 minutes** before it was removed in `15e4144`
+— **and before any Bob task ran at all**. History was not rewritten (the repo is shared; force-push
+over shared history is prohibited), so that blob still exists at `918222d`. **No Bob prompt ever
+referenced that commit, that file, or any trap entry.** Because the traps are genuine i18n defects
+that Bob had to fix in real code (the checks require real fixes, not string matching), and because
+the plain-Bob baseline is the fairness control, the practical effect on the score's integrity is
+nil. This is disclosed here, in the README limits section, and in the Bob Usage Statement.
 
 ## Method
 

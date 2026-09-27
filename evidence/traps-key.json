@@ -1,0 +1,435 @@
+{
+  "meta": {
+    "schema": "worldready-trap-key/v1",
+    "product": "WorldReady",
+    "app": "IBM Galaxium Travels — booking_system_frontend",
+    "sourceSnapshot": "sources/github/repos/IBM__galaxium-travels/booking_system_frontend (commit e4e18ae)",
+    "authoredBy": "Claude Code (worker P03), night shift",
+    "authoredUtc": "2026-09-26T23:00Z",
+    "purpose": "Held-out i18n trap key. Each trap is a real internationalization defect present in the ORIGINAL English-only app, with a deterministic automatic check that reports whether the trap is FIXED in a given app tree. The key never enters the repo, Bob's workspace, or any prompt Bob can read; only its SHA-256 is committed until final scoring.",
+    "checkSemantics": "For each trap, resolve `check.target` (a repo-relative file path or glob) against --dir. A trap is FIXED iff (a) target resolves to >=1 file, AND (b) every regex in `absent` matches NOTHING across the matched files, AND (c) every regex in `present` matches at least once, AND (d) at least one regex in `presentAny` matches (when `presentAny` is non-empty). Regexes are JS RegExp with flags from `check.flags` (default ''). The original app is expected to score ~0/30; the internationalized app should score >=28/30.",
+    "trapCount": 30,
+    "i18nSignal": ["useTranslation", "react-i18next"]
+  },
+  "categories": {
+    "plural": "1. Glued plurals (ternary '+ s' / interpolated count)",
+    "reltime": "2. Hand-made relative time strings",
+    "format": "3. Hard-coded locale formatting (Intl / date-fns)",
+    "toast": "4. Template-literal toasts carrying variables",
+    "attr": "5. Untranslated attributes (placeholder / aria-label / title / alt)",
+    "data": "6. Data-file copy & planet-name filter values",
+    "rtl": "7. RTL layout (physical left/right classes, arrows, html dir)",
+    "backend": "8. Raw backend English shown to users"
+  },
+  "traps": [
+    {
+      "id": "PL-01",
+      "category": "plural",
+      "file": "src/pages/Flights.tsx",
+      "line": 140,
+      "anchor": "flight{displayFlights.length !== 1 ? 's' : ''}",
+      "before": "Showing {displayFlights.length} flight{displayFlights.length !== 1 ? 's' : ''}",
+      "rationale": "English pluralization glued with a ternary. Breaks for Arabic (6 plural forms) and French. Must use i18next `count` with plural keys.",
+      "check": {
+        "target": "src/pages/Flights.tsx",
+        "absent": ["flight\\{[^}]*\\?[^}]*'s'\\s*:\\s*''"],
+        "presentAny": ["useTranslation", "react-i18next"]
+      }
+    },
+    {
+      "id": "PL-02",
+      "category": "plural",
+      "file": "src/components/flights/FlightCard.tsx",
+      "line": 147,
+      "anchor": "`${seatClass.seats} left`",
+      "before": "{isClassSoldOut ? 'Sold Out' : `${seatClass.seats} left`}",
+      "rationale": "'{n} seats left' concatenated with no plural handling. This is the Arabic plural showcase (0/1/2/3/11/100). Must use i18next count.",
+      "check": {
+        "target": "src/components/flights/FlightCard.tsx",
+        "absent": ["\\$\\{seatClass\\.seats\\}\\s*left"],
+        "presentAny": ["useTranslation", "react-i18next"]
+      }
+    },
+    {
+      "id": "PL-03",
+      "category": "plural",
+      "file": "src/components/bookings/BookingModal.tsx",
+      "line": 279,
+      "anchor": "`${sc.seats} left`",
+      "before": "{isSoldOut ? 'Sold Out' : `${sc.seats} left`}",
+      "rationale": "Second '{n} left' concatenation in the booking modal; same plural defect as PL-02.",
+      "check": {
+        "target": "src/components/bookings/BookingModal.tsx",
+        "absent": ["\\$\\{sc\\.seats\\}\\s*left"],
+        "presentAny": ["useTranslation", "react-i18next"]
+      }
+    },
+    {
+      "id": "RT-01",
+      "category": "reltime",
+      "file": "src/utils/formatters.ts",
+      "line": 65,
+      "anchor": "getRelativeTime — 'minutes ago' / 'hours ago' / 'days ago'",
+      "before": "if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} minutes ago`;",
+      "rationale": "Hand-built relative-time English. Must use Intl.RelativeTimeFormat or i18next plurals keyed to the active language.",
+      "check": {
+        "target": "src/utils/formatters.ts",
+        "absent": ["minutes ago", "hours ago", "days ago"]
+      }
+    },
+    {
+      "id": "RT-02",
+      "category": "reltime",
+      "file": "src/utils/formatters.ts",
+      "line": 64,
+      "anchor": "getRelativeTime — 'just now'",
+      "before": "if (diffInSeconds < 60) return 'just now';",
+      "rationale": "'just now' hard-coded English string in the relative-time helper.",
+      "check": {
+        "target": "src/utils/formatters.ts",
+        "absent": ["just now"]
+      }
+    },
+    {
+      "id": "FM-01",
+      "category": "format",
+      "file": "src/utils/formatters.ts",
+      "line": 42,
+      "anchor": "currency: 'USD'",
+      "before": "new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', ... })",
+      "rationale": "Currency hard-coded to USD. Quebec requires CAD formatting; currency should follow the active locale.",
+      "check": {
+        "target": "src/utils/formatters.ts",
+        "absent": ["currency:\\s*'USD'"]
+      }
+    },
+    {
+      "id": "FM-02",
+      "category": "format",
+      "file": "src/utils/formatters.ts",
+      "line": 40,
+      "anchor": "Intl.NumberFormat('en-US')",
+      "before": "return new Intl.NumberFormat('en-US', {...}).format(amount); / new Intl.NumberFormat('en-US').format(num);",
+      "rationale": "Number/currency locale hard-coded to 'en-US' in both formatCurrency and formatNumber. Must use i18n.language.",
+      "check": {
+        "target": "src/utils/formatters.ts",
+        "absent": ["'en-US'"],
+        "presentAny": ["i18n.language", "i18next", "i18n\\b"]
+      }
+    },
+    {
+      "id": "FM-03",
+      "category": "format",
+      "file": "src/utils/formatters.ts",
+      "line": 14,
+      "anchor": "format(date, formatString) with no { locale }",
+      "before": "return format(date, formatString);  // date-fns default English month/day names",
+      "rationale": "date-fns format() is called without a locale option, so month/day names render in English regardless of language. Must pass a date-fns locale keyed to i18n.language.",
+      "check": {
+        "target": "src/utils/formatters.ts",
+        "presentAny": ["locale:", "date-fns/locale", "/locale/"]
+      }
+    },
+    {
+      "id": "TO-01",
+      "category": "toast",
+      "file": "src/components/user/UserIdentification.tsx",
+      "line": 68,
+      "anchor": "toast.success(`Welcome back, ${result.name}!`)",
+      "before": "toast.success(`Welcome back, ${result.name}!`);",
+      "rationale": "Template-literal toast carrying a variable. Must use i18next interpolation, never string concatenation.",
+      "check": {
+        "target": "src/components/user/UserIdentification.tsx",
+        "absent": ["Welcome back,"],
+        "presentAny": ["useTranslation", "react-i18next"]
+      }
+    },
+    {
+      "id": "TO-02",
+      "category": "toast",
+      "file": "src/components/bookings/BookingModal.tsx",
+      "line": 206,
+      "anchor": "toast.success(`Booking confirmed! Reference: #${confirmed.externalBookingReference}`)",
+      "before": "toast.success(`Booking confirmed! Reference: #${confirmed.externalBookingReference}`);",
+      "rationale": "Template-literal toast with an interpolated reference. Must use i18next interpolation.",
+      "check": {
+        "target": "src/components/bookings/BookingModal.tsx",
+        "absent": ["Booking confirmed! Reference:"],
+        "presentAny": ["useTranslation", "react-i18next"]
+      }
+    },
+    {
+      "id": "TO-03",
+      "category": "toast",
+      "file": "src/components/bookings/HoldCard.tsx",
+      "line": 70,
+      "anchor": "toast.success(`Booking confirmed! Reference: #${confirmed.externalBookingReference}`)",
+      "before": "toast.success(`Booking confirmed! Reference: #${confirmed.externalBookingReference}`);",
+      "rationale": "Duplicate template-literal toast in HoldCard; same interpolation defect as TO-02.",
+      "check": {
+        "target": "src/components/bookings/HoldCard.tsx",
+        "absent": ["Booking confirmed! Reference:"],
+        "presentAny": ["useTranslation", "react-i18next"]
+      }
+    },
+    {
+      "id": "TO-04",
+      "category": "toast",
+      "file": "src/pages/Flights.tsx",
+      "line": 36,
+      "anchor": "toast.error(`Failed to load flights. Retrying... (${retryCount + 1}/${MAX_RETRIES})`)",
+      "before": "toast.error(`Failed to load flights. Retrying... (${retryCount + 1}/${MAX_RETRIES})`);",
+      "rationale": "Template-literal toast with interpolated counts. Both this and 'Failed to load flights after multiple attempts' must move to i18next keys.",
+      "check": {
+        "target": "src/pages/Flights.tsx",
+        "absent": ["Failed to load flights"],
+        "presentAny": ["useTranslation", "react-i18next"]
+      }
+    },
+    {
+      "id": "TO-05",
+      "category": "toast",
+      "file": "src/components/bookings/BookingModal.tsx",
+      "line": 190,
+      "anchor": "toast.success('Seat held! You have 15 minutes to confirm.')",
+      "before": "toast.success('Seat held! You have 15 minutes to confirm.');",
+      "rationale": "English toast embedding a hard number ('15 minutes'). Must be an i18next key with an interpolated/plural count.",
+      "check": {
+        "target": "src/components/bookings/BookingModal.tsx",
+        "absent": ["Seat held! You have"],
+        "presentAny": ["useTranslation", "react-i18next"]
+      }
+    },
+    {
+      "id": "AT-01",
+      "category": "attr",
+      "file": "src/pages/Flights.tsx",
+      "line": 121,
+      "anchor": "placeholder=\"Search by origin or destination...\"",
+      "before": "placeholder=\"Search by origin or destination...\"",
+      "rationale": "Untranslated placeholder attribute. Attributes (placeholder/aria-label/title/alt) are user-visible and must be translated.",
+      "check": {
+        "target": "src/pages/Flights.tsx",
+        "absent": ["Search by origin or destination"],
+        "presentAny": ["useTranslation", "react-i18next"]
+      }
+    },
+    {
+      "id": "AT-02",
+      "category": "attr",
+      "file": "src/components/user/UserIdentification.tsx",
+      "line": 104,
+      "anchor": "placeholder=\"John Doe\" / placeholder=\"john@example.com\"",
+      "before": "placeholder=\"John Doe\" ... placeholder=\"john@example.com\"",
+      "rationale": "Two untranslated placeholder attributes on the sign-in form.",
+      "check": {
+        "target": "src/components/user/UserIdentification.tsx",
+        "absent": ["John Doe", "john@example.com"],
+        "presentAny": ["useTranslation", "react-i18next"]
+      }
+    },
+    {
+      "id": "AT-03",
+      "category": "attr",
+      "file": "src/components/flights/FlightFilters.tsx",
+      "line": 121,
+      "anchor": "placeholder=\"Min\" / placeholder=\"Max\" / placeholder=\"e.g., 2\"",
+      "before": "placeholder=\"Min\" (x2) ... placeholder=\"Max\" (x2) ... placeholder=\"e.g., 2\"",
+      "rationale": "Multiple untranslated placeholders in the flight filters.",
+      "check": {
+        "target": "src/components/flights/FlightFilters.tsx",
+        "absent": ["placeholder=\"Min\"", "placeholder=\"Max\"", "e\\.g\\., 2"],
+        "presentAny": ["useTranslation", "react-i18next"]
+      }
+    },
+    {
+      "id": "AT-04",
+      "category": "attr",
+      "file": "src/components/common/Modal.tsx",
+      "line": 68,
+      "anchor": "aria-label=\"Close modal\"",
+      "before": "aria-label=\"Close modal\"",
+      "rationale": "Untranslated aria-label on the modal close button — invisible to sighted users but read aloud by screen readers.",
+      "check": {
+        "target": "src/components/common/Modal.tsx",
+        "absent": ["aria-label=\"Close modal\""],
+        "presentAny": ["useTranslation", "react-i18next"]
+      }
+    },
+    {
+      "id": "DA-01",
+      "category": "data",
+      "file": "src/pages/DestinationDetail.tsx",
+      "line": 120,
+      "anchor": "DestinationDetail renders destination.tagline / .description / .hazards raw",
+      "before": "<h1>{name}</h1> <p>{tagline}</p> <p>{description}</p> {hazards.map(...)} — all raw English from the data file",
+      "rationale": "The destination detail page renders copy straight from the data file with no translation. Page must use react-i18next so destination copy is localized by slug.",
+      "check": {
+        "target": "src/pages/DestinationDetail.tsx",
+        "presentAny": ["useTranslation", "react-i18next"]
+      }
+    },
+    {
+      "id": "DA-02",
+      "category": "data",
+      "file": "src/pages/Home.tsx",
+      "line": 140,
+      "anchor": "Home destination cards render dest.tagline raw + feature copy",
+      "before": "{dest.tagline} and the four hard-coded feature descriptions",
+      "rationale": "The home page shows destination taglines and feature copy in English only. Must be localized.",
+      "check": {
+        "target": "src/pages/Home.tsx",
+        "presentAny": ["useTranslation", "react-i18next"]
+      }
+    },
+    {
+      "id": "DA-03",
+      "category": "data",
+      "file": "src/data/destinations.ts",
+      "line": 29,
+      "anchor": "English marketing copy inline in destinations.ts",
+      "before": "tagline 'The cradle of humanity...', description 'humanity's boldest frontier...', 'vast subsurface ocean...'",
+      "rationale": "User-visible marketing copy lives inline in the data file. It must move into locale resources (keyed by slug), leaving only structural/canonical data in destinations.ts.",
+      "check": {
+        "target": "src/data/destinations.ts",
+        "absent": ["cradle of humanity", "boldest frontier", "subsurface ocean"]
+      }
+    },
+    {
+      "id": "DA-04",
+      "category": "data",
+      "file": "src/pages/DestinationDetail.tsx",
+      "line": 219,
+      "anchor": "to={`/flights?destination=${encodeURIComponent(name)}`} + getFlights({ destination: destination.name })",
+      "before": "getFlights({ destination: destination.name }) and /flights?destination=${encodeURIComponent(name)} — 'name' doubles as a filter value",
+      "rationale": "The planet name is both a display label AND the flight-search filter value. If the name is translated, the filter breaks. The English/canonical name (or slug) must stay as the filter value while only the label is localized.",
+      "check": {
+        "target": "src/pages/DestinationDetail.tsx",
+        "present": ["getFlights\\(\\{[^}]*destination:\\s*destination\\.name", "useTranslation|react-i18next"]
+      }
+    },
+    {
+      "id": "RL-01",
+      "category": "rtl",
+      "file": "index.html",
+      "line": 2,
+      "anchor": "<html lang=\"en\"> with no dir",
+      "before": "<html lang=\"en\">",
+      "rationale": "The document direction is never set, so Arabic renders left-to-right. `dir` must be set (and switched) for the active language — at runtime via document.documentElement.dir or statically in index.html.",
+      "check": {
+        "target": "{index.html,src/**/*.{ts,tsx,js,jsx}}",
+        "presentAny": ["documentElement\\.dir", "setAttribute\\(['\"]dir", "<html[^>]*\\bdir=", "\\bdir:\\s*(dir|isRtl|rtl)", "i18n.dir\\("]
+      }
+    },
+    {
+      "id": "RL-02",
+      "category": "rtl",
+      "file": "src/components/layout/Header.tsx",
+      "line": 18,
+      "anchor": "className=\"fixed top-0 left-0 right-0 ...\"",
+      "before": "fixed top-0 left-0 right-0 z-30 glass-card border-b border-white/10",
+      "rationale": "Physical left-0/right-0 on the fixed header. Use logical utilities (inset-x-0 / start-0 / end-0) so it mirrors in RTL.",
+      "check": {
+        "target": "src/components/layout/Header.tsx",
+        "absent": ["\\bleft-0\\b", "\\bright-0\\b"],
+        "presentAny": ["inset-x-0", "start-0", "end-0"]
+      }
+    },
+    {
+      "id": "RL-03",
+      "category": "rtl",
+      "file": "src/pages/Flights.tsx",
+      "line": 118,
+      "anchor": "<Search className=\"absolute left-3 ...\" />",
+      "before": "absolute left-3 top-1/2 -translate-y-1/2 text-star-white/50",
+      "rationale": "Search icon pinned with physical left-3. In RTL it must sit on the right; use a logical/`start-` utility or ltr/rtl variants.",
+      "check": {
+        "target": "src/pages/Flights.tsx",
+        "absent": ["\\bleft-3\\b"],
+        "presentAny": ["start-3", "rtl:right-3", "ltr:left-3", "ms-3", "\\bstart-"]
+      }
+    },
+    {
+      "id": "RL-04",
+      "category": "rtl",
+      "file": "src/pages/Flights.tsx",
+      "line": 124,
+      "anchor": "className=\"w-full pl-10 pr-4 ...\"",
+      "before": "w-full pl-10 pr-4 py-3 bg-white/5 ...",
+      "rationale": "Physical left/right padding (pl-10 for the icon, pr-4). Must become logical padding (ps-10 / pe-4) so the icon gutter flips in RTL.",
+      "check": {
+        "target": "src/pages/Flights.tsx",
+        "absent": ["\\bpl-10\\b", "\\bpr-4\\b"],
+        "presentAny": ["\\bps-10\\b", "\\bpe-4\\b", "\\bps-", "\\bpe-"]
+      }
+    },
+    {
+      "id": "RL-05",
+      "category": "rtl",
+      "file": "src/components/bookings/BookingModal.tsx",
+      "line": 321,
+      "anchor": "className=\"... ml-auto\" (Quote ID and Hold ID rows)",
+      "before": "font-mono font-bold text-cosmic-purple ml-auto (x2)",
+      "rationale": "ml-auto pushes IDs to the right edge in LTR only. Use ms-auto/me-auto so the alignment mirrors in RTL.",
+      "check": {
+        "target": "src/components/bookings/BookingModal.tsx",
+        "absent": ["\\bml-auto\\b"],
+        "presentAny": ["ms-auto", "me-auto"]
+      }
+    },
+    {
+      "id": "RL-06",
+      "category": "rtl",
+      "file": "src/pages/DestinationDetail.tsx",
+      "line": 88,
+      "anchor": "<ArrowLeft /> back arrows (DestinationDetail x2, BookingModal x1)",
+      "before": "<ArrowLeft size={18} /> Back to Home  /  <ArrowLeft size={16} /> All Destinations  /  <ArrowLeft size={16} /> Back",
+      "rationale": "Directional back-arrow icons must mirror in RTL (rtl:-scale-x-100 / rtl:rotate-180) or be swapped for ArrowRight when dir is rtl.",
+      "check": {
+        "target": "{src/pages/DestinationDetail.tsx,src/components/bookings/BookingModal.tsx}",
+        "presentAny": ["rtl:-scale-x-100", "rtl:rotate-180", "rtl:scale-x", "-scale-x-100", "ArrowRight"]
+      }
+    },
+    {
+      "id": "BK-01",
+      "category": "backend",
+      "file": "index.html",
+      "line": 7,
+      "anchor": "<title>booking_system_frontend</title>",
+      "before": "<title>booking_system_frontend</title>",
+      "rationale": "The browser tab shows the raw project name. Should be a real (localizable) product title, e.g. 'Galaxium Travels'.",
+      "check": {
+        "target": "index.html",
+        "absent": ["booking_system_frontend"]
+      }
+    },
+    {
+      "id": "BK-02",
+      "category": "backend",
+      "file": "src/components/user/UserIdentification.tsx",
+      "line": 48,
+      "anchor": "toast.error(result.details || result.error) / toast.error(error.details || error.error ...)",
+      "before": "toast.error(result.details || result.error); ... toast.error(error.details || error.error || 'An error occurred');",
+      "rationale": "Raw backend English error text is shown to users. Backend error codes must be mapped to i18next keys so messages localize.",
+      "check": {
+        "target": "src/components/user/UserIdentification.tsx",
+        "absent": ["toast\\.error\\(result\\.details", "toast\\.error\\(error\\.details"],
+        "presentAny": ["useTranslation", "react-i18next"]
+      }
+    },
+    {
+      "id": "BK-03",
+      "category": "backend",
+      "file": "src/pages/MyBookings.tsx",
+      "line": 107,
+      "anchor": "toast.error(result.details || result.error) / toast.error(error.details || error.error ...)",
+      "before": "toast.error(result.details || result.error); ... toast.error(error.details || error.error || 'Failed to cancel booking');",
+      "rationale": "Same raw-backend-error leak in MyBookings. Map error codes to i18next keys.",
+      "check": {
+        "target": "src/pages/MyBookings.tsx",
+        "absent": ["toast\\.error\\(result\\.details", "toast\\.error\\(error\\.details"],
+        "presentAny": ["useTranslation", "react-i18next"]
+      }
+    }
+  ]
+}

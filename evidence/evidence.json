@@ -1,6 +1,6 @@
 {
-  "_comment": "Single source of truth for the WorldReady viewer counters + evidence drawer. Authored by Claude Code (worker P07). Numbers are produced by the independent verifiers in scripts/ (never by IBM Bob). trapsFixed/trapsByCategory/bobcoins are finalized after the T13/T14 sweep by P07.",
-  "generatedUtc": "2026-09-27T00:00:00Z",
+  "_comment": "Single source of truth for the WorldReady viewer counters + evidence drawer. Authored by Claude Code (worker P07). Numbers are produced by the independent verifiers in scripts/ (never by IBM Bob). Trap score frozen at 24/30 after the T13/T14 sweep; the held-out key is now published at evidence/traps-key.json (SHA-256 matches the pre-committed evidence/traps-key.sha256).",
+  "generatedUtc": "2026-09-27T06:40:00Z",
   "finalizedBy": "P07",
   "liveUrls": {
     "viewer": "https://chinmoypaul8897.github.io/worldready/",
@@ -22,8 +22,8 @@
       "fixed": 24,
       "total": 30,
       "label": "engineered i18n traps fixed",
-      "note": "PRELIMINARY (pre-sweep). Finalized after the T13/T14 sweep. Held-out key; no Bob prompt referenced any trap.",
-      "source": "scripts/score-traps.mjs --key <held-out> --dir .",
+      "note": "FINAL, frozen after the T13/T14 sweep. Held-out key; NO Bob prompt referenced any trap (fairness control: the plain-Bob baseline on the same folder used the same rules). The 6 residual are on error/format paths the autonomous kit+Bob run did not reach; they were NOT answer-fed.",
+      "source": "scripts/score-traps.mjs --key evidence/traps-key.json --dir .",
       "file": "evidence/after-traps.json"
     },
     "englishChanged": {
@@ -43,11 +43,21 @@
       "source": "src/locales/{en,fr,ar,pseudo}; scripts/key-parity.mjs"
     },
     "bobcoins": {
-      "usedTotal": 15.16,
+      "usedTotal": 16.89,
       "label": "Bobcoins IBM Bob spent building this (of 40)",
-      "note": "PRELIMINARY; finalized after P07's Bob tasks.",
+      "note": "All Bob tasks T01-T13; balance ~23.1/40.",
       "source": "Bob task DB (~/.bob/db/bob.db)"
     }
+  },
+  "trapsByCategory": {
+    "plural": { "fixed": 3, "total": 3, "name": "Glued plurals" },
+    "reltime": { "fixed": 0, "total": 2, "name": "Hand-made relative time" },
+    "format": { "fixed": 1, "total": 3, "name": "Hard-coded locale formatting" },
+    "toast": { "fixed": 5, "total": 5, "name": "Template-literal toasts" },
+    "attr": { "fixed": 4, "total": 4, "name": "Untranslated attributes" },
+    "data": { "fixed": 4, "total": 4, "name": "Data-file copy & planet filter values" },
+    "rtl": { "fixed": 6, "total": 6, "name": "RTL layout" },
+    "backend": { "fixed": 1, "total": 3, "name": "Raw backend English" }
   },
   "details": {
     "keyParity": { "result": "PASS", "locales": { "fr": "{one,many,other}", "ar": "{zero,one,two,few,many,other}", "pseudo": "{one,other}" }, "missing": 0, "extra": 0, "source": "scripts/key-parity.mjs", "file": "evidence/after-key-parity.json" },

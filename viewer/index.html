@@ -1,108 +1,1132 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WorldReady</title>
-    <style>
-      :root { color-scheme: dark; }
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-        background: #0b0f1a;
-        color: #e8ecf5;
-      }
-      header {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        flex-wrap: wrap;
-        padding: 0.9rem 1.25rem;
-        border-bottom: 1px solid #232a3d;
-        background: #10162a;
-      }
-      h1 { font-size: 1.1rem; margin: 0; font-weight: 700; }
-      h1 span { color: #a78bfa; }
-      .tag {
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: #f59e0b;
-        border: 1px solid #f59e0b55;
-        background: #f59e0b11;
-        padding: 0.15rem 0.5rem;
-        border-radius: 999px;
-      }
-      label { font-size: 0.85rem; color: #9aa4bd; }
-      select {
-        background: #1a2138;
-        color: #e8ecf5;
-        border: 1px solid #2c3550;
-        border-radius: 6px;
-        padding: 0.35rem 0.6rem;
-        font-size: 0.85rem;
-      }
-      .frames {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1px;
-        background: #232a3d;
-        height: calc(100vh - 108px);
-      }
-      @media (max-width: 800px) {
-        .frames { grid-template-columns: 1fr; height: auto; }
-        iframe { height: 70vh; }
-      }
-      .pane { display: flex; flex-direction: column; background: #0b0f1a; }
-      .pane h2 {
-        margin: 0;
-        font-size: 0.8rem;
-        font-weight: 600;
-        padding: 0.5rem 0.9rem;
-        color: #9aa4bd;
-        border-bottom: 1px solid #1a2138;
-      }
-      iframe { border: 0; width: 100%; height: 100%; flex: 1; background: #0b0f1a; }
-      .note {
-        padding: 0.5rem 1.25rem;
-        font-size: 0.75rem;
-        color: #6b7590;
-        background: #0d1324;
-        border-top: 1px solid #1a2138;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Placeholder viewer — Bob builds the real comparison viewer in a later task.
-         Keep this minimal and clearly temporary. -->
-    <header>
-      <h1>World<span>Ready</span></h1>
-      <span class="tag">Placeholder viewer</span>
-      <div style="margin-left:auto; display:flex; align-items:center; gap:0.5rem;">
-        <label for="lang">Language</label>
-        <select id="lang" aria-label="Language (not wired up yet)">
-          <option value="en">English</option>
-          <option value="fr">Français</option>
-          <option value="ar">العربية</option>
-        </select>
-      </div>
-    </header>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WorldReady — Judge's Viewer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
 
-    <div class="frames">
-      <div class="pane">
-        <h2>Before — IBM Galaxium (English only)</h2>
-        <iframe src="before/" title="Before: original English-only Galaxium app"></iframe>
+    :root {
+      --bg: #0b0f1a;
+      --bg2: #10162a;
+      --bg3: #1a2138;
+      --border: #232a3d;
+      --border2: #2c3550;
+      --text: #e8ecf5;
+      --muted: #9aa4bd;
+      --muted2: #6b7590;
+      --accent: #a78bfa;
+      --accent2: #7c3aed;
+      --yellow: #f59e0b;
+      --green: #10b981;
+      --red: #ef4444;
+      --blue: #3b82f6;
+    }
+
+    html, body { margin: 0; padding: 0; height: 100%; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ─── TOP BAR ─── */
+    #topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 0.65rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .wordmark {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0;
+      white-space: nowrap;
+    }
+    .wordmark span { color: var(--accent); }
+
+    .tagline {
+      font-size: 0.72rem;
+      color: var(--muted2);
+      white-space: nowrap;
+      font-style: italic;
+    }
+
+    .spacer { flex: 1; }
+
+    .lang-group {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .lang-btn {
+      background: var(--bg3);
+      color: var(--muted);
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      padding: 0.3rem 0.65rem;
+      font-size: 0.8rem;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .lang-btn:hover { background: var(--border2); color: var(--text); }
+    .lang-btn.active {
+      background: var(--accent2);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .lang-btn[data-lng="ar"] { font-family: 'Noto Sans Arabic', 'Inter', sans-serif; }
+
+    #scan-btn {
+      background: transparent;
+      color: var(--yellow);
+      border: 1px solid #f59e0b66;
+      border-radius: 6px;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.8rem;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    #scan-btn:hover { background: #f59e0b22; }
+
+    /* ─── COUNTERS STRIP ─── */
+    #counters {
+      display: flex;
+      gap: 1px;
+      background: var(--border);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .counter-tile {
+      flex: 1;
+      min-width: 140px;
+      background: var(--bg2);
+      padding: 0.75rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .counter-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+    .counter-value.green { color: var(--green); }
+    .counter-value.red { color: var(--red); }
+    .counter-value.yellow { color: var(--yellow); }
+
+    .counter-label {
+      font-size: 0.7rem;
+      color: var(--muted2);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── SCAN BAR ─── */
+    #scan-bar {
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+      padding: 0.4rem 1.25rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      min-height: 2rem;
+    }
+    #scan-bar .scan-status { color: var(--muted2); font-style: italic; }
+    #scan-bar .scan-count-before { color: var(--red); font-weight: 600; }
+    #scan-bar .scan-count-after { color: var(--green); font-weight: 600; }
+
+    /* ─── PANES ─── */
+    #pane-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    /* Desktop tabs hidden; mobile tabs shown */
+    .tab-bar { display: none; }
+
+    #frames {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      flex: 1;
+      min-height: 0;
+      height: calc(100vh - 280px);
+    }
+
+    .pane {
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+      min-height: 0;
+    }
+
+    .pane-label {
+      margin: 0;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.4rem 0.9rem;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+    .pane-label .badge {
+      font-size: 0.65rem;
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+      border: 1px solid;
+    }
+    .badge-before { color: var(--yellow); border-color: #f59e0b55; background: #f59e0b11; }
+    .badge-after  { color: var(--green);  border-color: #10b98155; background: #10b98111; }
+
+    .pane iframe {
+      border: 0;
+      width: 100%;
+      flex: 1;
+      min-height: 0;
+      background: #fff;
+    }
+
+    /* ─── PLURAL SHOWCASE ─── */
+    #plural-card {
+      margin: 1rem 1.25rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+    }
+    .card-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+    }
+    .card-caption {
+      font-size: 0.72rem;
+      color: var(--muted2);
+      font-style: italic;
+    }
+
+    .plural-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+    .plural-table th {
+      background: var(--bg3);
+      color: var(--muted);
+      font-weight: 600;
+      text-align: left;
+      padding: 0.45rem 0.8rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .plural-table td {
+      padding: 0.45rem 0.8rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .plural-table tr:last-child td { border-bottom: 0; }
+    .plural-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+    .cat-badge {
+      display: inline-block;
+      padding: 0.1rem 0.45rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      background: var(--accent2);
+      color: #e0d4fe;
+    }
+    .cat-zero  { background: #374151; color: #9ca3af; }
+    .cat-one   { background: #1e3a5f; color: #93c5fd; }
+    .cat-two   { background: #1e4040; color: #6ee7b7; }
+    .cat-few   { background: #3b2f00; color: #fde68a; }
+    .cat-many  { background: #3b1f1f; color: #fca5a5; }
+    .cat-other { background: #2d1b4e; color: #c4b5fd; }
+
+    .ar-text {
+      font-family: 'Noto Sans Arabic', sans-serif;
+      direction: rtl;
+      text-align: right;
+      unicode-bidi: embed;
+    }
+
+    /* ─── EVIDENCE DRAWER ─── */
+    #evidence-section {
+      margin: 0 1.25rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    #evidence-toggle {
+      width: 100%;
+      background: var(--bg2);
+      border: 0;
+      color: var(--text);
+      padding: 0.7rem 1rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    #evidence-toggle:hover { background: var(--bg3); }
+
+    #evidence-body { display: none; }
+    #evidence-body.open { display: block; }
+
+    .ev-tabs {
+      display: flex;
+      background: var(--bg3);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+    }
+    .ev-tab {
+      padding: 0.5rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+      border-bottom: 2px solid transparent;
+      color: var(--muted);
+      white-space: nowrap;
+      transition: all 0.12s;
+    }
+    .ev-tab:hover { color: var(--text); }
+    .ev-tab.active { border-bottom-color: var(--accent); color: var(--accent); }
+
+    .ev-panel { display: none; padding: 0.9rem 1rem; background: var(--bg); }
+    .ev-panel.active { display: block; }
+
+    .ev-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+    .ev-table th {
+      text-align: left;
+      color: var(--muted2);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.3rem 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .ev-table td {
+      padding: 0.4rem 0.6rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      color: var(--muted);
+    }
+    .ev-table tr:last-child td { border-bottom: 0; }
+    .ev-table .mono {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      word-break: break-all;
+    }
+    .ev-table a { color: var(--blue); text-decoration: none; }
+    .ev-table a:hover { text-decoration: underline; }
+
+    .ev-note {
+      font-size: 0.75rem;
+      color: var(--muted2);
+      font-style: italic;
+      margin: 0.5rem 0 0;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg2);
+      padding: 0.65rem 1.25rem;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.75rem;
+      color: var(--muted2);
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+    footer .sep { opacity: 0.4; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .tagline { display: none; }
+
+      .tab-bar {
+        display: flex;
+        background: var(--bg2);
+        border-bottom: 1px solid var(--border);
+      }
+      .tab-btn {
+        flex: 1;
+        padding: 0.5rem;
+        background: transparent;
+        border: 0;
+        border-bottom: 2px solid transparent;
+        color: var(--muted);
+        font-size: 0.8rem;
+        font-weight: 500;
+        font-family: inherit;
+        cursor: pointer;
+      }
+      .tab-btn.active { border-bottom-color: var(--accent); color: var(--accent); }
+
+      #frames {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+      .pane { height: 70vh; }
+      .pane.hidden { display: none; }
+
+      #counters .counter-tile { min-width: 120px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════ TOP BAR -->
+<header id="topbar" role="banner">
+  <h1 class="wordmark">World<span>Ready</span></h1>
+  <p class="tagline">World-ready in a day. Proven, and kept that way.</p>
+  <div class="spacer"></div>
+  <div class="lang-group" role="group" aria-label="Language picker">
+    <button class="lang-btn active" data-lng="en" aria-pressed="true">English</button>
+    <button class="lang-btn" data-lng="fr" aria-pressed="false">Français</button>
+    <button class="lang-btn" data-lng="ar" aria-pressed="false">العربية</button>
+    <button class="lang-btn" data-lng="pseudo" aria-pressed="false">Pseudo</button>
+  </div>
+  <button id="scan-btn" aria-label="Scan iframes for hard-coded text">🔍 Scan for hard-coded text</button>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════ COUNTERS -->
+<div id="counters" role="region" aria-label="Summary counters">
+  <div class="counter-tile">
+    <div class="counter-value red" id="cnt-hc">—</div>
+    <div class="counter-label">Hard-coded strings</div>
+  </div>
+  <div class="counter-tile">
+    <div class="counter-value green" id="cnt-traps">—</div>
+    <div class="counter-label">Traps fixed</div>
+  </div>
+  <div class="counter-tile">
+    <div class="counter-value green" id="cnt-en">—</div>
+    <div class="counter-label">English content changed</div>
+  </div>
+  <div class="counter-tile">
+    <div class="counter-value accent" id="cnt-langs">—</div>
+    <div class="counter-label">Languages</div>
+  </div>
+  <div class="counter-tile">
+    <div class="counter-value yellow" id="cnt-coins">—</div>
+    <div class="counter-label">Bobcoins used</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ SCAN BAR -->
+<div id="scan-bar" role="status" aria-live="polite">
+  <span class="scan-status" id="scan-status">Ready — click "Scan" or switch language to check.</span>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ IFRAMES -->
+<div id="pane-area">
+  <div class="tab-bar" role="tablist" aria-label="Pane selector">
+    <button class="tab-btn active" role="tab" aria-selected="true"  data-pane="before">Before</button>
+    <button class="tab-btn"        role="tab" aria-selected="false" data-pane="after">After</button>
+  </div>
+
+  <div id="frames">
+    <div class="pane" id="pane-before">
+      <div class="pane-label">
+        <span class="badge badge-before">BEFORE</span>
+        Before — IBM Galaxium (English only)
       </div>
-      <div class="pane">
-        <h2>After — WorldReady</h2>
-        <iframe src="after/" title="After: WorldReady internationalized app"></iframe>
+      <iframe id="iframe-before"
+              src="before/"
+              title="Before: original English-only Galaxium app"
+              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
+    </div>
+    <div class="pane" id="pane-after">
+      <div class="pane-label">
+        <span class="badge badge-after">AFTER</span>
+        After — WorldReady
+      </div>
+      <iframe id="iframe-after"
+              src="after/"
+              title="After: WorldReady internationalized app"
+              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PLURAL CARD -->
+<section id="plural-card" aria-labelledby="plural-title">
+  <div class="card-header">
+    <h2 class="card-title" id="plural-title">Arabic Plural Showcase</h2>
+    <span class="card-caption">Rendered by the real After i18n bundle — all six Arabic plural categories.</span>
+  </div>
+  <div style="overflow-x:auto;">
+    <table class="plural-table" id="plural-table">
+      <thead>
+        <tr>
+          <th>Count</th>
+          <th>EN</th>
+          <th>FR</th>
+          <th style="font-family:'Noto Sans Arabic',sans-serif;">AR</th>
+          <th>AR Category</th>
+        </tr>
+      </thead>
+      <tbody id="plural-tbody">
+        <tr><td colspan="5" style="color:var(--muted2);font-style:italic;padding:0.8rem;">Loading locale bundles…</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ EVIDENCE -->
+<section id="evidence-section" aria-labelledby="ev-heading">
+  <button id="evidence-toggle" aria-expanded="false" aria-controls="evidence-body">
+    <span id="ev-heading">📋 Evidence Drawer</span>
+    <span id="ev-chevron">▼</span>
+  </button>
+  <div id="evidence-body" role="region">
+    <div class="ev-tabs" role="tablist">
+      <button class="ev-tab active" role="tab" aria-selected="true"  data-tab="traps">Traps</button>
+      <button class="ev-tab"        role="tab" aria-selected="false" data-tab="translator">Translator Sheet</button>
+      <button class="ev-tab"        role="tab" aria-selected="false" data-tab="sessions">Bob Sessions</button>
+      <button class="ev-tab"        role="tab" aria-selected="false" data-tab="proof">Proof / Links</button>
+    </div>
+
+    <div class="ev-panel active" id="panel-traps">
+      <p id="ev-traps-summary" style="font-size:0.82rem;color:var(--muted);">Loading…</p>
+      <div id="ev-traps-table"></div>
+      <p class="ev-note">
+        Trap key SHA-256 committed before any Bob task ran:
+        <code id="ev-sha" class="mono" style="display:inline-block;margin-top:0.25rem;color:var(--muted);font-size:0.72rem;">—</code>
+        <br>Full key published after final scoring.
+      </p>
+    </div>
+
+    <div class="ev-panel" id="panel-translator">
+      <p style="font-size:0.82rem;color:var(--muted);">
+        352-row translator CSV with every extractable string, its namespace, key path, and collected translations.
+        Human-review edits land in the morning (P10).
+      </p>
+      <p>
+        <a href="https://github.com/chinmoypaul8897/worldready/blob/main/docs/translator.csv"
+           target="_blank" rel="noopener"
+           style="color:var(--blue);font-size:0.82rem;">
+          📄 View translator.csv on GitHub ↗
+        </a>
+      </p>
+    </div>
+
+    <div class="ev-panel" id="panel-sessions">
+      <div style="overflow-x:auto;">
+        <table class="ev-table" id="ev-sessions-table">
+          <thead>
+            <tr>
+              <th>ID</th><th>Task</th><th>Mode</th><th style="text-align:right;">Bobcoins</th>
+            </tr>
+          </thead>
+          <tbody id="ev-sessions-body">
+            <tr><td colspan="4" style="color:var(--muted2);font-style:italic;">Loading…</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
-    <p class="note">
-      Temporary shell. The language picker is not wired up yet; the real viewer
-      (language switching, RTL flip, trap highlights) is built later by Bob.
-    </p>
-  </body>
+    <div class="ev-panel" id="panel-proof">
+      <div id="ev-proof-content" style="font-size:0.82rem;color:var(--muted);">Loading…</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ FOOTER -->
+<footer>
+  <span>Built with <strong style="color:var(--accent);">IBM Bob</strong></span>
+  <span class="sep">|</span>
+  <span>Demo app: IBM Galaxium Travels, Apache-2.0</span>
+  <span class="sep">|</span>
+  <a id="footer-repo" href="https://github.com/chinmoypaul8897/worldready" target="_blank" rel="noopener">
+    GitHub Repo ↗
+  </a>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ──────────────────────────────────────────────────
+  // State
+  // ──────────────────────────────────────────────────
+  let currentLng = 'en';
+  let currentRoute = '/';
+  let evidenceData = null;
+  let localeData = {};   // { en: {flights:{...}}, fr: {}, ar: {} }
+  let scanTimer = null;
+
+  const ALLOWLIST = new Set([
+    'galaxium','travels','class','worldready','bob',
+    'en','fr','ar','pseudo'
+  ]);
+
+  // ──────────────────────────────────────────────────
+  // Deep link parse
+  // ──────────────────────────────────────────────────
+  (function parseDeepLink() {
+    const p = new URLSearchParams(location.search);
+    if (p.get('lng') && ['en','fr','ar','pseudo'].includes(p.get('lng'))) {
+      currentLng = p.get('lng');
+    }
+    if (p.get('route')) {
+      currentRoute = p.get('route');
+    }
+  })();
+
+  // ──────────────────────────────────────────────────
+  // Util: safe fetch with fallback paths
+  // ──────────────────────────────────────────────────
+  async function fetchJson(...urls) {
+    for (const url of urls) {
+      try {
+        const r = await fetch(url);
+        if (r.ok) return await r.json();
+      } catch (_) {}
+    }
+    return null;
+  }
+
+  // ──────────────────────────────────────────────────
+  // Load evidence.json → populate counters + drawer
+  // ──────────────────────────────────────────────────
+  async function loadEvidence() {
+    const data = await fetchJson(
+      './evidence/evidence.json',
+      './evidence/after-literals.json'
+    );
+    if (!data) return;
+    evidenceData = data;
+
+    const h = data.headline || {};
+
+    // Counters
+    const hc = h.hardCodedStrings || {};
+    document.getElementById('cnt-hc').textContent =
+      (hc.before != null ? hc.before : '?') + ' → ' + (hc.after != null ? hc.after : '?');
+
+    const tf = h.trapsFixed || {};
+    document.getElementById('cnt-traps').textContent =
+      (tf.fixed != null ? tf.fixed : '?') + ' / ' + (tf.total != null ? tf.total : '?');
+
+    const ec = h.englishChanged || {};
+    document.getElementById('cnt-en').textContent =
+      ec.existingContent != null ? ec.existingContent : '?';
+
+    const ln = h.languages || {};
+    const langVal = (ln.before != null ? ln.before : '?') + ' → ' + (ln.after != null ? ln.after : '?') +
+      (ln.plusPseudo ? ' + pseudo' : '');
+    document.getElementById('cnt-langs').textContent = langVal;
+
+    const bc = h.bobcoins || {};
+    document.getElementById('cnt-coins').textContent =
+      bc.usedTotal != null ? bc.usedTotal.toFixed(2) : '?';
+
+    // Evidence drawer — Traps
+    const det = data.details || {};
+    const prov = det.provenance || {};
+    const trapsSum = document.getElementById('ev-traps-summary');
+    trapsSum.textContent = `Traps fixed: ${tf.fixed ?? '?'} / ${tf.total ?? '?'}`;
+
+    if (prov.trapKeySha256) {
+      document.getElementById('ev-sha').textContent = prov.trapKeySha256;
+    }
+
+    if (data.trapsByCategory) {
+      const rows = Object.entries(data.trapsByCategory)
+        .map(([cat, v]) => `<tr><td>${cat}</td><td>${v.fixed ?? '?'}</td><td>${v.total ?? '?'}</td></tr>`)
+        .join('');
+      document.getElementById('ev-traps-table').innerHTML =
+        `<table class="ev-table"><thead><tr><th>Category</th><th>Fixed</th><th>Total</th></tr></thead><tbody>${rows}</tbody></table>`;
+    }
+
+    // Evidence drawer — Sessions
+    if (Array.isArray(data.bobSessions)) {
+      const tbody = document.getElementById('ev-sessions-body');
+      tbody.innerHTML = data.bobSessions.map(s => `
+        <tr>
+          <td><strong>${esc(s.id)}</strong></td>
+          <td>${esc(s.task)}</td>
+          <td style="white-space:nowrap;font-size:0.75rem;">${esc(s.mode)}</td>
+          <td style="text-align:right;white-space:nowrap;">${s.bobcoins != null ? s.bobcoins.toFixed(3) : '?'}</td>
+        </tr>`).join('');
+    }
+
+    // Evidence drawer — Proof
+    const liveUrls = data.liveUrls || {};
+    document.getElementById('ev-proof-content').innerHTML = `
+      <p style="margin-top:0;">
+        <a href="${esc(liveUrls.actions || '#')}" target="_blank" rel="noopener" style="color:var(--blue);">
+          🔧 GitHub Actions (CI runs) ↗
+        </a>
+      </p>
+      <p>
+        <a href="${esc(liveUrls.repo || '#')}" target="_blank" rel="noopener" style="color:var(--blue);">
+          📁 Source repository ↗
+        </a>
+      </p>
+      <p>
+        <a href="${esc(liveUrls.viewer || '#')}" target="_blank" rel="noopener" style="color:var(--blue);">
+          🌐 Live viewer ↗
+        </a>
+      </p>
+    `;
+
+    // Footer repo link
+    if (liveUrls.repo) {
+      document.getElementById('footer-repo').href = liveUrls.repo;
+    }
+  }
+
+  // ──────────────────────────────────────────────────
+  // Load locale bundles for plural showcase
+  // ──────────────────────────────────────────────────
+  async function loadLocales() {
+    const lngs = ['en','fr','ar'];
+    await Promise.all(lngs.map(async (lng) => {
+      const data = await fetchJson(`./locales/${lng}/pages.json`);
+      localeData[lng] = data;
+    }));
+    renderPluralTable();
+  }
+
+  function renderPluralTable() {
+    const counts = [0, 1, 2, 3, 11, 100];
+    const tbody = document.getElementById('plural-tbody');
+
+    const enFlights = localeData.en && localeData.en.flights ? localeData.en.flights : null;
+    const frFlights = localeData.fr && localeData.fr.flights ? localeData.fr.flights : null;
+    const arFlights = localeData.ar && localeData.ar.flights ? localeData.ar.flights : null;
+
+    if (!arFlights) {
+      tbody.innerHTML = '<tr><td colspan="5" style="color:var(--red);padding:0.8rem;">Failed to load locale bundles from ./locales/</td></tr>';
+      return;
+    }
+
+    const rows = counts.map(count => {
+      const arCat  = new Intl.PluralRules('ar',  { type: 'cardinal' }).select(count);
+      const enCat  = new Intl.PluralRules('en',  { type: 'cardinal' }).select(count);
+      const frCat  = new Intl.PluralRules('fr',  { type: 'cardinal' }).select(count);
+
+      const enStr  = enFlights ? interpolate(enFlights[`showingCount_${enCat}`] || enFlights['showingCount_other'] || '?', count, 'en') : '?';
+      const frStr  = frFlights ? interpolate(frFlights[`showingCount_${frCat}`] || frFlights['showingCount_other'] || '?', count, 'fr') : '?';
+      const arStr  = arFlights ? interpolate(arFlights[`showingCount_${arCat}`] || arFlights['showingCount_other'] || '?', count, 'ar') : '?';
+
+      return `
+        <tr>
+          <td><strong>${count}</strong></td>
+          <td>${esc(enStr)}</td>
+          <td>${esc(frStr)}</td>
+          <td class="ar-text">${esc(arStr)}</td>
+          <td><span class="cat-badge cat-${arCat}">${arCat}</span></td>
+        </tr>`;
+    });
+
+    tbody.innerHTML = rows.join('');
+  }
+
+  function interpolate(template, count, lng) {
+    if (typeof template !== 'string') return '?';
+    const formatted = new Intl.NumberFormat(lng).format(count);
+    return template.replace(/\{\{count\}\}/g, formatted);
+  }
+
+  // ──────────────────────────────────────────────────
+  // Language picker
+  // ──────────────────────────────────────────────────
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lng = btn.dataset.lng;
+      setLanguage(lng);
+    });
+  });
+
+  function setLanguage(lng) {
+    currentLng = lng;
+
+    // Update buttons
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      const active = b.dataset.lng === lng;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-pressed', String(active));
+    });
+
+    // Switch After iframe via localStorage → reload
+    const afterIframe = document.getElementById('iframe-after');
+    try {
+      if (afterIframe.contentWindow) {
+        afterIframe.contentWindow.localStorage.setItem('i18nextLng', lng);
+      }
+    } catch (_) {}
+    // Force reload by reassigning src (preserves route)
+    const route = currentRoute || '/';
+    afterIframe.src = 'after/#' + (route.startsWith('/') ? route : '/' + route);
+
+    // Schedule scan after iframe loads
+    scheduleScan(600);
+  }
+
+  function scheduleScan(delay) {
+    clearTimeout(scanTimer);
+    scanTimer = setTimeout(runScan, delay);
+  }
+
+  // ──────────────────────────────────────────────────
+  // Scan logic
+  // ──────────────────────────────────────────────────
+  document.getElementById('scan-btn').addEventListener('click', runScan);
+
+  function runScan() {
+    const statusEl = document.getElementById('scan-status');
+    statusEl.textContent = 'Scanning…';
+    statusEl.className = 'scan-status';
+
+    const beforeCount = scanIframe('iframe-before', currentLng, true);
+    const afterCount  = scanIframe('iframe-after',  currentLng, false);
+
+    // Build result line
+    const scanBar = document.getElementById('scan-bar');
+    scanBar.innerHTML = '';
+
+    const lbl = document.createElement('span');
+    lbl.style.color = 'var(--muted2)';
+    lbl.textContent = `Scan (${currentLng}) → `;
+    scanBar.appendChild(lbl);
+
+    const before = document.createElement('span');
+    before.className = 'scan-count-before';
+    before.textContent = `Before: ${beforeCount} hard-coded`;
+    scanBar.appendChild(before);
+
+    const sep = document.createElement('span');
+    sep.style.color = 'var(--muted2)';
+    sep.textContent = ' · ';
+    scanBar.appendChild(sep);
+
+    const after = document.createElement('span');
+    after.className = afterCount === 0 ? 'scan-count-after' : 'scan-count-before';
+    after.textContent = `After: ${afterCount}`;
+    scanBar.appendChild(after);
+
+    if (afterCount === 0) {
+      const ok = document.createElement('span');
+      ok.style.color = 'var(--green)';
+      ok.textContent = ' ✓ clean';
+      scanBar.appendChild(ok);
+    }
+  }
+
+  /**
+   * Walk an iframe's DOM, detect hard-coded text, outline offenders.
+   * @param {string} id - iframe element id
+   * @param {string} lng - current language
+   * @param {boolean} isBefore - Before pane always treated as untranslated
+   * @returns {number} count of offending elements
+   */
+  function scanIframe(id, lng, isBefore) {
+    const iframe = document.getElementById(id);
+    let doc;
+    try {
+      doc = iframe.contentDocument;
+    } catch (_) { return -1; }
+    if (!doc || !doc.body) return 0;
+
+    // Clear previous outlines
+    clearOutlines(doc);
+
+    const offenders = new Set();
+    const effectiveLng = isBefore ? (lng === 'ar' ? 'ar' : 'pseudo') : lng;
+
+    // Walk text nodes
+    walkTextNodes(doc.body, effectiveLng, offenders);
+
+    // Walk attributes
+    walkAttributes(doc.body, effectiveLng, offenders);
+
+    // Outline
+    offenders.forEach(el => {
+      el.style.outline = '2px solid #ef4444';
+      el.style.outlineOffset = '1px';
+      el._wrScanned = true;
+    });
+
+    return offenders.size;
+  }
+
+  function clearOutlines(doc) {
+    try {
+      doc.querySelectorAll('[style*="outline"]').forEach(el => {
+        if (el._wrScanned) {
+          el.style.outline = '';
+          el.style.outlineOffset = '';
+          el._wrScanned = false;
+        }
+      });
+    } catch (_) {}
+  }
+
+  function walkTextNodes(root, lng, offenders) {
+    const walker = root.ownerDocument.createTreeWalker(
+      root,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode(node) {
+          const parent = node.parentElement;
+          if (!parent) return NodeFilter.FILTER_REJECT;
+          const tag = parent.tagName && parent.tagName.toUpperCase();
+          if (['SCRIPT','STYLE','NOSCRIPT','TEMPLATE','IFRAME'].includes(tag))
+            return NodeFilter.FILTER_REJECT;
+          const cs = root.ownerDocument.defaultView
+            ? root.ownerDocument.defaultView.getComputedStyle(parent) : null;
+          if (cs && cs.display === 'none') return NodeFilter.FILTER_REJECT;
+          if (cs && cs.visibility === 'hidden') return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      }
+    );
+
+    let node;
+    while ((node = walker.nextNode())) {
+      const text = node.textContent.trim();
+      if (!text) continue;
+      if (isHardCoded(text, lng)) {
+        offenders.add(node.parentElement);
+      }
+    }
+  }
+
+  function walkAttributes(root, lng, offenders) {
+    const attrs = ['aria-label','title','placeholder','alt'];
+    try {
+      root.querySelectorAll('[aria-label],[title],[placeholder],[alt]').forEach(el => {
+        attrs.forEach(attr => {
+          const val = el.getAttribute(attr);
+          if (val && val.trim() && isHardCoded(val.trim(), lng)) {
+            offenders.add(el);
+          }
+        });
+      });
+    } catch (_) {}
+  }
+
+  /**
+   * Determine if a text string is "hard-coded" given the current effective locale.
+   * - pseudo: any text with Latin letters NOT wrapped in ⟦…⟧ is hard-coded
+   * - ar: any Latin-letter word not on allowlist is hard-coded
+   */
+  function isHardCoded(text, lng) {
+    if (lng === 'pseudo') {
+      return hasLatinLetters(text) && !isPseudoWrapped(text);
+    }
+    if (lng === 'ar') {
+      return hasUnallowedLatin(text);
+    }
+    // en / fr: no scan (text is expected in those languages in Before)
+    return false;
+  }
+
+  function hasLatinLetters(text) {
+    return /[a-zA-Z]/.test(text);
+  }
+
+  function isPseudoWrapped(text) {
+    // A text is ok if ALL latin-bearing segments are wrapped in ⟦…⟧
+    // Strategy: strip ⟦…⟧ blocks and check if residue has latin
+    const stripped = text.replace(/⟦[^⟧]*⟧/g, '');
+    return !hasLatinLetters(stripped);
+  }
+
+  function hasUnallowedLatin(text) {
+    // Tokenize on word boundaries; flag any token that:
+    // - contains [a-zA-Z]
+    // - is not on the allowlist
+    // - is not a pure number / currency / date / time
+    const tokens = text.match(/[^\s,;:·\-–—/|]+/g) || [];
+    for (const raw of tokens) {
+      const token = raw.toLowerCase().replace(/[^a-z0-9]/g, '');
+      if (!token) continue;
+      if (!/[a-zA-Z]/.test(raw)) continue;               // no latin letters → ok
+      if (ALLOWLIST.has(token)) continue;                  // allowlisted brand word
+      if (isDateTimeLike(raw)) continue;                   // month / weekday names
+      return true;  // found an unallowed latin token
+    }
+    return false;
+  }
+
+  const DATE_TOKENS = new Set([
+    'january','february','march','april','may','june','july','august',
+    'september','october','november','december',
+    'jan','feb','mar','apr','jun','jul','aug','sep','oct','nov','dec',
+    'monday','tuesday','wednesday','thursday','friday','saturday','sunday',
+    'mon','tue','wed','thu','fri','sat','sun',
+    'am','pm','utc','gmt'
+  ]);
+
+  function isDateTimeLike(token) {
+    return DATE_TOKENS.has(token.toLowerCase().replace(/[^a-z]/g,''));
+  }
+
+  // ──────────────────────────────────────────────────
+  // Mobile tab switching
+  // ──────────────────────────────────────────────────
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const pane = btn.dataset.pane;
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.pane === pane);
+        b.setAttribute('aria-selected', String(b.dataset.pane === pane));
+      });
+      document.getElementById('pane-before').classList.toggle('hidden', pane !== 'before');
+      document.getElementById('pane-after').classList.toggle('hidden',  pane !== 'after');
+    });
+  });
+
+  // ──────────────────────────────────────────────────
+  // Evidence drawer accordion
+  // ──────────────────────────────────────────────────
+  document.getElementById('evidence-toggle').addEventListener('click', () => {
+    const body = document.getElementById('evidence-body');
+    const btn  = document.getElementById('evidence-toggle');
+    const open = body.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+    document.getElementById('ev-chevron').textContent = open ? '▲' : '▼';
+  });
+
+  // Evidence tabs
+  document.querySelectorAll('.ev-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const id = tab.dataset.tab;
+      document.querySelectorAll('.ev-tab').forEach(t => {
+        t.classList.toggle('active', t.dataset.tab === id);
+        t.setAttribute('aria-selected', String(t.dataset.tab === id));
+      });
+      document.querySelectorAll('.ev-panel').forEach(p => {
+        p.classList.toggle('active', p.id === 'panel-' + id);
+      });
+    });
+  });
+
+  // ──────────────────────────────────────────────────
+  // Iframe load → re-scan
+  // ──────────────────────────────────────────────────
+  ['iframe-before','iframe-after'].forEach(id => {
+    const el = document.getElementById(id);
+    el.addEventListener('load', () => scheduleScan(400));
+  });
+
+  // ──────────────────────────────────────────────────
+  // HTML escape util
+  // ──────────────────────────────────────────────────
+  function esc(str) {
+    if (str == null) return '';
+    return String(str)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ──────────────────────────────────────────────────
+  // Init
+  // ──────────────────────────────────────────────────
+  (async function init() {
+    // Apply deep-link language immediately
+    if (currentLng !== 'en') {
+      // Update picker buttons without triggering language switch yet
+      document.querySelectorAll('.lang-btn').forEach(b => {
+        const active = b.dataset.lng === currentLng;
+        b.classList.toggle('active', active);
+        b.setAttribute('aria-pressed', String(active));
+      });
+    }
+
+    // Apply deep-link route to iframes
+    const beforeIframe = document.getElementById('iframe-before');
+    const afterIframe  = document.getElementById('iframe-after');
+
+    const route = currentRoute.startsWith('/') ? currentRoute : '/' + currentRoute;
+    beforeIframe.src = 'before/#' + route;
+    afterIframe.src  = 'after/#' + route;
+
+    // If non-English deep link, set localStorage before iframe loads
+    if (currentLng !== 'en') {
+      // We can't reliably set it before first load, but set it in the load event
+      afterIframe.addEventListener('load', function onFirstLoad() {
+        try {
+          afterIframe.contentWindow.localStorage.setItem('i18nextLng', currentLng);
+          afterIframe.src = 'after/#' + route;
+        } catch (_) {}
+        afterIframe.removeEventListener('load', onFirstLoad);
+      }, { once: true });
+    }
+
+    await Promise.all([loadEvidence(), loadLocales()]);
+  })();
+
+})();
+</script>
+</body>
 </html>
