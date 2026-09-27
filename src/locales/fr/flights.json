@@ -11,7 +11,7 @@
     "soldOut": "Complet",
     "seatsLeft": "{{count}} restante(s)",
     "allSoldOut": "Toutes les classes sont complètes",
-    "selectSeatClass": "Choisir une classe"
+    "selectSeatClass": "Choisir une classe de place"
   },
   "filters": {
     "title": "Filtres",

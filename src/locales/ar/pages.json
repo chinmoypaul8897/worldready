@@ -37,8 +37,8 @@
     "maxRetriesError": "فشل تحميل الرحلات بعد محاولات متعددة"
   },
   "myBookings": {
-    "titlePart1": "حجوزاتي",
-    "titlePart2": "",
+    "titlePart1": "",
+    "titlePart2": "حجوزاتي",
     "subtitle": "إدارة حجوزات سفرك الفضائي",
     "loadingText": "جارٍ تحميل حجوزاتك...",
     "pendingHolds": "الحجوزات المؤقتة المعلّقة ({{count}})",
