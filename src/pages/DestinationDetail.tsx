@@ -91,7 +91,7 @@ export const DestinationDetail = () => {
           </p>
           <Link to="/">
             <button className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-cosmic-gradient text-white font-semibold hover:opacity-90 transition-opacity">
-              <ArrowLeft size={18} />
+              <ArrowLeft size={18} className="rtl:-scale-x-100" />
               {t('pages.destination.backToHome')}
             </button>
           </Link>
@@ -110,7 +110,7 @@ export const DestinationDetail = () => {
           to="/"
           className="inline-flex items-center gap-2 text-star-white/60 hover:text-star-white transition-colors text-sm"
         >
-          <ArrowLeft size={16} />
+          <ArrowLeft size={16} className="rtl:-scale-x-100" />
           {t('pages.destination.allDestinations')}
         </Link>
       </Section>
@@ -217,7 +217,7 @@ export const DestinationDetail = () => {
                     </p>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="text-right">
+                    <div className="text-end">
                       <p className="text-xs text-star-white/50">{t('pages.destination.priceFrom')}</p>
                       <p className={`font-bold ${accentColor}`}>{formatCurrency(flight.economy_price)}</p>
                     </div>

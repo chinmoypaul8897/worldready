@@ -139,7 +139,7 @@ export const FlightCard = ({ flight, onBook }: FlightCardProps) => {
                       <Icon size={18} className={seatClass.color} />
                       <span className="font-medium text-star-white">{seatClass.name}</span>
                     </div>
-                    <div className="text-right">
+                    <div className="text-end">
                       <div className={`text-lg font-bold ${seatClass.color}`}>
                         {formatCurrency(seatClass.price)}
                       </div>

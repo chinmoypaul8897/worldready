@@ -117,13 +117,13 @@ export const Flights = () => {
         className="glass-card p-6"
       >
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-star-white/50" size={20} />
+          <Search className="absolute start-3 top-1/2 -translate-y-1/2 text-star-white/50" size={20} />
           <input
             type="text"
             placeholder={t('pages.flights.searchPlaceholder')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-lg text-star-white placeholder-star-white/50 focus:outline-none focus:ring-2 focus:ring-cosmic-purple"
+            className="w-full ps-10 pe-4 py-3 bg-white/5 border border-white/10 rounded-lg text-star-white placeholder-star-white/50 focus:outline-none focus:ring-2 focus:ring-cosmic-purple"
           />
         </div>
       </motion.div>

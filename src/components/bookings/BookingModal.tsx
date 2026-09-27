@@ -275,7 +275,7 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
                 key={sc.class}
                 onClick={() => !isSoldOut && setSelectedClass(sc.class)}
                 disabled={isSoldOut}
-                className={`w-full p-4 rounded-lg border-2 transition-all text-left ${
+                className={`w-full p-4 rounded-lg border-2 transition-all text-start ${
                   isSelected
                     ? `${sc.borderColor} ${sc.bgColor}`
                     : 'border-white/10 bg-white/5 hover:border-white/20'
@@ -287,7 +287,7 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
                     <span className="font-semibold text-star-white">{sc.name}</span>
                     {isSelected && <Check size={18} className={sc.color} />}
                   </div>
-                  <div className="text-right">
+                  <div className="text-end">
                     <div className={`text-lg font-bold ${sc.color}`}>
                       {formatCurrency(sc.price)}
                     </div>
@@ -334,7 +334,7 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
         <div className="flex items-center gap-2 p-3 rounded-lg bg-cosmic-purple/10 border border-cosmic-purple/30">
           <Tag size={16} className="text-cosmic-purple" />
           <span className="text-xs text-star-white/60">{t('bookings.modal.quoteId')}</span>
-          <span className="font-mono font-bold text-cosmic-purple ml-auto">{quote?.quoteId}</span>
+          <span className="font-mono font-bold text-cosmic-purple ms-auto">{quote?.quoteId}</span>
         </div>
 
         {flightSummary}
@@ -368,7 +368,7 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
             disabled={isLoading}
             className="flex-1"
           >
-            <ArrowLeft size={16} /> {t('bookings.modal.back')}
+            <ArrowLeft size={16} className="rtl:-scale-x-100" /> {t('bookings.modal.back')}
           </Button>
           <Button onClick={handlePlaceHold} isLoading={isLoading} className="flex-1">
             <Timer size={16} /> {t('bookings.modal.placeHold')}
@@ -384,7 +384,7 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
       <div className="flex items-center gap-2 p-3 rounded-lg bg-alien-green/10 border border-alien-green/30">
         <Zap size={16} className="text-alien-green" />
         <span className="text-xs text-star-white/60">{t('bookings.modal.holdId')}</span>
-        <span className="font-mono font-bold text-alien-green ml-auto">{hold?.holdId}</span>
+        <span className="font-mono font-bold text-alien-green ms-auto">{hold?.holdId}</span>
       </div>
 
       {/* Countdown timer */}

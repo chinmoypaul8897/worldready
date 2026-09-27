@@ -17,7 +17,7 @@ export const Card = ({ children, className, hover = false, onClick }: CardProps)
       className={clsx(
         'glass-card p-6',
         hover && 'hover:bg-white/10 cursor-pointer',
-        onClick && 'w-full text-left',
+        onClick && 'w-full text-start',
         className
       )}
       whileHover={hover ? { scale: 1.02, y: -4 } : undefined}

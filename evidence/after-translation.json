@@ -1,0 +1,124 @@
+{
+  "tool": "WorldReady after-translation evidence (independent verification by Claude Code / P06)",
+  "measuredUtc": "2026-09-27T05:19Z",
+  "note": "Bob authored all translations (T06) and the RTL layout pass (T08). Claude Code (P06) only ran the independent verifiers and wrote this evidence file, the screenshots, and the translator-review list. 'the checker is not written by the agent it grades.'",
+  "tasks": {
+    "T06": {
+      "what": "French (Quebec, fr-CA) + Arabic (ar) translation of all 5 namespaces + translator spreadsheet",
+      "bobTaskId": "60fa3dfe0da14b05066c173069cb3efb",
+      "bobcoins": 3.62,
+      "mode": "Agent + document understanding (glossary.xlsx + style-guide.pdf) + Office-file write",
+      "note": "3.62 spans a crashed first attempt (API outage) that reached 2.27 and this resume that finished it; not a fresh 3.62."
+    },
+    "T08": {
+      "what": "Right-to-left layout pass for Arabic (logical utilities, mirrored directional icons, Noto Sans Arabic)",
+      "bobTaskId": "d8984dc930b951148242923f8bb9bdd4",
+      "bobcoins": 1.34,
+      "mode": "Agent + Explore subagent (discovery)",
+      "note": "Independent cost guard pressed Stop at 1.34 (cap 1.0); all edits had already landed — only Bob's final self-check message (step 5/5) was cut. Work verified complete on disk."
+    }
+  },
+  "localeStringCounts": {
+    "en": 348,
+    "fr": 349,
+    "ar": 352,
+    "pseudo": 348,
+    "detail": "fr = 348 en keys + 1 extra plural form (showingCount_many); ar = 348 + 4 extra plural forms (showingCount_zero/two/few/many). Every en key is present and translated in fr and ar."
+  },
+  "keyParity": {
+    "reference": "en",
+    "namespaces": ["bookings", "common", "destinations", "flights", "pages"],
+    "fr": { "result": "OK", "pluralCats": ["one", "many", "other"], "missing": 0, "extra": 0 },
+    "ar": { "result": "OK", "pluralCats": ["zero", "one", "two", "few", "many", "other"], "missing": 0, "extra": 0 },
+    "pseudo": { "result": "OK", "pluralCats": ["one", "other"], "missing": 0, "extra": 0 },
+    "overall": "PASS (all locales complete, plural-aware)",
+    "measuredBy": "scripts/key-parity.mjs"
+  },
+  "pluralCompleteness": {
+    "key": "pages.flights.showingCount",
+    "fr": "3/3 (one, many, other)",
+    "ar": "6/6 (zero, one, two, few, many, other)",
+    "note": "No plural suffixes added to any other count-bearing key (seatsLeft, pendingHolds, activeBookings, pastBookings) — they stay single keys with the en name."
+  },
+  "placeholderIntegrity": {
+    "frMismatches": 0,
+    "arMismatches": 0,
+    "note": "Every {{placeholder}} in en is present, identical, and unreordered in fr and ar for all 348 keys (independent flatten+compare). Tag markers (<1>...</1> in pages.destination.notFoundBody) preserved."
+  },
+  "glossary": {
+    "brandRetention": {
+      "jsonLosses": 0,
+      "csvKept": "7/7",
+      "note": "Galaxium / Galaxium Travels / Galaxium Class / WorldReady / Bob kept verbatim in Latin script in every fr and ar string that contains them (incl. inside Arabic). 0 losses in JSON; 7/7 Galaxium rows retained in translator.csv."
+    },
+    "planetLabels": "7/7 translated (Earth->Terre/الأرض, Mars->Mars/المريخ, Moon->Lune/القمر, Venus->Vénus/الزهرة, Jupiter->Jupiter/المشتري, Europa->Europe/أوروبا, Pluto->Pluton/بلوتو); English filter/URL values in src/data untouched.",
+    "frenchQuebec": {
+      "courrielOccurrences": 3,
+      "forbiddenEmailOrMail": 0,
+      "forbiddenSiege": 0,
+      "reservationTemporaire": 8,
+      "note": "'courriel' used, no 'e-mail'/'email'; 'place' used for seat counts (no 'siège'); 'réservation temporaire' for hold; 'se connecter'/'s'inscrire' present."
+    },
+    "compliancePercent": 100,
+    "complianceBasis": "Of the machine-checkable glossary rules (brand retention, planet labels, Quebec forbidden terms), 0 violations found. Nuance/tone remains for the human reviewer (see P06-translator-edits-for-morning.md)."
+  },
+  "translatorSpreadsheet": {
+    "path": "docs/translator.csv",
+    "format": "CSV (UTF-8)",
+    "xlsxFallback": true,
+    "xlsxFallbackReason": "Bob reported no .xlsx-writing library in its environment; prompt permits a CSV fallback.",
+    "dataRows": 352,
+    "columns": ["key", "namespace", "English", "French draft", "Arabic draft", "max length", "context", "reviewer note"],
+    "galaxiumKeptInRows": "7/7"
+  },
+  "rtl": {
+    "physicalClasses": {
+      "positionalAndMargin": { "before": 7, "after": 0 },
+      "textAlign": { "before": 5, "after": 0 },
+      "total": { "before": 12, "after": 0 },
+      "convertedTo": "logical utilities: ms-/me-/ps-/pe-/start-/end-, text-start/text-end (Tailwind 3.4.19)",
+      "note": "0 residual physical ml-/mr-/pl-/pr-/left-/right-/text-left/text-right in component markup; 0 inline left/right/marginLeft/marginRight styles."
+    },
+    "directionalIconsMirrored": {
+      "renderSitesMirrored": "3/3",
+      "occurrences": "5 'ArrowLeft' (2 imports + 3 rendered); rtl:-scale-x-100 added to all 3 rendered icons (BookingModal L371, DestinationDetail L94, L113).",
+      "method": "rtl:-scale-x-100 (flips only under dir=rtl; inert in LTR)"
+    },
+    "arabicFont": {
+      "family": "Noto Sans Arabic",
+      "source": "Google Fonts (index.html link + preconnect)",
+      "scope": "html[lang=\"ar\"] body, [dir=\"rtl\"] body — Arabic only; English/French keep the Inter/system stack",
+      "titleFixed": "index.html <title> booking_system_frontend -> Galaxium Travels"
+    },
+    "runtimeFlipVerified": "dir=rtl set for ar, dir=ltr for fr (16 Playwright captures)."
+  },
+  "englishParity": {
+    "changedChars": 0,
+    "routes": ["/", "/flights", "/bookings", "/destinations/mars", "/destinations/europa"],
+    "comparison": "pre-T08 build vs post-T08 build, English, frozen clock, timer nodes masked",
+    "result": "PASS (English UI byte-identical; T08 changed 0 visible characters)",
+    "measuredBy": "scripts/english-parity.mjs"
+  },
+  "build": {
+    "command": "VITE_DEMO=1 npm run build (tsc -b && vite build)",
+    "result": "green",
+    "afterT06": "built in 38.22s",
+    "afterT08": "built in 11.59s"
+  },
+  "screenshots": {
+    "count": 16,
+    "dir": "C:/Users/chinm/bob-hackathon-tools/evidence/",
+    "pattern": "p06_<locale>_<route>_<width>.png",
+    "locales": ["ar (RTL)", "fr (LTR)"],
+    "routes": ["#/", "#/flights", "#/bookings", "#/destinations/mars"],
+    "widths": [1280, 390],
+    "reviewed": "ar_home_1280, ar_flights_390, ar_bookings_1280, fr_flights_390 — no clipped or overlapping text; RTL mirrored; Arabic dates localized (يناير); French CAD price format (1 000 000 $)."
+  },
+  "residualTranslationGap": {
+    "key": "ar/pages.json -> myBookings.titlePart2",
+    "value": "\"\" (empty string)",
+    "reason": "Arabic 'حجوزاتي' collapses the split English heading 'My'+'Bookings' into one word in titlePart1; part2 has nothing to hold.",
+    "impact": "None visible: i18next returnEmptyString default true, so the accent <span> renders empty after 'حجوزاتي' — no English leak, no raw key (verified in ar_bookings_1280 screenshot).",
+    "handling": "Flagged for the morning human Arabic reviewer instead of guessed (see P06-translator-edits-for-morning.md)."
+  }
+}
