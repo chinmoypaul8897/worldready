@@ -1,0 +1,89 @@
+{
+  "seatClass": {
+    "economy": "Économique",
+    "business": "Affaires",
+    "galaxiumClass": "Galaxium Class"
+  },
+  "features": {
+    "economy": {
+      "standardSeating": "Places standard",
+      "entertainment": "Divertissement à bord",
+      "snacks": "Collations offertes"
+    },
+    "business": {
+      "premiumSeating": "Places premium",
+      "priorityBoarding": "Embarquement prioritaire",
+      "gourmetMeals": "Repas gastronomiques",
+      "extraLegroom": "Espace supplémentaire pour les jambes"
+    },
+    "galaxium": {
+      "luxuryPods": "Cabines de luxe",
+      "vipLounge": "Accès au salon VIP",
+      "concierge": "Concierge personnel",
+      "zeroG": "Expérience en apesanteur"
+    }
+  },
+  "status": {
+    "booked": "Réservé",
+    "cancelled": "Annulé",
+    "completed": "Complété"
+  },
+  "card": {
+    "bookingId": "Réservation n° {{id}}",
+    "flightId": "Vol n° {{id}}",
+    "flightIdFallback": "Identifiant du vol : {{id}}",
+    "departure": "Départ",
+    "arrival": "Arrivée",
+    "seatClass": "Classe de place",
+    "pricePaid": "Prix payé",
+    "bookedOn": "Réservé le {{date}}",
+    "cancelBooking": "Annuler la réservation"
+  },
+  "modal": {
+    "titleSelect": "Réservez votre vol",
+    "titleQuote": "Votre devis",
+    "titleHold": "Place réservée temporairement",
+    "departure": "Départ",
+    "arrival": "Arrivée",
+    "duration": "Durée",
+    "selectSeatClass": "Choisir une classe de place",
+    "soldOut": "Complet",
+    "seatsLeft": "{{count}} restante(s)",
+    "passenger": "Passager",
+    "cancel": "Annuler",
+    "getQuote": "Obtenir un devis →",
+    "quoteId": "Identifiant du devis",
+    "priceBreakdown": "Détail du prix",
+    "seatLineItem": "{{name}} × 1",
+    "total": "Total",
+    "quoteNote": "Devis valide 24 heures · Prix calculé par le service d'inventaire",
+    "back": "Retour",
+    "placeHold": "Faire une réservation temporaire →",
+    "holdId": "Identifiant de la réservation temporaire",
+    "holdExpired": "Réservation temporaire expirée",
+    "timeToConfirm": "Temps pour confirmer",
+    "expired": "EXPIRÉ",
+    "seatReservedNote": "Place réservée temporairement — confirmez avant l'expiration",
+    "close": "Fermer",
+    "releaseHold": "Libérer la réservation temporaire",
+    "confirmBooking": "Confirmer la réservation",
+    "closingNote": "En fermant, votre réservation temporaire reste active — retrouvez-la dans Mes réservations"
+  },
+  "hold": {
+    "expired": "Expiré",
+    "heldTimer": "Réservé · {{timer}}",
+    "release": "Libérer",
+    "confirm": "Confirmer",
+    "dismiss": "Ignorer"
+  },
+  "toast": {
+    "signInRequired": "Veuillez vous connecter pour obtenir un devis",
+    "getQuoteFailed": "Impossible d'obtenir un devis. Assurez-vous que le service d'inventaire est en cours d'exécution.",
+    "seatHeld": "Place réservée! Vous avez 15 minutes pour confirmer.",
+    "placeHoldFailed": "Impossible d'effectuer la réservation temporaire",
+    "bookingConfirmed": "Réservation confirmée! Référence : #{{ref}}",
+    "confirmFailed": "Échec de la confirmation de la réservation",
+    "holdReleased": "Réservation temporaire libérée",
+    "releaseFailed": "Impossible de libérer la réservation temporaire"
+  }
+}

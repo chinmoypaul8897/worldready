@@ -1,0 +1,237 @@
+{
+  "earth": {
+    "name": "Terre",
+    "tagline": "Le berceau de l'humanité — et l'endroit idéal où revenir.",
+    "description": "La Terre demeure le monde le plus habitable du système solaire connu, avec une atmosphère respirable d'azote et d'oxygène, des océans d'eau liquide et un champ magnétique qui protège la vie de surface des rayonnements solaires. Que vous partiez ou que vous arriviez, l'approche orbitale offre des vues sans pareil sur les systèmes nuageux tourbillonnants et les mers turquoise.",
+    "facts": {
+      "gravity": "9,81 m/s²",
+      "distanceFromEarth": "0 km",
+      "typicalTransitTime": "Port d'attache",
+      "surfaceTemp": "-89 °C à +57 °C",
+      "moons": "1 (Luna)",
+      "atmosphere": "Azote 78 %, Oxygène 21 %"
+    },
+    "hazards": {
+      "item0": "Trafic aérien dense en orbite basse terrestre — couloirs d'approche stricts imposés",
+      "item1": "Les interférences électromagnétiques provenant des réseaux terrestres peuvent perturber la navigation",
+      "item2": "Les retards de rentrée atmosphérique liés à la météo sont fréquents aux astroports équatoriaux",
+      "item3": "Contrôle douanier et inspection biosécurité obligatoires pour toutes les arrivées interplanétaires"
+    },
+    "gallery": {
+      "item0": {
+        "alt": "Vue Bille bleue",
+        "description": "Bille bleue — Atlantique depuis l'orbite"
+      },
+      "item1": {
+        "alt": "Piste d'atterrissage côtière",
+        "description": "Couloir d'approche de Cap Canaveral"
+      },
+      "item2": {
+        "alt": "Lumières nocturnes",
+        "description": "Grille de lumières urbaines, côté nuit"
+      }
+    }
+  },
+  "mars": {
+    "name": "Mars",
+    "tagline": "Des horizons rouge rouille et la promesse d'une seconde maison.",
+    "description": "Mars est la frontière la plus audacieuse de l'humanité — une planète tellurique dotée d'une fine atmosphère de dioxyde de carbone, de calottes polaires glacées et du plus grand volcan du système solaire. La base Olympus propose des habitats pressurisés, des excursions en rover à travers le Valles Marineris et de spectaculaires couchers de soleil aux teintes d'oxyde de fer.",
+    "facts": {
+      "gravity": "3,72 m/s²",
+      "distanceFromEarth": "~225 millions de km (moy.)",
+      "typicalTransitTime": "8 h",
+      "surfaceTemp": "-125 °C à +20 °C",
+      "moons": "2 (Phobos, Deimos)",
+      "atmosphere": "CO₂ 95 %, fine — inadaptée à la respiration"
+    },
+    "hazards": {
+      "item0": "Les tempêtes de poussière peuvent immobiliser toutes les opérations en surface pendant des semaines",
+      "item1": "Combinaison EVA obligatoire en tout temps hors des zones pressurisées",
+      "item2": "Exposition aux rayonnements ~2× les niveaux terrestres — blindage obligatoire",
+      "item3": "Le syndrome d'adaptation gravitationnelle affecte la plupart des voyageurs pendant 48 à 72 h",
+      "item4": "Contamination au perchlorate dans le sol — ne retirez jamais vos gants à l'extérieur"
+    },
+    "gallery": {
+      "item0": {
+        "alt": "Olympus Mons",
+        "description": "Caldeira d'Olympus Mons à l'aube"
+      },
+      "item1": {
+        "alt": "Valles Marineris",
+        "description": "Système de canyons de Valles Marineris"
+      },
+      "item2": {
+        "alt": "Calotte polaire glacée",
+        "description": "Calotte polaire nord de CO₂, été"
+      }
+    }
+  },
+  "moon": {
+    "name": "Lune",
+    "tagline": "Le premier pas de l'humanité — aujourd'hui un monde-carrefour animé.",
+    "description": "À seulement 384 000 km de la Terre, la Lune est la destination hors monde la plus accessible du système solaire. La station Gateway lunaire et le camp de base Artémis offrent des commodités modernes, tandis que les plaines de régolithe dénudées et les vues du lever de Terre promettent une expérience inoubliable.",
+    "facts": {
+      "gravity": "1,62 m/s²",
+      "distanceFromEarth": "~384 000 km",
+      "typicalTransitTime": "3 h",
+      "surfaceTemp": "-173 °C à +127 °C",
+      "moons": "S.O. — la Lune elle-même",
+      "atmosphere": "Pratiquement nulle (exosphère seulement)"
+    },
+    "hazards": {
+      "item0": "Pas d'atmosphère — combinaison spatiale obligatoire à l'extérieur en tout temps",
+      "item1": "Les impacts de micrométéorites représentent un risque persistant dans la zone de régolithe",
+      "item2": "Les variations de température dépassent 300 °C entre le jour et la nuit",
+      "item3": "La poussière lunaire abrasive peut endommager les joints et les surfaces optiques"
+    },
+    "gallery": {
+      "item0": {
+        "alt": "Lever de Terre",
+        "description": "Lever de Terre sur la Mer de la Tranquillité"
+      },
+      "item1": {
+        "alt": "Base Artémis",
+        "description": "Ensemble d'habitats du camp de base Artémis"
+      },
+      "item2": {
+        "alt": "Bord de cratère",
+        "description": "Bord du cratère Shackleton, pôle Sud"
+      }
+    }
+  },
+  "venus": {
+    "name": "Vénus",
+    "tagline": "L'enfer en bas, le paradis au-dessus des nuages.",
+    "description": "Vénus est la planète la plus extrême du système solaire — pression atmosphérique écrasante, nuages d'acide sulfurique et températures de surface assez élevées pour faire fondre le plomb. Les habitats Cité des Nuages de Galaxium flottent à 50 km d'altitude où la température et la pression rappellent étonnamment la Terre, offrant des ciels ambrés surréalistes et des orages en contrebas.",
+    "facts": {
+      "gravity": "8,87 m/s²",
+      "distanceFromEarth": "~38 millions de km (la plus proche)",
+      "typicalTransitTime": "6 h",
+      "surfaceTemp": "~465 °C (surface) / 0–30 °C (couche nuageuse)",
+      "moons": "0",
+      "atmosphere": "CO₂ 96 %, nuages de H₂SO₄ — mortels en surface"
+    },
+    "hazards": {
+      "item0": "La descente en surface est strictement interdite — l'habitat reste en vol",
+      "item1": "La pluie d'acide sulfurique peut dissoudre les équipements exposés en quelques heures",
+      "item2": "Indice de turbulence atmosphérique 9/10 — attendez-vous à une arrivée mouvementée",
+      "item3": "Temps d'évacuation en cas de défaillance de pressurisation : moins de 90 secondes",
+      "item4": "Toute maintenance extérieure nécessite des combinaisons résistantes aux acides de niveau 4"
+    },
+    "gallery": {
+      "item0": {
+        "alt": "Cité des Nuages",
+        "description": "Aérostat Cité des Nuages à 50 km d'altitude"
+      },
+      "item1": {
+        "alt": "Orage",
+        "description": "Orages d'acide sulfurique en contrebas"
+      },
+      "item2": {
+        "alt": "Panneaux solaires",
+        "description": "Ailes de panneaux solaires au-dessus du pont nuageux"
+      }
+    }
+  },
+  "jupiter": {
+    "name": "Jupiter",
+    "tagline": "Le roi des planètes — venez pour les tempêtes, restez pour la démesure.",
+    "description": "Les bandes tourbillonnantes d'ammoniac et d'hydrogène de Jupiter s'étendent sur un disque 11 fois plus large que la Terre. La station Galilée orbite au-dessus de la Grande Tache Rouge, proposant des suites de recherche, des ponts d'observation et le panorama céleste le plus spectaculaire du système solaire. Réservé aux plus courageux.",
+    "facts": {
+      "gravity": "24,79 m/s² (sommet des nuages)",
+      "distanceFromEarth": "~628 millions de km (moy.)",
+      "typicalTransitTime": "18 h",
+      "surfaceTemp": "-108 °C (sommet des nuages)",
+      "moons": "95 connues (Io, Europe, Ganymède, Callisto — les plus grandes)",
+      "atmosphere": "H₂ 90 %, He 10 % — pression immense en profondeur"
+    },
+    "hazards": {
+      "item0": "Les ceintures de radiation autour de Jupiter comptent parmi les plus intenses du système solaire",
+      "item1": "Le champ magnétique perturbe l'électronique — coque blindée obligatoire",
+      "item2": "Aucune surface solide — la descente sous le sommet des nuages est un aller sans retour",
+      "item3": "L'insertion orbitale exige un minutage précis pour éviter les conjonctions avec les lunes",
+      "item4": "Les contraintes de marée gravitationnelles peuvent provoquer de la fatigue de la coque lors de longs séjours"
+    },
+    "gallery": {
+      "item0": {
+        "alt": "Grande Tache Rouge",
+        "description": "Système de tempête de la Grande Tache Rouge, durée de 350 ans"
+      },
+      "item1": {
+        "alt": "Station Galilée",
+        "description": "Plateforme orbitale de la station Galilée"
+      },
+      "item2": {
+        "alt": "Transit lunaire",
+        "description": "Ombre du transit d'Io sur la bande équatoriale"
+      }
+    }
+  },
+  "europa": {
+    "name": "Europe",
+    "tagline": "Sous la glace : la meilleure chance de vie extraterrestre dans notre système solaire.",
+    "description": "La couche de glace fracturée d'Europe cache un vaste océan souterrain qui pourrait abriter une vie microbienne. La station de recherche Icebreaker est installée en surface, tandis que des missions de forage en profondeur descendent vers l'eau en dessous. Chaque visite contribue à l'une des entreprises scientifiques les plus passionnantes de l'histoire humaine.",
+    "facts": {
+      "gravity": "1,315 m/s²",
+      "distanceFromEarth": "~628 millions de km (moy.)",
+      "typicalTransitTime": "19 h",
+      "surfaceTemp": "-160 °C à -220 °C",
+      "moons": "Lune de Jupiter",
+      "atmosphere": "Fine exosphère d'oxygène — non respirable"
+    },
+    "hazards": {
+      "item0": "Les rayonnements de Jupiter à l'orbite d'Europe sont intenses — l'exposition extérieure est limitée à 1 heure",
+      "item1": "Les \"glacio-séismes\" de la croûte glacée peuvent fissurer les ancrages des aires d'atterrissage",
+      "item2": "Des panaches cryovolcaniques jaillissent de façon imprévisible — évitez les sorties EVA près des lignes de fracture",
+      "item3": "Tous les échantillons sont soumis aux protocoles de biosécurité de niveau 5 — aucun matériau de surface ne sort de la zone de confinement"
+    },
+    "gallery": {
+      "item0": {
+        "alt": "Fractures glaciaires",
+        "description": "Réseau de fractures linéa depuis l'orbite"
+      },
+      "item1": {
+        "alt": "Station Icebreaker",
+        "description": "Réseau de forage de la station Icebreaker, surface"
+      },
+      "item2": {
+        "alt": "Jupiter dans le ciel",
+        "description": "Jupiter se levant au-dessus de la plaine glacée d'Europe"
+      }
+    }
+  },
+  "pluto": {
+    "name": "Pluton",
+    "tagline": "Le bout du monde connu — pour les voyageurs qui en veulent davantage.",
+    "description": "Pluton se situe à la frontière extérieure de notre système solaire, un monde de glace d'azote avec des plaines en forme de cœur, de hautes montagnes de méthane et une atmosphère bleue brumeuse. La base Sputnik est l'avant-poste habité le plus éloigné de l'histoire humaine, et l'arrivée est un rite de passage pour les explorateurs spatiaux sérieux.",
+    "facts": {
+      "gravity": "0,62 m/s²",
+      "distanceFromEarth": "~5,9 milliards de km (moy.)",
+      "typicalTransitTime": "36 h",
+      "surfaceTemp": "-233 °C à -223 °C",
+      "moons": "5 (Charon, Styx, Nix, Kerberos, Hydra)",
+      "atmosphere": "N₂, CH₄, CO — fine et saisonnière"
+    },
+    "hazards": {
+      "item0": "Le froid extrême exige des combinaisons EVA cryo-isolées de nouvelle génération",
+      "item1": "La faible gravité augmente le risque de chute — formation à la locomotion standard obligatoire",
+      "item2": "Le délai de communication avec la Terre dépasse 4 heures — l'intervention d'urgence est autonome",
+      "item3": "Des geysers d'azote peuvent surgir sans avertissement près de Tombaugh Regio",
+      "item4": "Le givre de méthane sur les aires d'atterrissage crée des surfaces glissantes — limites de vitesse d'approche imposées"
+    },
+    "gallery": {
+      "item0": {
+        "alt": "Tombaugh Regio",
+        "description": "Plaines de glace d'azote de Tombaugh Regio (« Le Cœur »)"
+      },
+      "item1": {
+        "alt": "Charon depuis la surface",
+        "description": "Charon dominant la base Sputnik"
+      },
+      "item2": {
+        "alt": "Atmosphère brumeuse bleue",
+        "description": "Couches de brume bleue dans la fine atmosphère de Pluton"
+      }
+    }
+  }
+}

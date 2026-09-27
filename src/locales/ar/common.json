@@ -1,0 +1,44 @@
+{
+  "header": {
+    "brandName": "Galaxium Travels",
+    "logout": "تسجيل الخروج",
+    "bookAFlight": "احجز رحلة",
+    "login": "تسجيل الدخول"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "flights": "الرحلات",
+    "myBookings": "حجوزاتي"
+  },
+  "footer": {
+    "copyright": "© {{year}} Galaxium Travels. جميع الحقوق محفوظة.",
+    "madeWith": "صُنع بـ",
+    "forSpaceTravelers": "للمسافرين في الفضاء"
+  },
+  "modal": {
+    "closeLabel": "إغلاق النافذة المنبثقة"
+  },
+  "userIdentification": {
+    "titleCreateAccount": "إنشاء حساب",
+    "titleSignIn": "تسجيل الدخول",
+    "subtitleCreate": "أنشئ حساباً لحجز رحلتك",
+    "subtitleSignIn": "أدخل اسمك وبريدك الإلكتروني للمتابعة",
+    "labelName": "الاسم",
+    "placeholderName": "محمد علي",
+    "labelEmail": "البريد الإلكتروني",
+    "placeholderEmail": "mohammed@example.com",
+    "buttonCreate": "إنشاء حساب",
+    "buttonContinue": "متابعة",
+    "switchToSignIn": "هل لديك حساب بالفعل؟ تسجيل الدخول",
+    "switchToRegister": "ليس لديك حساب؟ إنشاء حساب",
+    "errorFillFields": "يرجى ملء جميع الحقول",
+    "errorInvalidEmail": "يرجى إدخال عنوان بريد إلكتروني صالح",
+    "successAccountCreated": "تم إنشاء الحساب بنجاح!",
+    "errorUserNotFound": "المستخدم غير موجود. يرجى إنشاء حساب أو التحقق من بياناتك.",
+    "successWelcomeBack": "مرحباً بعودتك، {{name}}!",
+    "errorGeneric": "حدث خطأ"
+  },
+  "button": {
+    "loading": "جارٍ التحميل..."
+  }
+}

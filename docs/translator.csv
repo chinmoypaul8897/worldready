@@ -1,0 +1,353 @@
+key,namespace,English,French draft,Arabic draft,max length,context,reviewer note
+home.heroTitle1,pages,Journey Beyond,Voyagez au-delà,سافر إلى ما وراء,30,Home hero banner line 1,FR: split across two lines with heroTitle2
+home.heroTitle2,pages,The Stars,des étoiles,النجوم,10,Home hero banner line 2,
+home.heroSubtitle,pages,Experience the future of space travel with Galaxium. Book your interplanetary flight and explore the wonders of our solar system.,Vivez l'avenir du voyage spatial avec Galaxium. Réservez votre vol interplanétaire et explorez les merveilles de notre système solaire.,اختبر مستقبل السفر الفضائي مع Galaxium. احجز رحلتك بين الكواكب واستكشف عجائب نظامنا الشمسي.,210,Home hero subtitle,Brand Galaxium kept verbatim; FR ~15% longer
+home.exploreFlights,pages,Explore Flights,Explorer les vols,استكشف الرحلات,22,Home hero CTA button,
+home.learnMore,pages,Learn More,En savoir plus,اعرف المزيد,15,Home secondary CTA,
+home.whyChoose,pages,Why Choose Galaxium?,Pourquoi choisir Galaxium?,لماذا تختار Galaxium؟,28,Home features section heading,Brand kept verbatim
+home.feature1Title,pages,Interplanetary Travel,Voyage interplanétaire,السفر بين الكواكب,25,Home feature card 1 title,
+home.feature1Desc,pages,Explore destinations across the solar system with our state-of-the-art spacecraft.,Explorez des destinations à travers le système solaire à bord de nos vaisseaux spatiaux de pointe.,استكشف وجهات عبر النظام الشمسي على متن مركباتنا الفضائية المتطورة.,100,Home feature card 1 body,
+home.feature2Title,pages,Multiple Destinations,Destinations multiples,وجهات متعددة,22,Home feature card 2 title,
+home.feature2Desc,pages,From Mars to Europa discover new worlds and book your journey today.,De Mars à Europe découvrez de nouveaux mondes et réservez votre voyage dès aujourd'hui.,من المريخ إلى أوروبا اكتشف عوالم جديدة واحجز رحلتك اليوم.,88,Home feature card 2 body,FR: Europa→Europe per glossary; AR: Europa→أوروبا
+home.feature3Title,pages,Safe & Secure,Sécuritaire et fiable,آمن وموثوق,20,Home feature card 3 title,
+home.feature3Desc,pages,Your safety is our priority with advanced navigation and life support systems.,Votre sécurité est notre priorité grâce à des systèmes de navigation et de survie avancés.,سلامتك أولويتنا بفضل أنظمة الملاحة ودعم الحياة المتقدمة.,90,Home feature card 3 body,
+home.feature4Title,pages,Instant Booking,Réservation instantanée,حجز فوري,23,Home feature card 4 title,
+home.feature4Desc,pages,Book your flight in seconds and receive instant confirmation.,Réservez votre vol en quelques secondes et recevez une confirmation immédiate.,احجز رحلتك في ثوانٍ واستلم تأكيداً فورياً.,72,Home feature card 4 body,
+home.exploreDestinations,pages,Explore Our Destinations,Explorez nos destinations,استكشف وجهاتنا,26,Home destinations section heading,
+home.destinationBadge,pages,Destination,Destination,وجهة,14,Home destination card badge,
+home.ctaTitle,pages,Ready for Your Space Adventure?,Prêt pour votre aventure spatiale?,هل أنت مستعد لمغامرتك الفضائية؟,42,Home CTA section title,
+home.ctaBody,pages,Join thousands of space travelers who have already booked their journey to the stars. Your adventure awaits!,Rejoignez des milliers de voyageurs spatiaux qui ont déjà réservé leur voyage vers les étoiles. Votre aventure vous attend!,انضم إلى آلاف المسافرين الفضائيين الذين حجزوا رحلاتهم إلى النجوم. مغامرتك في انتظارك!,130,Home CTA section body,
+home.bookNow,pages,Book Your Flight Now,Réservez votre vol maintenant,احجز رحلتك الآن,35,Home CTA button,
+flights.titlePart1,pages,Available,Vols,الرحلات,10,Flights page title line 1,FR reorders to "Vols disponibles"
+flights.titlePart2,pages,Flights,disponibles,المتاحة,11,Flights page title line 2,
+flights.subtitle,pages,Choose your destination and embark on an interplanetary adventure,Choisissez votre destination et embarquez dans une aventure interplanétaire,اختر وجهتك وانطلق في مغامرة بين الكواكب,78,Flights page subtitle,
+flights.searchPlaceholder,pages,Search by origin or destination...,Rechercher par origine ou destination…,ابحث حسب المنشأ أو الوجهة...,50,Flights search input placeholder,
+flights.showingCount_one,pages,Showing {{count}} flight,{{count}} vol affiché,رحلة واحدة ({{count}}),36,Flights result count (1),FR/AR plural key; {{count}} preserved
+flights.showingCount_many,pages,,{{count}} vols affichés,,26,Flights result count (FR many plural),"FR-only extra form; EN has no _many; review: same as _other is correct for fr-CA"
+flights.showingCount_other,pages,Showing {{count}} flights,{{count}} vols affichés,{{count}} رحلة,32,Flights result count (other),
+flights.showingCount_zero,pages,,,"لا توجد رحلات",16,Flights result count (AR zero),"AR-only extra form; EN has no _zero"
+flights.showingCount_two,pages,,,رحلتان ({{count}}),22,Flights result count (AR dual),"AR-only extra form; dual grammatical form"
+flights.showingCount_few,pages,,,{{count}} رحلات,18,Flights result count (AR 3-10),"AR-only extra form; 3-10 count band"
+flights.loadingText,pages,Loading flights...,Chargement des vols…,جارٍ تحميل الرحلات...,30,Flights loading state,
+flights.noResults,pages,No flights found matching your criteria,Aucun vol trouvé correspondant à vos critères,لم يتم العثور على رحلات تطابق معاييرك,52,Flights empty state,
+flights.retryError,pages,Failed to load flights. Retrying... ({{attempt}}/{{max}}),Échec du chargement des vols. Nouvelle tentative… ({{attempt}}/{{max}}),فشل تحميل الرحلات. إعادة المحاولة... ({{attempt}}/{{max}}),80,Flights retry error toast,{{attempt}} and {{max}} preserved
+flights.maxRetriesError,pages,Failed to load flights after multiple attempts,Impossible de charger les vols après plusieurs tentatives,فشل تحميل الرحلات بعد محاولات متعددة,60,Flights max retry error toast,
+myBookings.titlePart1,pages,My,Mes,حجوزاتي,12,My Bookings page title line 1,AR uses single word covering both lines
+myBookings.titlePart2,pages,Bookings,réservations,,14,My Bookings page title line 2,AR titlePart2 is empty string; reviewer should confirm layout
+myBookings.subtitle,pages,Manage your space travel reservations,Gérez vos réservations de voyage spatial,إدارة حجوزات سفرك الفضائي,46,My Bookings subtitle,
+myBookings.loadingText,pages,Loading your bookings...,Chargement de vos réservations…,جارٍ تحميل حجوزاتك...,38,My Bookings loading state,
+myBookings.pendingHolds,pages,Pending Holds ({{count}}),Réservations temporaires en attente ({{count}}),الحجوزات المؤقتة المعلّقة ({{count}}),52,My Bookings pending holds section heading,hold→réservation temporaire / حجز مؤقت per glossary
+myBookings.confirmBeforeExpiry,pages,Confirm before time runs out,Confirmez avant l'expiration,أكّد قبل انتهاء الوقت,36,My Bookings hold expiry prompt,
+myBookings.noBookingsTitle,pages,No bookings yet,Aucune réservation pour l'instant,لا توجد حجوزات بعد,34,My Bookings empty state title,
+myBookings.noBookingsBody,pages,Start your space adventure by booking your first flight!,Commencez votre aventure spatiale en réservant votre premier vol!,ابدأ مغامرتك الفضائية بحجز رحلتك الأولى!,74,My Bookings empty state body,
+myBookings.browseFlights,pages,Browse Flights,Parcourir les vols,تصفح الرحلات,22,My Bookings empty state CTA,
+myBookings.activeBookings,pages,Active Bookings ({{count}}),Réservations actives ({{count}}),الحجوزات النشطة ({{count}}),36,My Bookings active section heading,{{count}} preserved; not pluralized per spec
+myBookings.pastBookings,pages,Past Bookings ({{count}}),Réservations passées ({{count}}),الحجوزات السابقة ({{count}}),36,My Bookings past section heading,{{count}} preserved; not pluralized per spec
+myBookings.cancelTitle,pages,Cancel Booking,Annuler la réservation,إلغاء الحجز,24,Cancel booking modal title,
+myBookings.cancelConfirm,pages,Are you sure you want to cancel this booking? This action cannot be undone.,Êtes-vous sûr de vouloir annuler cette réservation? Cette action est irréversible.,هل أنت متأكد من رغبتك في إلغاء هذا الحجز؟ لا يمكن التراجع عن هذا الإجراء.,100,Cancel booking confirmation dialog body,
+myBookings.keepBooking,pages,Keep Booking,Conserver la réservation,الإبقاء على الحجز,28,Cancel booking modal secondary button,
+myBookings.cancelButton,pages,Cancel Booking,Annuler la réservation,إلغاء الحجز,24,Cancel booking modal primary button,
+myBookings.toastLoadError,pages,Failed to load bookings,Échec du chargement des réservations,فشل تحميل الحجوزات,44,My Bookings load error toast,
+myBookings.toastCancelSuccess,pages,Booking cancelled successfully,Réservation annulée avec succès,تم إلغاء الحجز بنجاح,40,Cancel booking success toast,
+myBookings.toastCancelError,pages,Failed to cancel booking,Échec de l'annulation de la réservation,فشل إلغاء الحجز,48,Cancel booking error toast,
+destination.notFoundTitle,pages,We haven't charted this world yet,Nous n'avons pas encore cartographié ce monde,لم نرسم خرائط لهذا العالم بعد,52,Destination 404 title,
+destination.notFoundBody,pages,The destination <1>/{{slug}}</1> doesn't exist in our star charts.,La destination <1>/{{slug}}</1> n'existe pas dans nos cartes stellaires.,الوجهة <1>/{{slug}}</1> غير موجودة في خرائطنا النجمية.,74,Destination 404 body,<1>…</1> tag and {{slug}} preserved
+destination.backToHome,pages,Back to Home,Retour à l'accueil,العودة إلى الصفحة الرئيسية,34,Destination 404 / breadcrumb link,
+destination.allDestinations,pages,All Destinations,Toutes les destinations,جميع الوجهات,24,Destination breadcrumb link,
+destination.destinationBadge,pages,Destination,Destination,وجهة,14,Destination page badge,
+destination.quickFacts,pages,Quick Facts,Données rapides,معلومات سريعة,16,Destination quick facts section heading,
+destination.factGravity,pages,Gravity,Gravité,الجاذبية,12,Destination fact label,
+destination.factDistance,pages,Distance from Earth,Distance de la Terre,المسافة من الأرض,22,Destination fact label,
+destination.factTransitTime,pages,Typical Transit Time,Durée de transit typique,وقت العبور المعتاد,24,Destination fact label,
+destination.factSurfaceTemp,pages,Surface Temperature,Température de surface,درجة حرارة السطح,24,Destination fact label,
+destination.factMoons,pages,Moons,Lunes,الأقمار,8,Destination fact label,
+destination.factAtmosphere,pages,Atmosphere,Atmosphère,الغلاف الجوي,14,Destination fact label,
+destination.hazardAdvisory,pages,Hazard Advisory,Avis de danger,تحذير المخاطر,20,Destination hazard section heading,
+destination.gallery,pages,Gallery,Galerie,معرض الصور,20,Destination gallery section heading,
+destination.flightsSoonTitle,pages,Flights Departing Soon,Vols au départ prochainement,الرحلات المغادرة قريباً,32,Destination upcoming flights section heading,
+destination.flightsSoonSubtitle,pages,Live availability — up to 5 upcoming departures to {{name}},Disponibilité en temps réel — jusqu'à 5 prochains départs vers {{name}},التوفر الفوري — حتى 5 مغادرات قادمة إلى {{name}},74,Destination upcoming flights subtitle,{{name}} = translated planet name
+destination.loadingSchedules,pages,Checking flight schedules…,Vérification des horaires de vols…,جارٍ التحقق من جداول الرحلات...,44,Destination flight schedules loading,
+destination.noFlightsTitle,pages,No upcoming flights to {{name}} right now.,Aucun vol à venir vers {{name}} pour l'instant.,لا توجد رحلات قادمة إلى {{name}} في الوقت الحالي.,58,Destination no flights title,{{name}} preserved
+destination.noFlightsHint,pages,Check back soon — new routes are added regularly.,Revenez bientôt — de nouvelles routes sont ajoutées régulièrement.,تحقق لاحقاً — تُضاف مسارات جديدة بانتظام.,60,Destination no flights hint,
+destination.priceFrom,pages,From,À partir de,ابتداءً من,12,Destination flight card price prefix,
+destination.bookButton,pages,Book,Réserver,احجز,10,Destination flight card CTA button,
+destination.toastFlightsError,pages,Could not load departing flights,Impossible de charger les vols au départ,تعذّر تحميل الرحلات المغادرة,46,Destination flights error toast,
+card.flightNumber,flights,Flight #{{id}},Vol n° {{id}},الرحلة رقم {{id}},24,Flight card title,{{id}} preserved
+card.departure,flights,Departure,Départ,المغادرة,12,Flight card field label,
+card.arrival,flights,Arrival,Arrivée,الوصول,10,Flight card field label,
+card.duration,flights,Duration: {{duration}},Durée : {{duration}},المدة: {{duration}},24,Flight card duration field,{{duration}} preserved
+card.availableSeatClasses,flights,Available Seat Classes,Classes de places disponibles,درجات المقاعد المتاحة,36,Flight card section heading,"seat→place in FR per glossary; AR uses مقعد"
+card.classEconomy,flights,Economy,Économique,الدرجة الاقتصادية,24,Flight card seat class label,
+card.classBusiness,flights,Business,Affaires,درجة رجال الأعمال,28,Flight card seat class label,
+card.classGalaxium,flights,Galaxium Class,Galaxium Class,Galaxium Class,14,Flight card seat class label,Brand term kept verbatim in all languages
+card.soldOut,flights,Sold Out,Complet,نفدت التذاكر,16,Flight card sold-out badge,
+card.seatsLeft,flights,{{count}} left,{{count}} restante(s),{{count}} متبقية,18,Flight card seats remaining,"{{count}} preserved; not pluralized per spec; FR restante(s) — reviewer may want gender-neutral fix"
+card.allSoldOut,flights,All Classes Sold Out,Toutes les classes sont complètes,نفدت جميع الدرجات,36,Flight card all sold-out state,
+card.selectSeatClass,flights,Select Seat Class,Choisir une classe,اختر درجة المقعد,22,Flight card seat selection button,
+filters.title,flights,Filters,Filtres,الفلاتر,10,Flights filter panel heading,
+filters.resetAll,flights,Reset All,Réinitialiser tout,إعادة تعيين الكل,20,Flights filter reset button,
+filters.sortBy,flights,Sort By,Trier par,ترتيب حسب,12,Flights sort dropdown label,
+filters.sortDepartureTime,flights,Departure Time,Heure de départ,وقت المغادرة,18,Flights sort option,
+filters.sortPrice,flights,Price,Prix,السعر,8,Flights sort option,
+filters.sortDuration,flights,Duration,Durée,المدة,10,Flights sort option,
+filters.sortAvailability,flights,Availability,Disponibilité,التوفر,14,Flights sort option,
+filters.ascending,flights,Ascending,Croissant,تصاعدي,12,Flights sort direction,
+filters.descending,flights,Descending,Décroissant,تنازلي,13,Flights sort direction,
+filters.departureDate,flights,Departure Date,Date de départ,تاريخ المغادرة,18,Flights date filter label,
+filters.dateFrom,flights,From,Du,من,6,Flights date range start label,
+filters.dateTo,flights,To,Au,إلى,6,Flights date range end label,
+filters.priceRange,flights,Price Range (Credits),Fourchette de prix (crédits),نطاق السعر (الاعتمادات),32,Flights price range filter label,CAD context noted in FR
+filters.minPlaceholder,flights,Min,Min,الحد الأدنى,14,Flights price range min input placeholder,
+filters.maxPlaceholder,flights,Max,Max,الحد الأقصى,14,Flights price range max input placeholder,
+filters.seatClass,flights,Seat Class,Classe de place,درجة المقعد,16,Flights seat class filter label,
+filters.seatEconomy,flights,Economy,Économique,الدرجة الاقتصادية,24,Flights seat class filter option,
+filters.seatBusiness,flights,Business,Affaires,درجة رجال الأعمال,28,Flights seat class filter option,
+filters.seatGalaxium,flights,Galaxium,Galaxium,Galaxium,8,Flights seat class filter option (short),Brand kept verbatim
+filters.timeOfDay,flights,Time of Day,Heure de la journée,وقت اليوم,20,Flights time of day filter label,
+filters.timeMorning,flights,Morning (6-12),Matin (6 h – 12 h),الصباح (6-12),18,Flights time filter option,
+filters.timeAfternoon,flights,Afternoon (12-18),Après-midi (12 h – 18 h),بعد الظهر (12-18),24,Flights time filter option,
+filters.timeEvening,flights,Evening (18-22),Soirée (18 h – 22 h),المساء (18-22),22,Flights time filter option,
+filters.timeNight,flights,Night (22-6),Nuit (22 h – 6 h),الليل (22-6),18,Flights time filter option,
+filters.flightDuration,flights,Flight Duration (hours),Durée du vol (heures),مدة الرحلة (بالساعات),28,Flights duration filter label,
+filters.minDurationPlaceholder,flights,Min,Min,الحد الأدنى,14,Flights duration min input placeholder,
+filters.maxDurationPlaceholder,flights,Max,Max,الحد الأقصى,14,Flights duration max input placeholder,
+filters.minSeats,flights,Minimum Seats Available,Nombre minimal de places disponibles,الحد الأدنى للمقاعد المتاحة,44,Flights min seats filter label,seat→place in FR per glossary
+filters.seatsPlaceholder,flights,e.g. 2,p. ex. 2,مثلاً 2,10,Flights min seats input placeholder,
+filters.routeCategory,flights,Route Category,Catégorie de route,فئة المسار,22,Flights route category filter label,
+filters.routeInnerPlanets,flights,Inner Planets,Planètes intérieures,الكواكب الداخلية,20,Flights route category option,
+filters.routeOuterPlanets,flights,Outer Planets,Planètes extérieures,الكواكب الخارجية,20,Flights route category option,
+filters.routeMoons,flights,Moons,Lunes,الأقمار,8,Flights route category option,
+seatClass.economy,bookings,Economy,Économique,الدرجة الاقتصادية,24,Booking seat class display,
+seatClass.business,bookings,Business,Affaires,درجة رجال الأعمال,28,Booking seat class display,
+seatClass.galaxiumClass,bookings,Galaxium Class,Galaxium Class,Galaxium Class,14,Booking seat class display,Brand kept verbatim
+features.economy.standardSeating,bookings,Standard seating,Places standard,مقاعد قياسية,20,Booking economy feature,seat→place in FR per glossary
+features.economy.entertainment,bookings,In-flight entertainment,Divertissement à bord,ترفيه على متن الرحلة,26,Booking economy feature,
+features.economy.snacks,bookings,Complimentary snacks,Collations offertes,وجبات خفيفة مجانية,24,Booking economy feature,
+features.business.premiumSeating,bookings,Premium seating,Places premium,مقاعد مميزة,18,Booking business feature,seat→place in FR per glossary
+features.business.priorityBoarding,bookings,Priority boarding,Embarquement prioritaire,صعود ذو أولوية,28,Booking business feature,
+features.business.gourmetMeals,bookings,Gourmet meals,Repas gastronomiques,وجبات فاخرة,22,Booking business feature,
+features.business.extraLegroom,bookings,Extra legroom,Espace supplémentaire pour les jambes,مساحة إضافية للقدمين,44,Booking business feature,
+features.galaxium.luxuryPods,bookings,Luxury pods,Cabines de luxe,كابينات فاخرة,16,Booking Galaxium Class feature,
+features.galaxium.vipLounge,bookings,VIP lounge access,Accès au salon VIP,دخول صالة VIP,22,Booking Galaxium Class feature,
+features.galaxium.concierge,bookings,Personal concierge,Concierge personnel,خدمة كونسيرج شخصية,22,Booking Galaxium Class feature,
+features.galaxium.zeroG,bookings,Zero-G experience,Expérience en apesanteur,تجربة انعدام الجاذبية,28,Booking Galaxium Class feature,
+status.booked,bookings,Booked,Réservé,محجوز,10,Booking status badge,
+status.cancelled,bookings,Cancelled,Annulé,ملغى,10,Booking status badge,
+status.completed,bookings,Completed,Complété,مكتمل,10,Booking status badge,
+card.bookingId,bookings,Booking #{{id}},Réservation n° {{id}},الحجز رقم {{id}},24,Booking card title,{{id}} preserved
+card.flightId,bookings,Flight #{{id}},Vol n° {{id}},الرحلة رقم {{id}},24,Booking card flight reference,
+card.flightIdFallback,bookings,Flight ID: {{id}},Identifiant du vol : {{id}},معرّف الرحلة: {{id}},28,Booking card flight reference fallback,
+card.departure,bookings,Departure,Départ,المغادرة,12,Booking card field label,
+card.arrival,bookings,Arrival,Arrivée,الوصول,10,Booking card field label,
+card.seatClass,bookings,Seat Class,Classe de place,درجة المقعد,16,Booking card field label,
+card.pricePaid,bookings,Price Paid,Prix payé,السعر المدفوع,16,Booking card field label,CAD in FR context
+card.bookedOn,bookings,Booked on {{date}},Réservé le {{date}},تم الحجز في {{date}},24,Booking card date field,{{date}} preserved
+card.cancelBooking,bookings,Cancel Booking,Annuler la réservation,إلغاء الحجز,24,Booking card cancel button,
+modal.titleSelect,bookings,Book Your Flight,Réservez votre vol,احجز رحلتك,22,Booking modal step 1 title,
+modal.titleQuote,bookings,Your Price Quote,Votre devis,عرض سعرك,20,Booking modal step 2 title,quote→devis per glossary
+modal.titleHold,bookings,Seat Reserved,Place réservée temporairement,تم حجز المقعد مؤقتاً,30,Booking modal step 3 title,hold→réservation temporaire / حجز مؤقت per glossary
+modal.departure,bookings,Departure,Départ,المغادرة,12,Booking modal field label,
+modal.arrival,bookings,Arrival,Arrivée,الوصول,10,Booking modal field label,
+modal.duration,bookings,Duration,Durée,المدة,10,Booking modal field label,
+modal.selectSeatClass,bookings,Select Seat Class,Choisir une classe de place,اختر درجة المقعد,32,Booking modal seat selection heading,
+modal.soldOut,bookings,Sold Out,Complet,نفدت التذاكر,16,Booking modal sold-out indicator,
+modal.seatsLeft,bookings,{{count}} left,{{count}} restante(s),{{count}} متبقية,18,Booking modal seats remaining,"{{count}} preserved; not pluralized per spec"
+modal.passenger,bookings,Passenger,Passager,مسافر,12,Booking modal passenger label,
+modal.cancel,bookings,Cancel,Annuler,إلغاء,10,Booking modal cancel button,
+modal.getQuote,bookings,Get Quote →,Obtenir un devis →,احصل على عرض سعر ←,26,Booking modal step 1 primary button,quote→devis; AR arrow mirrored
+modal.quoteId,bookings,Quote ID,Identifiant du devis,معرّف عرض السعر,22,Booking modal quote reference label,
+modal.priceBreakdown,bookings,Price Breakdown,Détail du prix,تفاصيل السعر,18,Booking modal price breakdown heading,
+modal.seatLineItem,bookings,{{name}} × 1,{{name}} × 1,{{name}} × 1,14,Booking modal price line item,{{name}} preserved
+modal.total,bookings,Total,Total,الإجمالي,10,Booking modal total label,
+modal.quoteNote,bookings,Quote valid for 24 hours · Price calculated by inventory service,Devis valide 24 heures · Prix calculé par le service d'inventaire,عرض السعر صالح لمدة 24 ساعة · السعر محسوب بواسطة خدمة المخزون,80,Booking modal quote disclaimer,
+modal.back,bookings,Back,Retour,رجوع,8,Booking modal back button,
+modal.placeHold,bookings,Place Hold →,Faire une réservation temporaire →,إجراء حجز مؤقت ←,38,Booking modal place hold button,hold→réservation temporaire; AR arrow mirrored
+modal.holdId,bookings,Hold ID,Identifiant de la réservation temporaire,معرّف الحجز المؤقت,42,Booking modal hold reference label,
+modal.holdExpired,bookings,Hold Expired,Réservation temporaire expirée,انتهى الحجز المؤقت,30,Booking modal hold expired state,
+modal.timeToConfirm,bookings,Time to Confirm,Temps pour confirmer,الوقت المتبقي للتأكيد,24,Booking modal countdown label,
+modal.expired,bookings,EXPIRED,EXPIRÉ,منتهي الصلاحية,18,Booking modal expired badge,
+modal.seatReservedNote,bookings,Seat is reserved — confirm before time runs out,Place réservée temporairement — confirmez avant l'expiration,المقعد محجوز مؤقتاً — أكّد قبل انتهاء الوقت,58,Booking modal hold active note,
+modal.close,bookings,Close,Fermer,إغلاق,8,Booking modal close button,
+modal.releaseHold,bookings,Release Hold,Libérer la réservation temporaire,إلغاء الحجز المؤقت,38,Booking modal release hold button,release→libérer / إلغاء الحجز المؤقت per glossary
+modal.confirmBooking,bookings,Confirm Booking,Confirmer la réservation,تأكيد الحجز,24,Booking modal confirm button,
+modal.closingNote,bookings,Closing keeps your hold active — find it in My Bookings,En fermant votre réservation temporaire reste active — retrouvez-la dans Mes réservations,الإغلاق يبقي حجزك المؤقت نشطاً — ستجده في حجوزاتي,84,Booking modal closing note,
+hold.expired,bookings,Expired,Expiré,منتهي الصلاحية,18,Hold card expired badge,
+hold.heldTimer,bookings,Held · {{timer}},Réservé · {{timer}},محجوز مؤقتاً · {{timer}},22,Hold card timer display,{{timer}} preserved
+hold.release,bookings,Release,Libérer,إلغاء الحجز المؤقت,28,Hold card release button,release→libérer per glossary
+hold.confirm,bookings,Confirm,Confirmer,تأكيد,10,Hold card confirm button,
+hold.dismiss,bookings,Dismiss,Ignorer,رفض,10,Hold card dismiss button,
+toast.signInRequired,bookings,Please sign in to get a quote,Veuillez vous connecter pour obtenir un devis,يرجى تسجيل الدخول للحصول على عرض سعر,50,Bookings toast — sign-in required,sign in → se connecter per glossary
+toast.getQuoteFailed,bookings,Failed to get quote. Make sure the inventory service is running.,Impossible d'obtenir un devis. Assurez-vous que le service d'inventaire est en cours d'exécution.,فشل الحصول على عرض السعر. تأكد من تشغيل خدمة المخزون.,100,Bookings toast — quote failure,quote→devis
+toast.seatHeld,bookings,Seat held! You have 15 minutes to confirm.,Place réservée! Vous avez 15 minutes pour confirmer.,تم حجز المقعد مؤقتاً! لديك 15 دقيقة للتأكيد.,56,Bookings toast — seat held success,
+toast.placeHoldFailed,bookings,Failed to place hold,Impossible d'effectuer la réservation temporaire,فشل إجراء الحجز المؤقت,50,Bookings toast — place hold failure,
+toast.bookingConfirmed,bookings,Booking confirmed! Reference: #{{ref}},Réservation confirmée! Référence : #{{ref}},تم تأكيد الحجز! المرجع: #{{ref}},42,Bookings toast — booking confirmed,{{ref}} preserved
+toast.confirmFailed,bookings,Failed to confirm booking,Échec de la confirmation de la réservation,فشل تأكيد الحجز,50,Bookings toast — confirm failure,
+toast.holdReleased,bookings,Hold released,Réservation temporaire libérée,تم إلغاء الحجز المؤقت,36,Bookings toast — hold released,
+toast.releaseFailed,bookings,Failed to release hold,Impossible de libérer la réservation temporaire,فشل إلغاء الحجز المؤقت,54,Bookings toast — release failure,
+header.brandName,common,Galaxium Travels,Galaxium Travels,Galaxium Travels,16,App header brand name,Brand kept verbatim in all languages
+header.logout,common,Logout,Déconnexion,تسجيل الخروج,18,Header logout button,
+header.bookAFlight,common,Book a Flight,Réserver un vol,احجز رحلة,16,Header CTA button,
+header.login,common,Login,Se connecter,تسجيل الدخول,18,Header login button,sign in→se connecter per glossary
+nav.home,common,Home,Accueil,الرئيسية,12,Navigation link,
+nav.flights,common,Flights,Vols,الرحلات,10,Navigation link,
+nav.myBookings,common,My Bookings,Mes réservations,حجوزاتي,16,Navigation link,
+footer.copyright,common,© {{year}} Galaxium Travels. All rights reserved.,© {{year}} Galaxium Travels. Tous droits réservés.,© {{year}} Galaxium Travels. جميع الحقوق محفوظة.,60,Footer copyright,{{year}} preserved; brand kept verbatim
+footer.madeWith,common,Made with,Fait avec,صُنع بـ,12,Footer tagline prefix,
+footer.forSpaceTravelers,common,for space travelers,pour les voyageurs spatiaux,للمسافرين في الفضاء,28,Footer tagline suffix,
+modal.closeLabel,common,Close modal,Fermer la fenêtre modale,إغلاق النافذة المنبثقة,28,Modal ARIA close label,
+userIdentification.titleCreateAccount,common,Create Account,Créer un compte,إنشاء حساب,18,User ID modal create title,register→s'inscrire / إنشاء حساب per glossary
+userIdentification.titleSignIn,common,Sign In,Se connecter,تسجيل الدخول,16,User ID modal sign-in title,
+userIdentification.subtitleCreate,common,Create an account to book your flight,Créez un compte pour réserver votre vol,أنشئ حساباً لحجز رحلتك,46,User ID modal create subtitle,
+userIdentification.subtitleSignIn,common,Enter your name and email to continue,Entrez votre nom et votre courriel pour continuer,أدخل اسمك وبريدك الإلكتروني للمتابعة,52,User ID modal sign-in subtitle,email→courriel per glossary
+userIdentification.labelName,common,Name,Nom,الاسم,6,User ID form field label,
+userIdentification.placeholderName,common,John Doe,Jean Tremblay,محمد علي,14,User ID name input placeholder,FR: Quebec-style name; AR: Arabic-style name
+userIdentification.labelEmail,common,Email,Courriel,البريد الإلكتروني,22,User ID form field label,email→courriel per glossary
+userIdentification.placeholderEmail,common,john@example.com,jean@exemple.com,mohammed@example.com,22,User ID email input placeholder,FR: localized domain
+userIdentification.buttonCreate,common,Create Account,Créer un compte,إنشاء حساب,18,User ID create account button,
+userIdentification.buttonContinue,common,Continue,Continuer,متابعة,10,User ID continue button,
+userIdentification.switchToSignIn,common,Already have an account? Sign in,Vous avez déjà un compte? Se connecter,هل لديك حساب بالفعل؟ تسجيل الدخول,46,User ID sign-in switch link,
+userIdentification.switchToRegister,common,Don't have an account? Register,Vous n'avez pas de compte? S'inscrire,ليس لديك حساب؟ إنشاء حساب,46,User ID register switch link,register→s'inscrire / إنشاء حساب per glossary
+userIdentification.errorFillFields,common,Please fill in all fields,Veuillez remplir tous les champs,يرجى ملء جميع الحقول,36,User ID validation error,
+userIdentification.errorInvalidEmail,common,Please enter a valid email address,Veuillez entrer une adresse courriel valide,يرجى إدخال عنوان بريد إلكتروني صالح,44,User ID email validation error,email→courriel in FR
+userIdentification.successAccountCreated,common,Account created successfully!,Compte créé avec succès!,تم إنشاء الحساب بنجاح!,34,User ID account creation success,
+userIdentification.errorUserNotFound,common,User not found. Please register or check your credentials.,Utilisateur introuvable. Veuillez vous inscrire ou vérifier vos identifiants.,المستخدم غير موجود. يرجى إنشاء حساب أو التحقق من بياناتك.,80,User ID user-not-found error,
+userIdentification.successWelcomeBack,common,Welcome back {{name}}!,Bon retour {{name}}!,مرحباً بعودتك {{name}}!,28,User ID welcome back toast,{{name}} preserved
+userIdentification.errorGeneric,common,An error occurred,Une erreur s'est produite,حدث خطأ,24,User ID generic error,
+button.loading,common,Loading...,Chargement…,جارٍ التحميل...,20,Generic loading button state,
+earth.name,destinations,Earth,Terre,الأرض,8,Destination name label,Label translated; URL value stays "Earth" per glossary
+earth.tagline,destinations,The cradle of humanity — and the perfect place to return to.,Le berceau de l'humanité — et l'endroit idéal où revenir.,مهد البشرية — والمكان المثالي للعودة إليه.,70,Destination card tagline,
+earth.description,destinations,Earth remains the most habitable world in the known solar system with a breathable nitrogen-oxygen atmosphere liquid water oceans and a magnetic field that shields surface life from solar radiation.,La Terre demeure le monde le plus habitable du système solaire connu avec une atmosphère respirable d'azote et d'oxygène des océans d'eau liquide et un champ magnétique qui protège la vie de surface des rayonnements solaires.,تبقى الأرض أكثر العوالم صلاحية للسكن في النظام الشمسي المعروف بغلاف جوي تنفسي من النيتروجين والأكسجين ومحيطات مياه سائلة وحقل مغناطيسي يحمي الحياة السطحية من الإشعاع الشمسي.,300,Destination description paragraph,
+earth.facts.gravity,destinations,9.81 m/s²,9,81 m/s²,9.81 م/ث²,12,Destination fact value,
+earth.facts.distanceFromEarth,destinations,0 km,0 km,0 كم,6,Destination fact value,
+earth.facts.typicalTransitTime,destinations,Home port,Port d'attache,الميناء الرئيسي,16,Destination fact value,
+earth.facts.surfaceTemp,destinations,-89 °C to +57 °C,-89 °C à +57 °C,من -89 °C إلى +57 °C,24,Destination fact value,
+earth.facts.moons,destinations,1 (Luna),1 (Luna),1 (لونا),10,Destination fact value,
+earth.facts.atmosphere,destinations,Nitrogen 78 % Oxygen 21 %,Azote 78 % Oxygène 21 %,نيتروجين 78٪ أكسجين 21٪,26,Destination fact value,
+earth.hazards.item0,destinations,Dense air traffic in low-Earth orbit — strict approach corridors enforced,Trafic aérien dense en orbite basse terrestre — couloirs d'approche stricts imposés,حركة مرور جوية كثيفة في المدار المنخفض للأرض — ممرات اقتراب صارمة مفروضة,90,Destination hazard list item,
+earth.hazards.item1,destinations,Electromagnetic interference from surface networks may disrupt navigation,Les interférences électromagnétiques provenant des réseaux terrestres peuvent perturber la navigation,قد تتداخل التشويشات الكهرومغناطيسية من الشبكات الأرضية مع الملاحة,100,Destination hazard list item,
+earth.hazards.item2,destinations,Weather re-entry delays are common at equatorial spaceports,Les retards de rentrée atmosphérique liés à la météo sont fréquents aux astroports équatoriaux,تأخيرات إعادة الدخول الجوي بسبب الطقس شائعة في الموانئ الفضائية الاستوائية,100,Destination hazard list item,spaceport→astroport in FR per glossary
+earth.hazards.item3,destinations,Customs and biosecurity screening required for all interplanetary arrivals,Contrôle douanier et inspection biosécurité obligatoires pour toutes les arrivées interplanétaires,الفحص الجمركي وإجراءات الأمن البيولوجي إلزامية لجميع الوافدين بين الكواكب,100,Destination hazard list item,
+earth.gallery.item0.alt,destinations,Blue Marble view,Vue Bille bleue,منظر الكرة الزرقاء,22,Destination gallery image alt text,
+earth.gallery.item0.description,destinations,Blue Marble — Atlantic from orbit,Bille bleue — Atlantique depuis l'orbite,الكرة الزرقاء — المحيط الأطلسي من المدار,44,Destination gallery caption,
+earth.gallery.item1.alt,destinations,Coastal landing strip,Piste d'atterrissage côtière,مدرج هبوط ساحلي,28,Destination gallery image alt text,
+earth.gallery.item1.description,destinations,Cape Canaveral approach corridor,Couloir d'approche de Cap Canaveral,ممر اقتراب كيب كانافيرال,40,Destination gallery caption,
+earth.gallery.item2.alt,destinations,Night lights,Lumières nocturnes,أضواء ليلية,20,Destination gallery image alt text,
+earth.gallery.item2.description,destinations,City grid illumination night side,Grille de lumières urbaines côté nuit,شبكة المدن المضيئة من الجانب الليلي,44,Destination gallery caption,
+mars.name,destinations,Mars,Mars,المريخ,8,Destination name label,Label translated; URL value stays "Mars"
+mars.tagline,destinations,Rust-red horizons and the promise of a second home.,Des horizons rouge rouille et la promesse d'une seconde maison.,آفاق حمراء صدئة ووعد بوطن ثانٍ.,62,Destination card tagline,
+mars.description,destinations,Mars is humanity's boldest frontier — a terrestrial planet with a thin carbon dioxide atmosphere polar ice caps and the largest volcano in the solar system.,Mars est la frontière la plus audacieuse de l'humanité — une planète tellurique dotée d'une fine atmosphère de dioxyde de carbone de calottes polaires glacées et du plus grand volcan du système solaire.,المريخ هو الحدود الأكثر جرأة للبشرية — كوكب صخري بغلاف جوي رقيق من ثاني أكسيد الكربون وأغطية جليدية قطبية وأكبر بركان في النظام الشمسي.,280,Destination description paragraph,
+mars.facts.gravity,destinations,3.72 m/s²,3,72 m/s²,3.72 م/ث²,12,Destination fact value,
+mars.facts.distanceFromEarth,destinations,~225 million km (avg),~225 millions de km (moy.),~225 مليون كم (متوسط),28,Destination fact value,
+mars.facts.typicalTransitTime,destinations,8 h,8 h,8 ساعات,10,Destination fact value,
+mars.facts.surfaceTemp,destinations,-125 °C to +20 °C,-125 °C à +20 °C,من -125 °C إلى +20 °C,26,Destination fact value,
+mars.facts.moons,destinations,2 (Phobos Deimos),2 (Phobos Deimos),2 (فوبوس ديموس),20,Destination fact value,
+mars.facts.atmosphere,destinations,CO₂ 95 % thin — unsuitable for breathing,CO₂ 95 % fine — inadaptée à la respiration,CO₂ 95٪ رقيق — غير صالح للتنفس,44,Destination fact value,
+mars.hazards.item0,destinations,Dust storms can ground all surface operations for weeks,Les tempêtes de poussière peuvent immobiliser toutes les opérations en surface pendant des semaines,يمكن للعواصف الترابية أن توقف جميع العمليات السطحية لأسابيع,90,Destination hazard list item,
+mars.hazards.item1,destinations,EVA suit required at all times outside pressurised zones,Combinaison EVA obligatoire en tout temps hors des zones pressurisées,بدلة المشي خارج المركبة إلزامية في جميع الأوقات خارج المناطق المضغوطة,90,Destination hazard list item,
+mars.hazards.item2,destinations,Radiation exposure ~2× Earth levels — shielding mandatory,Exposition aux rayonnements ~2× les niveaux terrestres — blindage obligatoire,التعرض للإشعاع ~ضعفا مستويات الأرض — الدرع الواقي إلزامي,80,Destination hazard list item,
+mars.hazards.item3,destinations,Gravity adjustment syndrome affects most travellers for 48–72 h,Le syndrome d'adaptation gravitationnelle affecte la plupart des voyageurs pendant 48 à 72 h,متلازمة تكيّف الجاذبية تصيب معظم المسافرين لمدة 48-72 ساعة,88,Destination hazard list item,
+mars.hazards.item4,destinations,Perchlorate soil contamination — never remove gloves outdoors,Contamination au perchlorate dans le sol — ne retirez jamais vos gants à l'extérieur,تلوث التربة بالبيركلورات — لا تخلع قفازيك في الخارج أبداً,86,Destination hazard list item,
+mars.gallery.item0.alt,destinations,Olympus Mons,Olympus Mons,أوليمبوس مونس,16,Destination gallery image alt text,Proper noun kept
+mars.gallery.item0.description,destinations,Olympus Mons caldera at dawn,Caldeira d'Olympus Mons à l'aube,فوهة أوليمبوس مونس عند الفجر,36,Destination gallery caption,
+mars.gallery.item1.alt,destinations,Valles Marineris,Valles Marineris,Valles Marineris,16,Destination gallery image alt text,Proper noun kept
+mars.gallery.item1.description,destinations,Valles Marineris canyon system,Système de canyons de Valles Marineris,نظام وادي Valles Marineris,36,Destination gallery caption,
+mars.gallery.item2.alt,destinations,Polar ice cap,Calotte polaire glacée,الغطاء الجليدي القطبي,24,Destination gallery image alt text,
+mars.gallery.item2.description,destinations,North polar CO₂ ice cap summer,Calotte polaire nord de CO₂ été,الغطاء الجليدي القطبي الشمالي من CO₂ صيفاً,44,Destination gallery caption,
+moon.name,destinations,Moon,Lune,القمر,6,Destination name label,Label translated; URL value stays "Moon"
+moon.tagline,destinations,Humanity's first step — now a bustling gateway world.,Le premier pas de l'humanité — aujourd'hui un monde-carrefour animé.,الخطوة الأولى للبشرية — اليوم عالم بوابة صاخب.,72,Destination card tagline,
+moon.description,destinations,Just 384 000 km from Earth the Moon is the solar system's most accessible off-world destination.,À seulement 384 000 km de la Terre la Lune est la destination hors monde la plus accessible du système solaire.,على بُعد 384000 كم فقط من الأرض يُعد القمر أكثر وجهة خارج الكرة الأرضية يمكن الوصول إليها.,280,Destination description paragraph,
+moon.facts.gravity,destinations,1.62 m/s²,1,62 m/s²,1.62 م/ث²,12,Destination fact value,
+moon.facts.distanceFromEarth,destinations,~384 000 km,~384 000 km,~384000 كم,14,Destination fact value,
+moon.facts.typicalTransitTime,destinations,3 h,3 h,3 ساعات,10,Destination fact value,
+moon.facts.surfaceTemp,destinations,-173 °C to +127 °C,-173 °C à +127 °C,من -173 °C إلى +127 °C,26,Destination fact value,
+moon.facts.moons,destinations,N/A — the Moon itself,S.O. — la Lune elle-même,غير متاح — القمر نفسه,24,Destination fact value,
+moon.facts.atmosphere,destinations,Virtually none (exosphere only),Pratiquement nulle (exosphère seulement),لا توجد تقريباً (طبقة خارجية فقط),40,Destination fact value,
+moon.hazards.item0,destinations,No atmosphere — space suit required outside at all times,Pas d'atmosphère — combinaison spatiale obligatoire à l'extérieur en tout temps,لا يوجد غلاف جوي — بدلة فضاء إلزامية في الخارج في جميع الأوقات,86,Destination hazard list item,
+moon.hazards.item1,destinations,Micro-meteorite impacts are a persistent risk in the regolith zone,Les impacts de micrométéorites représentent un risque persistant dans la zone de régolithe,اصطدامات النيازك الصغيرة خطر دائم في منطقة التربة القمرية,92,Destination hazard list item,
+moon.hazards.item2,destinations,Temperature swings exceed 300 °C between day and night,Les variations de température dépassent 300 °C entre le jour et la nuit,تقلبات الحرارة تتجاوز 300 °C بين النهار والليل,68,Destination hazard list item,
+moon.hazards.item3,destinations,Abrasive lunar dust can damage seals and optical surfaces,La poussière lunaire abrasive peut endommager les joints et les surfaces optiques,الغبار القمري الكاشط يمكنه إتلاف الأختام والأسطح البصرية,74,Destination hazard list item,
+moon.gallery.item0.alt,destinations,Earthrise,Lever de Terre,شروق الأرض,16,Destination gallery image alt text,
+moon.gallery.item0.description,destinations,Earthrise over the Sea of Tranquility,Lever de Terre sur la Mer de la Tranquillité,شروق الأرض فوق بحر الهدوء,46,Destination gallery caption,
+moon.gallery.item1.alt,destinations,Artemis Base,Base Artémis,قاعدة أرتميس,16,Destination gallery image alt text,
+moon.gallery.item1.description,destinations,Artemis Base Camp habitat cluster,Ensemble d'habitats du camp de base Artémis,مجموعة مواطن مخيم قاعدة أرتميس,48,Destination gallery caption,
+moon.gallery.item2.alt,destinations,Crater rim,Bord de cratère,حافة الحفرة,16,Destination gallery image alt text,
+moon.gallery.item2.description,destinations,Shackleton crater rim south pole,Bord du cratère Shackleton pôle Sud,حافة حفرة شاكلتون القطب الجنوبي,40,Destination gallery caption,
+venus.name,destinations,Venus,Vénus,الزهرة,8,Destination name label,Label translated; URL value stays "Venus"
+venus.tagline,destinations,Hellscape below paradise above the clouds.,L'enfer en bas le paradis au-dessus des nuages.,جحيم في الأسفل فردوس فوق الغيوم.,44,Destination card tagline,
+venus.description,destinations,Venus is the solar system's most extreme planet — crushing atmospheric pressure sulphuric acid clouds and surface temperatures hot enough to melt lead.,Vénus est la planète la plus extrême du système solaire — pression atmosphérique écrasante nuages d'acide sulfurique et températures de surface assez élevées pour faire fondre le plomb.,الزهرة هي أكثر الكواكب تطرفاً في النظام الشمسي — ضغط جوي ساحق وغيوم من حمض الكبريتيك ودرجات حرارة سطحية ترتفع لدرجة كافية لإذابة الرصاص.,280,Destination description paragraph,Brand Galaxium in description kept verbatim
+venus.facts.gravity,destinations,8.87 m/s²,8,87 m/s²,8.87 م/ث²,12,Destination fact value,
+venus.facts.distanceFromEarth,destinations,~38 million km (closest),~38 millions de km (la plus proche),~38 مليون كم (الأقرب),32,Destination fact value,
+venus.facts.typicalTransitTime,destinations,6 h,6 h,6 ساعات,10,Destination fact value,
+venus.facts.surfaceTemp,destinations,~465 °C (surface) / 0–30 °C (cloud layer),~465 °C (surface) / 0–30 °C (couche nuageuse),~465 °C (السطح) / 0-30 °C (طبقة السحاب),48,Destination fact value,
+venus.facts.moons,destinations,0,0,0,2,Destination fact value,
+venus.facts.atmosphere,destinations,CO₂ 96 % H₂SO₄ clouds — lethal at surface,CO₂ 96 % nuages de H₂SO₄ — mortels en surface,CO₂ 96٪ غيوم H₂SO₄ — قاتلة عند السطح,48,Destination fact value,
+venus.hazards.item0,destinations,Surface descent is strictly prohibited — habitat stays airborne,La descente en surface est strictement interdite — l'habitat reste en vol,النزول إلى السطح محظور صراحةً — يبقى الموطن في الهواء,84,Destination hazard list item,
+venus.hazards.item1,destinations,Sulphuric acid rain can dissolve exposed equipment within hours,La pluie d'acide sulfurique peut dissoudre les équipements exposés en quelques heures,يمكن لأمطار حمض الكبريتيك أن تذيب المعدات المكشوفة في غضون ساعات,90,Destination hazard list item,
+venus.hazards.item2,destinations,Atmospheric turbulence rating 9/10 — expect a rough arrival,Indice de turbulence atmosphérique 9/10 — attendez-vous à une arrivée mouvementée,تقييم اضطراب الغلاف الجوي 9/10 — توقع وصولاً متقلباً,78,Destination hazard list item,
+venus.hazards.item3,destinations,Pressurisation failure evacuation time: under 90 seconds,Temps d'évacuation en cas de défaillance de pressurisation : moins de 90 secondes,وقت الإخلاء في حالة فشل الضغط: أقل من 90 ثانية,76,Destination hazard list item,
+venus.hazards.item4,destinations,All exterior maintenance requires level-4 acid-resistant suits,Toute maintenance extérieure nécessite des combinaisons résistantes aux acides de niveau 4,تتطلب جميع أعمال الصيانة الخارجية بدلات مقاومة للأحماض من المستوى 4,90,Destination hazard list item,
+venus.gallery.item0.alt,destinations,Cloud City,Cité des Nuages,مدينة السحاب,18,Destination gallery image alt text,
+venus.gallery.item0.description,destinations,Aerostat Cloud City at 50 km altitude,Aérostat Cité des Nuages à 50 km d'altitude,طائرة مدينة السحاب على ارتفاع 50 كم,44,Destination gallery caption,
+venus.gallery.item1.alt,destinations,Lightning storm,Orage,عاصفة رعدية,16,Destination gallery image alt text,
+venus.gallery.item1.description,destinations,Sulphuric acid lightning storms below,Orages d'acide sulfurique en contrebas,عواصف برق حمض الكبريتيك في الأسفل,42,Destination gallery caption,
+venus.gallery.item2.alt,destinations,Solar panels,Panneaux solaires,ألواح شمسية,16,Destination gallery image alt text,
+venus.gallery.item2.description,destinations,Solar array wings above the cloud deck,Ailes de panneaux solaires au-dessus du pont nuageux,أجنحة الألواح الشمسية فوق سطح السحاب,54,Destination gallery caption,
+jupiter.name,destinations,Jupiter,Jupiter,المشتري,10,Destination name label,Label translated for AR; FR same as EN; URL value stays "Jupiter"
+jupiter.tagline,destinations,King of planets — come for the storms stay for the scale.,Le roi des planètes — venez pour les tempêtes restez pour la démesure.,ملك الكواكب — تعال من أجل العواصف وابقَ من أجل الاتساع.,72,Destination card tagline,
+jupiter.description,destinations,Jupiter's swirling bands of ammonia and hydrogen stretch across a disc 11 times wider than Earth.,Les bandes tourbillonnantes d'ammoniac et d'hydrogène de Jupiter s'étendent sur un disque 11 fois plus large que la Terre.,تمتد أشرطة المشتري الدوامية من الأمونيا والهيدروجين عبر قرص أوسع 11 مرة من الأرض.,280,Destination description paragraph,
+jupiter.facts.gravity,destinations,24.79 m/s² (at cloud tops),24,79 m/s² (sommet des nuages),24.79 م/ث² (قمة السحاب),30,Destination fact value,
+jupiter.facts.distanceFromEarth,destinations,~628 million km (avg),~628 millions de km (moy.),~628 مليون كم (متوسط),28,Destination fact value,
+jupiter.facts.typicalTransitTime,destinations,18 h,18 h,18 ساعة,10,Destination fact value,
+jupiter.facts.surfaceTemp,destinations,-108 °C (cloud tops),-108 °C (sommet des nuages),-108 °C (قمة السحاب),28,Destination fact value,
+jupiter.facts.moons,destinations,95 known (Io Europa Ganymede Callisto — largest),95 connues (Io Europe Ganymède Callisto — les plus grandes),95 معروفة (آيو أوروبا غانيميد كاليستو — الأكبر),60,Destination fact value,Europa→Europe in FR / أوروبا in AR per glossary (label)
+jupiter.facts.atmosphere,destinations,H₂ 90 % He 10 % — immense pressure at depth,H₂ 90 % He 10 % — pression immense en profondeur,H₂ 90٪ He 10٪ — ضغط هائل في الأعماق,48,Destination fact value,
+jupiter.hazards.item0,destinations,Radiation belts around Jupiter are among the most intense in the solar system,Les ceintures de radiation autour de Jupiter sont parmi les plus intenses du système solaire,الأحزمة الإشعاعية حول المشتري من بين الأشد في النظام الشمسي,100,Destination hazard list item,
+jupiter.hazards.item1,destinations,Magnetic field disrupts electronics — shielded hull required,Le champ magnétique perturbe l'électronique — coque blindée obligatoire,يُعطّل المجال المغناطيسي الإلكترونيات — هيكل محمي إلزامي,80,Destination hazard list item,
+jupiter.hazards.item2,destinations,No solid surface — descent below cloud tops is a one-way journey,Aucune surface solide — la descente sous le sommet des nuages est un aller sans retour,لا يوجد سطح صلب — النزول تحت قمة السحاب رحلة في اتجاه واحد,84,Destination hazard list item,
+jupiter.hazards.item3,destinations,Orbital insertion requires precise timing to avoid moon conjunctions,L'insertion orbitale exige un minutage précis pour éviter les conjonctions avec les lunes,يستلزم الإدراج المداري توقيتاً دقيقاً لتجنب التقاطعات مع الأقمار,96,Destination hazard list item,
+jupiter.hazards.item4,destinations,Gravitational tidal stresses can cause hull fatigue on long stays,Les contraintes de marée gravitationnelles peuvent provoquer de la fatigue de la coque lors de longs séjours,يمكن لضغوط المد والجزر الجاذبية أن تُسبب إرهاق الهيكل في الإقامات الطويلة,100,Destination hazard list item,
+jupiter.gallery.item0.alt,destinations,Great Red Spot,Grande Tache Rouge,البقعة الحمراء العظيمة,26,Destination gallery image alt text,
+jupiter.gallery.item0.description,destinations,Great Red Spot storm system 350-year duration,Système de tempête de la Grande Tache Rouge durée de 350 ans,نظام عاصفة البقعة الحمراء العظيمة استمرارية 350 عاماً,62,Destination gallery caption,
+jupiter.gallery.item1.alt,destinations,Galileo Station,Station Galilée,محطة غاليليو,18,Destination gallery image alt text,
+jupiter.gallery.item1.description,destinations,Galileo Station orbital platform,Plateforme orbitale de la station Galilée,منصة المدار لمحطة غاليليو,40,Destination gallery caption,
+jupiter.gallery.item2.alt,destinations,Moon transit,Transit lunaire,عبور قمر,16,Destination gallery image alt text,
+jupiter.gallery.item2.description,destinations,Io transit shadow across the equatorial band,Ombre du transit d'Io sur la bande équatoriale,ظل عبور آيو عبر الشريط الاستوائي,50,Destination gallery caption,
+europa.name,destinations,Europa,Europe,أوروبا,8,Destination name label,Label translated; URL value stays "Europa" per glossary
+europa.tagline,destinations,Beneath the ice: the best chance of alien life in our solar system.,Sous la glace : la meilleure chance de vie extraterrestre dans notre système solaire.,تحت الجليد: أفضل فرصة للحياة الفضائية في نظامنا الشمسي.,84,Destination card tagline,
+europa.description,destinations,Europa's fractured ice shell hides a vast subsurface ocean that may harbour microbial life.,La couche de glace fracturée d'Europe cache un vaste océan souterrain qui pourrait abriter une vie microbienne.,تخفي قشرة الجليد المتشققة لـأوروبا محيطاً شاسعاً تحت السطح قد يؤوي حياة ميكروبية.,280,Destination description paragraph,
+europa.facts.gravity,destinations,1.315 m/s²,1,315 m/s²,1.315 م/ث²,14,Destination fact value,
+europa.facts.distanceFromEarth,destinations,~628 million km (avg),~628 millions de km (moy.),~628 مليون كم (متوسط),28,Destination fact value,
+europa.facts.typicalTransitTime,destinations,19 h,19 h,19 ساعة,10,Destination fact value,
+europa.facts.surfaceTemp,destinations,-160 °C to -220 °C,-160 °C à -220 °C,من -160 °C إلى -220 °C,26,Destination fact value,
+europa.facts.moons,destinations,Moon of Jupiter,Lune de Jupiter,قمر المشتري,16,Destination fact value,
+europa.facts.atmosphere,destinations,Thin oxygen exosphere — not breathable,Fine exosphère d'oxygène — non respirable,طبقة خارجية رقيقة من الأكسجين — غير صالحة للتنفس,50,Destination fact value,
+europa.hazards.item0,destinations,Jupiter's radiation at Europa's orbit is intense — exterior exposure is time-limited to 1 hour,Les rayonnements de Jupiter à l'orbite d'Europe sont intenses — l'exposition extérieure est limitée à 1 heure,إشعاع المشتري في مدار أوروبا شديد — التعرض الخارجي محدود بساعة واحدة,100,Destination hazard list item,
+europa.hazards.item1,destinations,Ice crust seismic ice-quakes can crack landing pad anchorings,Les glacio-séismes de la croûte glacée peuvent fissurer les ancrages des aires d'atterrissage,يمكن للزلازل الجليدية في القشرة الجليدية أن تشقق أرساء منصات الهبوط,100,Destination hazard list item,
+europa.hazards.item2,destinations,Cryoventing plumes erupt unpredictably — avoid surface EVA near fracture lines,Des panaches cryovolcaniques jaillissent de façon imprévisible — évitez les sorties EVA près des lignes de fracture,تثور أعمدة البراد بشكل غير متوقع — تجنب المشي خارج المركبة بالقرب من خطوط الكسر,104,Destination hazard list item,
+europa.hazards.item3,destinations,All samples require level-5 biosafety protocols — no surface material leaves containment,Tous les échantillons sont soumis aux protocoles de biosécurité de niveau 5 — aucun matériau de surface ne sort de la zone de confinement,تخضع جميع العينات لبروتوكولات السلامة البيولوجية من المستوى 5 — لا تغادر أي مواد سطحية العزل,136,Destination hazard list item,
+europa.gallery.item0.alt,destinations,Ice fractures,Fractures glaciaires,كسور جليدية,18,Destination gallery image alt text,
+europa.gallery.item0.description,destinations,Linea fracture network from orbit,Réseau de fractures linéa depuis l'orbite,شبكة كسور Linea من المدار,40,Destination gallery caption,
+europa.gallery.item1.alt,destinations,Icebreaker Station,Station Icebreaker,محطة Icebreaker,20,Destination gallery image alt text,Proper noun kept
+europa.gallery.item1.description,destinations,Icebreaker Station drill array surface,Réseau de forage de la station Icebreaker surface,مصفوفة حفر محطة Icebreaker السطح,52,Destination gallery caption,
+europa.gallery.item2.alt,destinations,Jupiter in sky,Jupiter dans le ciel,المشتري في السماء,22,Destination gallery image alt text,
+europa.gallery.item2.description,destinations,Jupiter rising over Europa's ice plain,Jupiter se levant au-dessus de la plaine glacée d'Europe,المشتري يشرق فوق السهل الجليدي لأوروبا,60,Destination gallery caption,
+pluto.name,destinations,Pluto,Pluton,بلوتو,8,Destination name label,Label translated; URL value stays "Pluto"
+pluto.tagline,destinations,The edge of the known — for travellers who want more.,Le bout du monde connu — pour les voyageurs qui en veulent davantage.,حافة المعروف — للمسافرين الذين يريدون المزيد.,60,Destination card tagline,
+pluto.description,destinations,Pluto sits at the outer frontier of our solar system a nitrogen-ice world with heart-shaped plains soaring methane mountains and a hazy blue atmosphere.,Pluton se situe à la frontière extérieure de notre système solaire un monde de glace d'azote avec des plaines en forme de cœur de hautes montagnes de méthane et une atmosphère bleue brumeuse.,يقع بلوتو عند الحدود الخارجية لنظامنا الشمسي عالم من الجليد النيتروجيني بسهول على شكل قلب وجبال ميثان شاهقة وغلاف جوي أزرق ضبابي.,280,Destination description paragraph,
+pluto.facts.gravity,destinations,0.62 m/s²,0,62 m/s²,0.62 م/ث²,12,Destination fact value,
+pluto.facts.distanceFromEarth,destinations,~5.9 billion km (avg),~5,9 milliards de km (moy.),~5.9 مليار كم (متوسط),26,Destination fact value,
+pluto.facts.typicalTransitTime,destinations,36 h,36 h,36 ساعة,10,Destination fact value,
+pluto.facts.surfaceTemp,destinations,-233 °C to -223 °C,-233 °C à -223 °C,من -233 °C إلى -223 °C,26,Destination fact value,
+pluto.facts.moons,destinations,5 (Charon Styx Nix Kerberos Hydra),5 (Charon Styx Nix Kerberos Hydra),5 (شارون ستيكس نيكس كيربيروس هيدرا),40,Destination fact value,Proper nouns kept
+pluto.facts.atmosphere,destinations,N₂ CH₄ CO — thin and seasonal,N₂ CH₄ CO — fine et saisonnière,N₂ CH₄ CO — رقيق وموسمي,34,Destination fact value,
+pluto.hazards.item0,destinations,Extreme cold requires next-generation cryo-insulated EVA suits,Le froid extrême exige des combinaisons EVA cryo-isolées de nouvelle génération,البرد الشديد يستلزم بدلات مشي خارج المركبة معزولة بالتبريد من الجيل التالي,100,Destination hazard list item,
+pluto.hazards.item1,destinations,Low gravity increases fall risk — standard locomotion training required,La faible gravité augmente le risque de chute — formation à la locomotion standard obligatoire,الجاذبية المنخفضة تزيد خطر السقوط — تدريب الحركة القياسي إلزامي,92,Destination hazard list item,
+pluto.hazards.item2,destinations,Communication lag to Earth exceeds 4 hours — emergency response is self-reliant,Le délai de communication avec la Terre dépasse 4 heures — l'intervention d'urgence est autonome,تأخر الاتصالات مع الأرض يتجاوز 4 ساعات — الاستجابة الطارئة ذاتية الاعتماد,100,Destination hazard list item,
+pluto.hazards.item3,destinations,Nitrogen geysers can emerge without warning near Tombaugh Regio,Des geysers d'azote peuvent surgir sans avertissement près de Tombaugh Regio,يمكن لنوافير النيتروجين أن تظهر دون سابق إنذار بالقرب من Tombaugh Regio,92,Destination hazard list item,Tombaugh Regio kept as proper noun
+pluto.hazards.item4,destinations,Methane frost on landing pads creates slippery surfaces — approach speed limits enforced,Le givre de méthane sur les aires d'atterrissage crée des surfaces glissantes — limites de vitesse d'approche imposées,صقيع الميثان على منصات الهبوط يخلق أسطحاً زلقة — حدود سرعة الاقتراب مفروضة,100,Destination hazard list item,
+pluto.gallery.item0.alt,destinations,Tombaugh Regio,Tombaugh Regio,Tombaugh Regio,16,Destination gallery image alt text,Proper noun kept in all languages
+pluto.gallery.item0.description,destinations,Tombaugh Regio nitrogen ice plains (The Heart),Plaines de glace d'azote de Tombaugh Regio (« Le Cœur »),سهول الجليد النيتروجيني لـ Tombaugh Regio ("القلب"),58,Destination gallery caption,
+pluto.gallery.item1.alt,destinations,Charon from surface,Charon depuis la surface,شارون من السطح,24,Destination gallery image alt text,
+pluto.gallery.item1.description,destinations,Charon looming over Sputnik Base,Charon dominant la base Sputnik,شارون يلوح فوق قاعدة سبوتنيك,38,Destination gallery caption,
+pluto.gallery.item2.alt,destinations,Blue haze atmosphere,Atmosphère brumeuse bleue,غلاف جوي ضبابي أزرق,26,Destination gallery image alt text,
+pluto.gallery.item2.description,destinations,Blue haze layers in Pluto's thin atmosphere,Couches de brume bleue dans la fine atmosphère de Pluton,طبقات الضباب الأزرق في الغلاف الجوي الرقيق لبلوتو,60,Destination gallery caption,

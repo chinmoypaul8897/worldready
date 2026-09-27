@@ -1,0 +1,89 @@
+{
+  "seatClass": {
+    "economy": "الدرجة الاقتصادية",
+    "business": "درجة رجال الأعمال",
+    "galaxiumClass": "Galaxium Class"
+  },
+  "features": {
+    "economy": {
+      "standardSeating": "مقاعد قياسية",
+      "entertainment": "ترفيه على متن الرحلة",
+      "snacks": "وجبات خفيفة مجانية"
+    },
+    "business": {
+      "premiumSeating": "مقاعد مميزة",
+      "priorityBoarding": "صعود ذو أولوية",
+      "gourmetMeals": "وجبات فاخرة",
+      "extraLegroom": "مساحة إضافية للقدمين"
+    },
+    "galaxium": {
+      "luxuryPods": "كابينات فاخرة",
+      "vipLounge": "دخول صالة VIP",
+      "concierge": "خدمة كونسيرج شخصية",
+      "zeroG": "تجربة انعدام الجاذبية"
+    }
+  },
+  "status": {
+    "booked": "محجوز",
+    "cancelled": "ملغى",
+    "completed": "مكتمل"
+  },
+  "card": {
+    "bookingId": "الحجز رقم {{id}}",
+    "flightId": "الرحلة رقم {{id}}",
+    "flightIdFallback": "معرّف الرحلة: {{id}}",
+    "departure": "المغادرة",
+    "arrival": "الوصول",
+    "seatClass": "درجة المقعد",
+    "pricePaid": "السعر المدفوع",
+    "bookedOn": "تم الحجز في {{date}}",
+    "cancelBooking": "إلغاء الحجز"
+  },
+  "modal": {
+    "titleSelect": "احجز رحلتك",
+    "titleQuote": "عرض سعرك",
+    "titleHold": "تم حجز المقعد مؤقتاً",
+    "departure": "المغادرة",
+    "arrival": "الوصول",
+    "duration": "المدة",
+    "selectSeatClass": "اختر درجة المقعد",
+    "soldOut": "نفدت التذاكر",
+    "seatsLeft": "{{count}} متبقية",
+    "passenger": "مسافر",
+    "cancel": "إلغاء",
+    "getQuote": "احصل على عرض سعر ←",
+    "quoteId": "معرّف عرض السعر",
+    "priceBreakdown": "تفاصيل السعر",
+    "seatLineItem": "{{name}} × 1",
+    "total": "الإجمالي",
+    "quoteNote": "عرض السعر صالح لمدة 24 ساعة · السعر محسوب بواسطة خدمة المخزون",
+    "back": "رجوع",
+    "placeHold": "إجراء حجز مؤقت ←",
+    "holdId": "معرّف الحجز المؤقت",
+    "holdExpired": "انتهى الحجز المؤقت",
+    "timeToConfirm": "الوقت المتبقي للتأكيد",
+    "expired": "منتهي الصلاحية",
+    "seatReservedNote": "المقعد محجوز مؤقتاً — أكّد قبل انتهاء الوقت",
+    "close": "إغلاق",
+    "releaseHold": "إلغاء الحجز المؤقت",
+    "confirmBooking": "تأكيد الحجز",
+    "closingNote": "الإغلاق يبقي حجزك المؤقت نشطاً — ستجده في حجوزاتي"
+  },
+  "hold": {
+    "expired": "منتهي الصلاحية",
+    "heldTimer": "محجوز مؤقتاً · {{timer}}",
+    "release": "إلغاء الحجز المؤقت",
+    "confirm": "تأكيد",
+    "dismiss": "رفض"
+  },
+  "toast": {
+    "signInRequired": "يرجى تسجيل الدخول للحصول على عرض سعر",
+    "getQuoteFailed": "فشل الحصول على عرض السعر. تأكد من تشغيل خدمة المخزون.",
+    "seatHeld": "تم حجز المقعد مؤقتاً! لديك 15 دقيقة للتأكيد.",
+    "placeHoldFailed": "فشل إجراء الحجز المؤقت",
+    "bookingConfirmed": "تم تأكيد الحجز! المرجع: #{{ref}}",
+    "confirmFailed": "فشل تأكيد الحجز",
+    "holdReleased": "تم إلغاء الحجز المؤقت",
+    "releaseFailed": "فشل إلغاء الحجز المؤقت"
+  }
+}

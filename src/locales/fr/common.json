@@ -1,0 +1,44 @@
+{
+  "header": {
+    "brandName": "Galaxium Travels",
+    "logout": "Déconnexion",
+    "bookAFlight": "Réserver un vol",
+    "login": "Se connecter"
+  },
+  "nav": {
+    "home": "Accueil",
+    "flights": "Vols",
+    "myBookings": "Mes réservations"
+  },
+  "footer": {
+    "copyright": "© {{year}} Galaxium Travels. Tous droits réservés.",
+    "madeWith": "Fait avec",
+    "forSpaceTravelers": "pour les voyageurs spatiaux"
+  },
+  "modal": {
+    "closeLabel": "Fermer la fenêtre modale"
+  },
+  "userIdentification": {
+    "titleCreateAccount": "Créer un compte",
+    "titleSignIn": "Se connecter",
+    "subtitleCreate": "Créez un compte pour réserver votre vol",
+    "subtitleSignIn": "Entrez votre nom et votre courriel pour continuer",
+    "labelName": "Nom",
+    "placeholderName": "Jean Tremblay",
+    "labelEmail": "Courriel",
+    "placeholderEmail": "jean@exemple.com",
+    "buttonCreate": "Créer un compte",
+    "buttonContinue": "Continuer",
+    "switchToSignIn": "Vous avez déjà un compte? Se connecter",
+    "switchToRegister": "Vous n'avez pas de compte? S'inscrire",
+    "errorFillFields": "Veuillez remplir tous les champs",
+    "errorInvalidEmail": "Veuillez entrer une adresse courriel valide",
+    "successAccountCreated": "Compte créé avec succès!",
+    "errorUserNotFound": "Utilisateur introuvable. Veuillez vous inscrire ou vérifier vos identifiants.",
+    "successWelcomeBack": "Bon retour, {{name}}!",
+    "errorGeneric": "Une erreur s'est produite"
+  },
+  "button": {
+    "loading": "Chargement…"
+  }
+}
