@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import type { Booking, Flight, StoredHold, ErrorResponse } from '../types';
 import { LoadingSpinner, Modal, Button } from '../components/common';
 import { BookingCard } from '../components/bookings/BookingCard';
@@ -12,6 +13,7 @@ import toast from 'react-hot-toast';
 import { motion } from 'framer-motion';
 
 export const MyBookings = () => {
+  const { t } = useTranslation('pages');
   const { user } = useUser();
   const navigate = useNavigate();
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -74,12 +76,12 @@ export const MyBookings = () => {
       setFlights(flightsData);
       await loadHolds();
     } catch (err) {
-      toast.error('Failed to load bookings');
+      toast.error(t('pages.myBookings.toastLoadError'));
       console.error(err);
     } finally {
       setIsLoading(false);
     }
-  }, [user, loadHolds]);
+  }, [user, loadHolds, t]);
 
   useEffect(() => {
     if (!user) {
@@ -108,11 +110,11 @@ export const MyBookings = () => {
         return;
       }
 
-      toast.success('Booking cancelled successfully');
+      toast.success(t('pages.myBookings.toastCancelSuccess'));
       loadData();
     } catch (err) {
       const error = err as ErrorResponse;
-      toast.error(error.details || error.error || 'Failed to cancel booking');
+      toast.error(error.details || error.error || t('pages.myBookings.toastCancelError'));
     } finally {
       setCancellingId(null);
       setBookingToCancel(null);
@@ -143,15 +145,15 @@ export const MyBookings = () => {
         className="text-center"
       >
         <h1 className="text-4xl md:text-5xl font-bold text-star-white mb-4">
-          My <span className="bg-cosmic-gradient bg-clip-text text-transparent">Bookings</span>
+          {t('pages.myBookings.titlePart1')} <span className="bg-cosmic-gradient bg-clip-text text-transparent">{t('pages.myBookings.titlePart2')}</span>
         </h1>
         <p className="text-star-white/70 text-lg">
-          Manage your space travel reservations
+          {t('pages.myBookings.subtitle')}
         </p>
       </motion.div>
 
       {isLoading ? (
-        <LoadingSpinner size="lg" text="Loading your bookings..." />
+        <LoadingSpinner size="lg" text={t('pages.myBookings.loadingText')} />
       ) : (
         <div className="space-y-8">
           {/* Pending Holds */}
@@ -163,10 +165,10 @@ export const MyBookings = () => {
             >
               <div className="flex items-center gap-3 mb-4">
                 <h2 className="text-2xl font-bold text-solar-orange">
-                  Pending Holds ({activeHolds.length})
+                  {t('pages.myBookings.pendingHolds', { count: activeHolds.length })}
                 </h2>
                 <span className="text-xs text-star-white/50 bg-solar-orange/10 border border-solar-orange/30 px-2 py-1 rounded-full">
-                  Confirm before time runs out
+                  {t('pages.myBookings.confirmBeforeExpiry')}
                 </span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -191,12 +193,12 @@ export const MyBookings = () => {
             >
               <AlertCircle className="mx-auto mb-4 text-star-white/50" size={48} />
               <h3 className="text-xl font-semibold text-star-white mb-2">
-                No bookings yet
+                {t('pages.myBookings.noBookingsTitle')}
               </h3>
               <p className="text-star-white/70 mb-6">
-                Start your space adventure by booking your first flight!
+                {t('pages.myBookings.noBookingsBody')}
               </p>
-              <Button onClick={() => navigate('/flights')}>Browse Flights</Button>
+              <Button onClick={() => navigate('/flights')}>{t('pages.myBookings.browseFlights')}</Button>
             </motion.div>
           )}
 
@@ -208,7 +210,7 @@ export const MyBookings = () => {
               transition={{ delay: 0.1 }}
             >
               <h2 className="text-2xl font-bold text-star-white mb-4">
-                Active Bookings ({activeBookings.length})
+                {t('pages.myBookings.activeBookings', { count: activeBookings.length })}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {activeBookings.map((booking) => (
@@ -232,7 +234,7 @@ export const MyBookings = () => {
               transition={{ delay: 0.2 }}
             >
               <h2 className="text-2xl font-bold text-star-white mb-4">
-                Past Bookings ({pastBookings.length})
+                {t('pages.myBookings.pastBookings', { count: pastBookings.length })}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {pastBookings.map((booking) => (
@@ -253,12 +255,12 @@ export const MyBookings = () => {
       <Modal
         isOpen={showCancelModal}
         onClose={() => setShowCancelModal(false)}
-        title="Cancel Booking"
+        title={t('pages.myBookings.cancelTitle')}
         size="sm"
       >
         <div className="space-y-4">
           <p className="text-star-white/70">
-            Are you sure you want to cancel this booking? This action cannot be undone.
+            {t('pages.myBookings.cancelConfirm')}
           </p>
           <div className="flex gap-3">
             <Button
@@ -266,10 +268,10 @@ export const MyBookings = () => {
               onClick={() => setShowCancelModal(false)}
               className="flex-1"
             >
-              Keep Booking
+              {t('pages.myBookings.keepBooking')}
             </Button>
             <Button variant="danger" onClick={handleConfirmCancel} className="flex-1">
-              Cancel Booking
+              {t('pages.myBookings.cancelButton')}
             </Button>
           </div>
         </div>

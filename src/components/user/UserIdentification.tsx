@@ -4,6 +4,7 @@ import type { ErrorResponse } from '../../types';
 import { getUserByCredentials, registerUser, isErrorResponse } from '../../services/api';
 import { useUser } from '../../hooks/useUserContext';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 interface UserIdentificationProps {
   isOpen: boolean;
@@ -13,6 +14,7 @@ interface UserIdentificationProps {
 
 export const UserIdentification = ({ isOpen, onClose, onSuccess }: UserIdentificationProps) => {
   const { setUser } = useUser();
+  const { t } = useTranslation('common');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -28,12 +30,12 @@ export const UserIdentification = ({ isOpen, onClose, onSuccess }: UserIdentific
     e.preventDefault();
     
     if (!name.trim() || !email.trim()) {
-      toast.error('Please fill in all fields');
+      toast.error(t('common.userIdentification.errorFillFields'));
       return;
     }
 
     if (!validateEmail(email.trim())) {
-      toast.error('Please enter a valid email address');
+      toast.error(t('common.userIdentification.errorInvalidEmail'));
       return;
     }
 
@@ -50,7 +52,7 @@ export const UserIdentification = ({ isOpen, onClose, onSuccess }: UserIdentific
         }
         
         setUser(result);
-        toast.success('Account created successfully!');
+        toast.success(t('common.userIdentification.successAccountCreated'));
         onSuccess();
         onClose();
       } else {
@@ -59,19 +61,19 @@ export const UserIdentification = ({ isOpen, onClose, onSuccess }: UserIdentific
         
         if (isErrorResponse(result)) {
           // User not found, suggest registration
-          toast.error('User not found. Please register or check your credentials.');
+          toast.error(t('common.userIdentification.errorUserNotFound'));
           setIsNewUser(true);
           return;
         }
         
         setUser(result);
-        toast.success(`Welcome back, ${result.name}!`);
+        toast.success(t('common.userIdentification.successWelcomeBack', { name: result.name }));
         onSuccess();
         onClose();
       }
     } catch (err) {
       const error = err as ErrorResponse;
-      toast.error(error.details || error.error || 'An error occurred');
+      toast.error(error.details || error.error || t('common.userIdentification.errorGeneric'));
     } finally {
       setIsLoading(false);
     }
@@ -88,29 +90,29 @@ export const UserIdentification = ({ isOpen, onClose, onSuccess }: UserIdentific
     <Modal
       isOpen={isOpen}
       onClose={handleClose}
-      title={isNewUser ? 'Create Account' : 'Sign In'}
+      title={isNewUser ? t('common.userIdentification.titleCreateAccount') : t('common.userIdentification.titleSignIn')}
       size="sm"
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         <p className="text-star-white/70 text-sm mb-4">
           {isNewUser
-            ? 'Create an account to book your flight'
-            : 'Enter your name and email to continue'}
+            ? t('common.userIdentification.subtitleCreate')
+            : t('common.userIdentification.subtitleSignIn')}
         </p>
 
         <Input
-          label="Name"
+          label={t('common.userIdentification.labelName')}
           type="text"
-          placeholder="John Doe"
+          placeholder={t('common.userIdentification.placeholderName')}
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
 
         <Input
-          label="Email"
+          label={t('common.userIdentification.labelEmail')}
           type="email"
-          placeholder="john@example.com"
+          placeholder={t('common.userIdentification.placeholderEmail')}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -118,7 +120,7 @@ export const UserIdentification = ({ isOpen, onClose, onSuccess }: UserIdentific
 
         <div className="flex flex-col gap-3 pt-4">
           <Button type="submit" isLoading={isLoading} className="w-full">
-            {isNewUser ? 'Create Account' : 'Continue'}
+            {isNewUser ? t('common.userIdentification.buttonCreate') : t('common.userIdentification.buttonContinue')}
           </Button>
 
           <button
@@ -127,8 +129,8 @@ export const UserIdentification = ({ isOpen, onClose, onSuccess }: UserIdentific
             className="text-sm text-cosmic-purple hover:text-nebula-pink transition-colors"
           >
             {isNewUser
-              ? 'Already have an account? Sign in'
-              : "Don't have an account? Register"}
+              ? t('common.userIdentification.switchToSignIn')
+              : t('common.userIdentification.switchToRegister')}
           </button>
         </div>
       </form>

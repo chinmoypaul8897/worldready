@@ -1,0 +1,237 @@
+{
+  "earth": {
+    "name": "Earth",
+    "tagline": "The cradle of humanity — and the perfect place to return to.",
+    "description": "Earth remains the most habitable world in the known solar system, with a breathable nitrogen-oxygen atmosphere, liquid water oceans, and a magnetic field that shields surface life from solar radiation. Whether you're departing or arriving, orbital approach offers unrivalled views of swirling cloud systems and turquoise seas.",
+    "facts": {
+      "gravity": "9.81 m/s²",
+      "distanceFromEarth": "0 km",
+      "typicalTransitTime": "Home port",
+      "surfaceTemp": "-89 °C to +57 °C",
+      "moons": "1 (Luna)",
+      "atmosphere": "Nitrogen 78 %, Oxygen 21 %"
+    },
+    "hazards": {
+      "item0": "Dense air traffic in low-Earth orbit — strict approach corridors enforced",
+      "item1": "Electromagnetic interference from surface networks may disrupt navigation",
+      "item2": "Weather re-entry delays are common at equatorial spaceports",
+      "item3": "Customs and biosecurity screening required for all interplanetary arrivals"
+    },
+    "gallery": {
+      "item0": {
+        "alt": "Blue Marble view",
+        "description": "Blue Marble — Atlantic from orbit"
+      },
+      "item1": {
+        "alt": "Coastal landing strip",
+        "description": "Cape Canaveral approach corridor"
+      },
+      "item2": {
+        "alt": "Night lights",
+        "description": "City grid illumination, night side"
+      }
+    }
+  },
+  "mars": {
+    "name": "Mars",
+    "tagline": "Rust-red horizons and the promise of a second home.",
+    "description": "Mars is humanity's boldest frontier — a terrestrial planet with a thin carbon dioxide atmosphere, polar ice caps, and the largest volcano in the solar system. Olympus Base offers pressurised habitats, rover excursions across Valles Marineris, and spectacular iron-oxide sunsets.",
+    "facts": {
+      "gravity": "3.72 m/s²",
+      "distanceFromEarth": "~225 million km (avg)",
+      "typicalTransitTime": "8 h",
+      "surfaceTemp": "-125 °C to +20 °C",
+      "moons": "2 (Phobos, Deimos)",
+      "atmosphere": "CO₂ 95 %, thin — unsuitable for breathing"
+    },
+    "hazards": {
+      "item0": "Dust storms can ground all surface operations for weeks",
+      "item1": "EVA suit required at all times outside pressurised zones",
+      "item2": "Radiation exposure ~2× Earth levels — shielding mandatory",
+      "item3": "Gravity adjustment syndrome affects most travellers for 48–72 h",
+      "item4": "Perchlorate soil contamination — never remove gloves outdoors"
+    },
+    "gallery": {
+      "item0": {
+        "alt": "Olympus Mons",
+        "description": "Olympus Mons caldera at dawn"
+      },
+      "item1": {
+        "alt": "Valles Marineris",
+        "description": "Valles Marineris canyon system"
+      },
+      "item2": {
+        "alt": "Polar ice cap",
+        "description": "North polar CO₂ ice cap, summer"
+      }
+    }
+  },
+  "moon": {
+    "name": "Moon",
+    "tagline": "Humanity's first step — now a bustling gateway world.",
+    "description": "Just 384,000 km from Earth, the Moon is the solar system's most accessible off-world destination. Lunar Gateway Station and Artemis Base Camp provide modern amenities, while the stark regolith plains and Earth-rise views make for an unforgettable experience.",
+    "facts": {
+      "gravity": "1.62 m/s²",
+      "distanceFromEarth": "~384,000 km",
+      "typicalTransitTime": "3 h",
+      "surfaceTemp": "-173 °C to +127 °C",
+      "moons": "N/A — the Moon itself",
+      "atmosphere": "Virtually none (exosphere only)"
+    },
+    "hazards": {
+      "item0": "No atmosphere — space suit required outside at all times",
+      "item1": "Micro-meteorite impacts are a persistent risk in the regolith zone",
+      "item2": "Temperature swings exceed 300 °C between day and night",
+      "item3": "Abrasive lunar dust can damage seals and optical surfaces"
+    },
+    "gallery": {
+      "item0": {
+        "alt": "Earthrise",
+        "description": "Earthrise over the Sea of Tranquility"
+      },
+      "item1": {
+        "alt": "Artemis Base",
+        "description": "Artemis Base Camp habitat cluster"
+      },
+      "item2": {
+        "alt": "Crater rim",
+        "description": "Shackleton crater rim, south pole"
+      }
+    }
+  },
+  "venus": {
+    "name": "Venus",
+    "tagline": "Hellscape below, paradise above the clouds.",
+    "description": "Venus is the solar system's most extreme planet — crushing atmospheric pressure, sulphuric acid clouds, and surface temperatures hot enough to melt lead. Galaxium's Cloud City habitats float at 50 km altitude where temperature and pressure are surprisingly Earth-like, offering surreal amber skies and lightning storms below.",
+    "facts": {
+      "gravity": "8.87 m/s²",
+      "distanceFromEarth": "~38 million km (closest)",
+      "typicalTransitTime": "6 h",
+      "surfaceTemp": "~465 °C (surface) / 0–30 °C (cloud layer)",
+      "moons": "0",
+      "atmosphere": "CO₂ 96 %, H₂SO₄ clouds — lethal at surface"
+    },
+    "hazards": {
+      "item0": "Surface descent is strictly prohibited — habitat stays airborne",
+      "item1": "Sulphuric acid rain can dissolve exposed equipment within hours",
+      "item2": "Atmospheric turbulence rating 9/10 — expect a rough arrival",
+      "item3": "Pressurisation failure evacuation time: under 90 seconds",
+      "item4": "All exterior maintenance requires level-4 acid-resistant suits"
+    },
+    "gallery": {
+      "item0": {
+        "alt": "Cloud City",
+        "description": "Aerostat Cloud City at 50 km altitude"
+      },
+      "item1": {
+        "alt": "Lightning storm",
+        "description": "Sulphuric acid lightning storms below"
+      },
+      "item2": {
+        "alt": "Solar panels",
+        "description": "Solar array wings above the cloud deck"
+      }
+    }
+  },
+  "jupiter": {
+    "name": "Jupiter",
+    "tagline": "King of planets — come for the storms, stay for the scale.",
+    "description": "Jupiter's swirling bands of ammonia and hydrogen stretch across a disc 11 times wider than Earth. Galileo Station orbits above the Great Red Spot, offering research suites, observation decks, and the most dramatic sky-scape in the solar system. Not for the faint-hearted.",
+    "facts": {
+      "gravity": "24.79 m/s² (at cloud tops)",
+      "distanceFromEarth": "~628 million km (avg)",
+      "typicalTransitTime": "18 h",
+      "surfaceTemp": "-108 °C (cloud tops)",
+      "moons": "95 known (Io, Europa, Ganymede, Callisto — largest)",
+      "atmosphere": "H₂ 90 %, He 10 % — immense pressure at depth"
+    },
+    "hazards": {
+      "item0": "Radiation belts around Jupiter are among the most intense in the solar system",
+      "item1": "Magnetic field disrupts electronics — shielded hull required",
+      "item2": "No solid surface — descent below cloud tops is a one-way journey",
+      "item3": "Orbital insertion requires precise timing to avoid moon conjunctions",
+      "item4": "Gravitational tidal stresses can cause hull fatigue on long stays"
+    },
+    "gallery": {
+      "item0": {
+        "alt": "Great Red Spot",
+        "description": "Great Red Spot storm system, 350-year duration"
+      },
+      "item1": {
+        "alt": "Galileo Station",
+        "description": "Galileo Station orbital platform"
+      },
+      "item2": {
+        "alt": "Moon transit",
+        "description": "Io transit shadow across the equatorial band"
+      }
+    }
+  },
+  "europa": {
+    "name": "Europa",
+    "tagline": "Beneath the ice: the best chance of alien life in our solar system.",
+    "description": "Europa's fractured ice shell hides a vast subsurface ocean that may harbour microbial life. Research Station Icebreaker sits at the surface, while deep-drilling missions descend toward the water below. Every visit contributes to one of the most exciting scientific endeavours in human history.",
+    "facts": {
+      "gravity": "1.315 m/s²",
+      "distanceFromEarth": "~628 million km (avg)",
+      "typicalTransitTime": "19 h",
+      "surfaceTemp": "-160 °C to -220 °C",
+      "moons": "Moon of Jupiter",
+      "atmosphere": "Thin oxygen exosphere — not breathable"
+    },
+    "hazards": {
+      "item0": "Jupiter's radiation at Europa's orbit is intense — exterior exposure is time-limited to 1 hour",
+      "item1": "Ice crust seismic \"ice-quakes\" can crack landing pad anchorings",
+      "item2": "Cryoventing plumes erupt unpredictably — avoid surface EVA near fracture lines",
+      "item3": "All samples require level-5 biosafety protocols — no surface material leaves containment"
+    },
+    "gallery": {
+      "item0": {
+        "alt": "Ice fractures",
+        "description": "Linea fracture network from orbit"
+      },
+      "item1": {
+        "alt": "Icebreaker Station",
+        "description": "Icebreaker Station drill array, surface"
+      },
+      "item2": {
+        "alt": "Jupiter in sky",
+        "description": "Jupiter rising over Europa's ice plain"
+      }
+    }
+  },
+  "pluto": {
+    "name": "Pluto",
+    "tagline": "The edge of the known — for travellers who want more.",
+    "description": "Pluto sits at the outer frontier of our solar system, a nitrogen-ice world with heart-shaped plains, soaring methane mountains, and a hazy blue atmosphere. Sputnik Base is the most remote inhabited outpost in human history, and arrival is a rite of passage for serious space explorers.",
+    "facts": {
+      "gravity": "0.62 m/s²",
+      "distanceFromEarth": "~5.9 billion km (avg)",
+      "typicalTransitTime": "36 h",
+      "surfaceTemp": "-233 °C to -223 °C",
+      "moons": "5 (Charon, Styx, Nix, Kerberos, Hydra)",
+      "atmosphere": "N₂, CH₄, CO — thin and seasonal"
+    },
+    "hazards": {
+      "item0": "Extreme cold requires next-generation cryo-insulated EVA suits",
+      "item1": "Low gravity increases fall risk — standard locomotion training required",
+      "item2": "Communication lag to Earth exceeds 4 hours — emergency response is self-reliant",
+      "item3": "Nitrogen geysers can emerge without warning near Tombaugh Regio",
+      "item4": "Methane frost on landing pads creates slippery surfaces — approach speed limits enforced"
+    },
+    "gallery": {
+      "item0": {
+        "alt": "Tombaugh Regio",
+        "description": "Tombaugh Regio nitrogen ice plains (\"The Heart\")"
+      },
+      "item1": {
+        "alt": "Charon from surface",
+        "description": "Charon looming over Sputnik Base"
+      },
+      "item2": {
+        "alt": "Blue haze atmosphere",
+        "description": "Blue haze layers in Pluto's thin atmosphere"
+      }
+    }
+  }
+}

@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface ModalProps {
   isOpen: boolean;
@@ -12,6 +13,7 @@ interface ModalProps {
 }
 
 export const Modal = ({ isOpen, onClose, title, children, size = 'md' }: ModalProps) => {
+  const { t } = useTranslation('common');
   const sizeClasses = {
     sm: 'max-w-md',
     md: 'max-w-2xl',
@@ -65,7 +67,7 @@ export const Modal = ({ isOpen, onClose, title, children, size = 'md' }: ModalPr
                   <button
                     onClick={onClose}
                     className="text-star-white/70 hover:text-cosmic-purple transition-colors p-1 hover:bg-white/5 rounded-lg"
-                    aria-label="Close modal"
+                    aria-label={t('common.modal.closeLabel')}
                   >
                     <X size={24} />
                   </button>

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import type { Booking, Flight } from '../../types';
 import { Card, Button } from '../common';
 import { Plane, Calendar, CheckCircle, XCircle, Clock, Crown, Rocket } from 'lucide-react';
@@ -12,6 +13,8 @@ interface BookingCardProps {
 }
 
 export const BookingCard = ({ booking, flight, onCancel, isCancelling }: BookingCardProps) => {
+  const { t } = useTranslation('bookings');
+
   const getSeatClassIcon = () => {
     switch (booking.seat_class) {
       case 'business':
@@ -26,11 +29,11 @@ export const BookingCard = ({ booking, flight, onCancel, isCancelling }: Booking
   const getSeatClassName = () => {
     switch (booking.seat_class) {
       case 'business':
-        return 'Business';
+        return t('bookings.seatClass.business');
       case 'galaxium':
-        return 'Galaxium Class';
+        return t('bookings.seatClass.galaxiumClass');
       default:
-        return 'Economy';
+        return t('bookings.seatClass.economy');
     }
   };
 
@@ -70,6 +73,19 @@ export const BookingCard = ({ booking, flight, onCancel, isCancelling }: Booking
     }
   };
 
+  const getStatusLabel = () => {
+    switch (booking.status) {
+      case 'booked':
+        return t('bookings.status.booked');
+      case 'cancelled':
+        return t('bookings.status.cancelled');
+      case 'completed':
+        return t('bookings.status.completed');
+      default:
+        return booking.status;
+    }
+  };
+
   const canCancel = booking.status === 'booked';
 
   return (
@@ -87,11 +103,11 @@ export const BookingCard = ({ booking, flight, onCancel, isCancelling }: Booking
               <Plane className="text-white" size={20} />
             </div>
             <div>
-              <p className="text-sm text-star-white/60">Booking #{booking.booking_id}</p>
+              <p className="text-sm text-star-white/60">{t('bookings.card.bookingId', { id: booking.booking_id })}</p>
               <div className="flex items-center gap-2 mt-1">
                 {getStatusIcon()}
-                <span className={`text-sm font-semibold capitalize ${getStatusColor()}`}>
-                  {booking.status}
+                <span className={`text-sm font-semibold ${getStatusColor()}`}>
+                  {getStatusLabel()}
                 </span>
               </div>
             </div>
@@ -105,18 +121,18 @@ export const BookingCard = ({ booking, flight, onCancel, isCancelling }: Booking
               <h3 className="text-xl font-bold text-star-white mb-1">
                 {flight.origin} → {flight.destination}
               </h3>
-              <p className="text-sm text-star-white/60">Flight #{flight.flight_id}</p>
+              <p className="text-sm text-star-white/60">{t('bookings.card.flightId', { id: flight.flight_id })}</p>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-xs text-star-white/60 mb-1">Departure</p>
+                <p className="text-xs text-star-white/60 mb-1">{t('bookings.card.departure')}</p>
                 <p className="text-sm text-star-white font-medium">
                   {formatDate(flight.departure_time)}
                 </p>
               </div>
               <div>
-                <p className="text-xs text-star-white/60 mb-1">Arrival</p>
+                <p className="text-xs text-star-white/60 mb-1">{t('bookings.card.arrival')}</p>
                 <p className="text-sm text-star-white font-medium">
                   {formatDate(flight.arrival_time)}
                 </p>
@@ -125,7 +141,7 @@ export const BookingCard = ({ booking, flight, onCancel, isCancelling }: Booking
 
             <div className="space-y-2 pt-3 border-t border-white/10">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-star-white/60">Seat Class</span>
+                <span className="text-sm text-star-white/60">{t('bookings.card.seatClass')}</span>
                 <div className="flex items-center gap-2">
                   {getSeatClassIcon()}
                   <span className={`text-sm font-semibold ${getSeatClassColor()}`}>
@@ -134,7 +150,7 @@ export const BookingCard = ({ booking, flight, onCancel, isCancelling }: Booking
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-star-white/60">Price Paid</span>
+                <span className="text-sm text-star-white/60">{t('bookings.card.pricePaid')}</span>
                 <span className="text-lg font-bold text-star-white">
                   {formatCurrency(booking.price_paid)}
                 </span>
@@ -143,14 +159,14 @@ export const BookingCard = ({ booking, flight, onCancel, isCancelling }: Booking
           </div>
         ) : (
           <div className="mb-4">
-            <p className="text-sm text-star-white/60">Flight ID: {booking.flight_id}</p>
+            <p className="text-sm text-star-white/60">{t('bookings.card.flightIdFallback', { id: booking.flight_id })}</p>
           </div>
         )}
 
         {/* Booking Time */}
         <div className="flex items-center gap-2 text-sm text-star-white/60 mb-4">
           <Calendar size={16} />
-          <span>Booked on {formatDate(booking.booking_time)}</span>
+          <span>{t('bookings.card.bookedOn', { date: formatDate(booking.booking_time) })}</span>
         </div>
 
         {/* Cancel Button */}
@@ -162,7 +178,7 @@ export const BookingCard = ({ booking, flight, onCancel, isCancelling }: Booking
             isLoading={isCancelling}
             className="w-full"
           >
-            Cancel Booking
+            {t('bookings.card.cancelBooking')}
           </Button>
         )}
       </Card>

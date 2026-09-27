@@ -1,0 +1,44 @@
+{
+  "header": {
+    "brandName": "⟦Ĝàļàẋíûɱ Ţŕàṽéļš ·····⟧",
+    "logout": "⟦Ļôĝôûţ ··⟧",
+    "bookAFlight": "⟦Ɓôôķ à Ƒļíĝĥţ ···⟧",
+    "login": "⟦Ļôĝíñ ··⟧"
+  },
+  "nav": {
+    "home": "⟦Ĥôɱé ·⟧",
+    "flights": "⟦Ƒļíĝĥţš ··⟧",
+    "myBookings": "⟦Ṁý Ɓôôķíñĝš ···⟧"
+  },
+  "footer": {
+    "copyright": "⟦© {{year}} Ĝàļàẋíûɱ Ţŕàṽéļš. Àļļ ŕíĝĥţš ŕéšéŕṽéð. ··········⟧",
+    "madeWith": "⟦Ṁàðé ŵíţĥ ··⟧",
+    "forSpaceTravelers": "⟦ƒôŕ šþàçé ţŕàṽéļéŕš ·····⟧"
+  },
+  "modal": {
+    "closeLabel": "⟦Çļôšé ɱôðàļ ···⟧"
+  },
+  "userIdentification": {
+    "titleCreateAccount": "⟦Çŕéàţé Àççôûñţ ····⟧",
+    "titleSignIn": "⟦Šíĝñ Íñ ··⟧",
+    "subtitleCreate": "⟦Çŕéàţé àñ àççôûñţ ţô ƀôôķ ýôûŕ ƒļíĝĥţ ·········⟧",
+    "subtitleSignIn": "⟦Éñţéŕ ýôûŕ ñàɱé àñð éɱàíļ ţô çôñţíñûé ·········⟧",
+    "labelName": "⟦Ñàɱé ·⟧",
+    "placeholderName": "⟦Ĵôĥñ Ðôé ··⟧",
+    "labelEmail": "⟦Éɱàíļ ··⟧",
+    "placeholderEmail": "⟦ĵôĥñ@éẋàɱþļé.çôɱ ····⟧",
+    "buttonCreate": "⟦Çŕéàţé Àççôûñţ ····⟧",
+    "buttonContinue": "⟦Çôñţíñûé ··⟧",
+    "switchToSignIn": "⟦Àļŕéàðý ĥàṽé àñ àççôûñţ? Šíĝñ íñ ········⟧",
+    "switchToRegister": "⟦Ðôñ'ţ ĥàṽé àñ àççôûñţ? Ŕéĝíšţéŕ ········⟧",
+    "errorFillFields": "⟦Þļéàšé ƒíļļ íñ àļļ ƒíéļðš ······⟧",
+    "errorInvalidEmail": "⟦Þļéàšé éñţéŕ à ṽàļíð éɱàíļ àððŕéšš ·········⟧",
+    "successAccountCreated": "⟦Àççôûñţ çŕéàţéð šûççéššƒûļļý! ········⟧",
+    "errorUserNotFound": "⟦Ûšéŕ ñôţ ƒôûñð. Þļéàšé ŕéĝíšţéŕ ôŕ çĥéçķ ýôûŕ çŕéðéñţíàļš. ··············⟧",
+    "successWelcomeBack": "⟦Ŵéļçôɱé ƀàçķ, {{name}}! ···⟧",
+    "errorGeneric": "⟦Àñ éŕŕôŕ ôççûŕŕéð ·····⟧"
+  },
+  "button": {
+    "loading": "⟦Ļôàðíñĝ... ··⟧"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "tool": "key-parity.mjs",
+  "dir": ".",
+  "ref": "en",
+  "generatedUtc": "2026-09-27T01:24:42.126Z",
+  "locales": {
+    "fr": {
+      "present": false,
+      "categories": [
+        "one",
+        "many",
+        "other"
+      ],
+      "missing": [
+        "<entire locale>"
+      ],
+      "extra": []
+    },
+    "ar": {
+      "present": false,
+      "categories": [
+        "zero",
+        "one",
+        "two",
+        "few",
+        "many",
+        "other"
+      ],
+      "missing": [
+        "<entire locale>"
+      ],
+      "extra": []
+    },
+    "pseudo": {
+      "present": true,
+      "categories": [
+        "one",
+        "other"
+      ],
+      "missing": [],
+      "extra": []
+    }
+  }
+}

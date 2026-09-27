@@ -1,0 +1,89 @@
+{
+  "seatClass": {
+    "economy": "Economy",
+    "business": "Business",
+    "galaxiumClass": "Galaxium Class"
+  },
+  "features": {
+    "economy": {
+      "standardSeating": "Standard seating",
+      "entertainment": "In-flight entertainment",
+      "snacks": "Complimentary snacks"
+    },
+    "business": {
+      "premiumSeating": "Premium seating",
+      "priorityBoarding": "Priority boarding",
+      "gourmetMeals": "Gourmet meals",
+      "extraLegroom": "Extra legroom"
+    },
+    "galaxium": {
+      "luxuryPods": "Luxury pods",
+      "vipLounge": "VIP lounge access",
+      "concierge": "Personal concierge",
+      "zeroG": "Zero-G experience"
+    }
+  },
+  "status": {
+    "booked": "Booked",
+    "cancelled": "Cancelled",
+    "completed": "Completed"
+  },
+  "card": {
+    "bookingId": "Booking #{{id}}",
+    "flightId": "Flight #{{id}}",
+    "flightIdFallback": "Flight ID: {{id}}",
+    "departure": "Departure",
+    "arrival": "Arrival",
+    "seatClass": "Seat Class",
+    "pricePaid": "Price Paid",
+    "bookedOn": "Booked on {{date}}",
+    "cancelBooking": "Cancel Booking"
+  },
+  "modal": {
+    "titleSelect": "Book Your Flight",
+    "titleQuote": "Your Price Quote",
+    "titleHold": "Seat Reserved",
+    "departure": "Departure",
+    "arrival": "Arrival",
+    "duration": "Duration",
+    "selectSeatClass": "Select Seat Class",
+    "soldOut": "Sold Out",
+    "seatsLeft": "{{count}} left",
+    "passenger": "Passenger",
+    "cancel": "Cancel",
+    "getQuote": "Get Quote →",
+    "quoteId": "Quote ID",
+    "priceBreakdown": "Price Breakdown",
+    "seatLineItem": "{{name}} × 1",
+    "total": "Total",
+    "quoteNote": "Quote valid for 24 hours · Price calculated by inventory service",
+    "back": "Back",
+    "placeHold": "Place Hold →",
+    "holdId": "Hold ID",
+    "holdExpired": "Hold Expired",
+    "timeToConfirm": "Time to Confirm",
+    "expired": "EXPIRED",
+    "seatReservedNote": "Seat is reserved — confirm before time runs out",
+    "close": "Close",
+    "releaseHold": "Release Hold",
+    "confirmBooking": "Confirm Booking",
+    "closingNote": "Closing keeps your hold active — find it in My Bookings"
+  },
+  "hold": {
+    "expired": "Expired",
+    "heldTimer": "Held · {{timer}}",
+    "release": "Release",
+    "confirm": "Confirm",
+    "dismiss": "Dismiss"
+  },
+  "toast": {
+    "signInRequired": "Please sign in to get a quote",
+    "getQuoteFailed": "Failed to get quote. Make sure the inventory service is running.",
+    "seatHeld": "Seat held! You have 15 minutes to confirm.",
+    "placeHoldFailed": "Failed to place hold",
+    "bookingConfirmed": "Booking confirmed! Reference: #{{ref}}",
+    "confirmFailed": "Failed to confirm booking",
+    "holdReleased": "Hold released",
+    "releaseFailed": "Failed to release hold"
+  }
+}

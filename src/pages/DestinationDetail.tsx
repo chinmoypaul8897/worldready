@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { useTranslation, Trans } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { AlertTriangle, ArrowLeft, Rocket } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -39,6 +40,7 @@ const FactTile = ({ label, value }: { label: string; value: string }) => (
 );
 
 export const DestinationDetail = () => {
+  const { t } = useTranslation('pages');
   const { slug = '' } = useParams<{ slug: string }>();
   const destination: DestinationData | null = getDestinationBySlug(slug);
 
@@ -54,18 +56,18 @@ export const DestinationDetail = () => {
     const loadFlights = async () => {
       setFlightsLoading(true);
       try {
-        const data = await getFlights({ destination: destination.name });
+        const data = await getFlights({ destination: destination.nameEn });
         // Guard against ilike over-matching (e.g. "Moon" matching "Moon → Mars")
-        setFlights(data.filter((f) => f.destination === destination.name).slice(0, 5));
+        setFlights(data.filter((f) => f.destination === destination.nameEn).slice(0, 5));
       } catch {
-        toast.error('Could not load departing flights');
+        toast.error(t('pages.destination.toastFlightsError'));
       } finally {
         setFlightsLoading(false);
       }
     };
 
     loadFlights();
-  }, [destination]);
+  }, [destination, t]);
 
   // ── Unknown slug ─────────────────────────────────────────────────────────────
   if (!destination) {
@@ -78,15 +80,19 @@ export const DestinationDetail = () => {
         >
           <Rocket size={48} className="mx-auto mb-6 text-cosmic-purple" />
           <h1 className="text-3xl font-bold text-star-white mb-4">
-            We haven't charted this world yet
+            {t('pages.destination.notFoundTitle')}
           </h1>
           <p className="text-star-white/70 mb-8">
-            The destination <span className="font-mono text-cosmic-purple">/{slug}</span> doesn't exist in our star charts.
+            <Trans
+              i18nKey="pages.destination.notFoundBody"
+              values={{ slug }}
+              components={[<span className="font-mono text-cosmic-purple" />]}
+            />
           </p>
           <Link to="/">
             <button className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-cosmic-gradient text-white font-semibold hover:opacity-90 transition-opacity">
               <ArrowLeft size={18} />
-              Back to Home
+              {t('pages.destination.backToHome')}
             </button>
           </Link>
         </motion.div>
@@ -94,7 +100,7 @@ export const DestinationDetail = () => {
     );
   }
 
-  const { name, tagline, description, facts, hazards, gallery, accentColor, bgAccent, borderAccent } = destination;
+  const { name, nameEn, tagline, description, facts, hazards, gallery, accentColor, bgAccent, borderAccent } = destination;
 
   return (
     <div className="space-y-12">
@@ -105,7 +111,7 @@ export const DestinationDetail = () => {
           className="inline-flex items-center gap-2 text-star-white/60 hover:text-star-white transition-colors text-sm"
         >
           <ArrowLeft size={16} />
-          All Destinations
+          {t('pages.destination.allDestinations')}
         </Link>
       </Section>
 
@@ -114,25 +120,25 @@ export const DestinationDetail = () => {
         <div className={`glass-card p-10 ${bgAccent} border ${borderAccent}`}>
           <div className="flex flex-wrap items-center gap-3 mb-4">
             <span className={`px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-widest ${bgAccent} border ${borderAccent} ${accentColor}`}>
-              Destination
+              {t('pages.destination.destinationBadge')}
             </span>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-star-white mb-3">{name}</h1>
-          <p className={`text-xl font-medium mb-4 ${accentColor}`}>{tagline}</p>
-          <p className="text-star-white/80 max-w-3xl leading-relaxed">{description}</p>
+          <h1 className="text-5xl md:text-6xl font-bold text-star-white mb-3">{t(name)}</h1>
+          <p className={`text-xl font-medium mb-4 ${accentColor}`}>{t(tagline)}</p>
+          <p className="text-star-white/80 max-w-3xl leading-relaxed">{t(description)}</p>
         </div>
       </Section>
 
       {/* ── 2. Facts ────────────────────────────────────────────────────────── */}
       <Section delay={0.1}>
-        <h2 className="text-2xl font-bold text-star-white mb-6">Quick Facts</h2>
+        <h2 className="text-2xl font-bold text-star-white mb-6">{t('pages.destination.quickFacts')}</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          <FactTile label="Gravity" value={facts.gravity} />
-          <FactTile label="Distance from Earth" value={facts.distanceFromEarth} />
-          <FactTile label="Typical Transit Time" value={facts.typicalTransitTime} />
-          <FactTile label="Surface Temperature" value={facts.surfaceTemp} />
-          <FactTile label="Moons" value={facts.moons} />
-          <FactTile label="Atmosphere" value={facts.atmosphere} />
+          <FactTile label={t('pages.destination.factGravity')} value={t(facts.gravity)} />
+          <FactTile label={t('pages.destination.factDistance')} value={t(facts.distanceFromEarth)} />
+          <FactTile label={t('pages.destination.factTransitTime')} value={t(facts.typicalTransitTime)} />
+          <FactTile label={t('pages.destination.factSurfaceTemp')} value={t(facts.surfaceTemp)} />
+          <FactTile label={t('pages.destination.factMoons')} value={t(facts.moons)} />
+          <FactTile label={t('pages.destination.factAtmosphere')} value={t(facts.atmosphere)} />
         </div>
       </Section>
 
@@ -141,13 +147,13 @@ export const DestinationDetail = () => {
         <div className="glass-card p-6 border border-solar-orange/30 bg-solar-orange/5">
           <div className="flex items-center gap-3 mb-5">
             <AlertTriangle size={22} className="text-solar-orange flex-shrink-0" />
-            <h2 className="text-2xl font-bold text-star-white">Hazard Advisory</h2>
+            <h2 className="text-2xl font-bold text-star-white">{t('pages.destination.hazardAdvisory')}</h2>
           </div>
           <ul className="space-y-3">
             {hazards.map((hazard, i) => (
               <li key={i} className="flex items-start gap-3">
                 <span className="mt-1 w-2 h-2 rounded-full bg-solar-orange flex-shrink-0" />
-                <span className="text-star-white/80">{hazard}</span>
+                <span className="text-star-white/80">{t(hazard)}</span>
               </li>
             ))}
           </ul>
@@ -156,7 +162,7 @@ export const DestinationDetail = () => {
 
       {/* ── 4. Gallery ──────────────────────────────────────────────────────── */}
       <Section delay={0.3}>
-        <h2 className="text-2xl font-bold text-star-white mb-6">Gallery</h2>
+        <h2 className="text-2xl font-bold text-star-white mb-6">{t('pages.destination.gallery')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {gallery.map((item, i) => (
             <div
@@ -164,13 +170,13 @@ export const DestinationDetail = () => {
               className={`glass-card p-0 overflow-hidden border ${borderAccent}`}
             >
               {/* Placeholder tile — CSS only, no external images */}
-              <div className={`h-36 ${item.colorClass} flex items-end`} aria-label={item.alt}>
+              <div className={`h-36 ${item.colorClass} flex items-end`} aria-label={t(item.alt)}>
                 <div className="w-full px-4 py-2 bg-space-dark/60 backdrop-blur-sm">
-                  <p className="text-xs text-star-white/70">{item.alt}</p>
+                  <p className="text-xs text-star-white/70">{t(item.alt)}</p>
                 </div>
               </div>
               <div className="p-4">
-                <p className="text-sm text-star-white/80">{item.description}</p>
+                <p className="text-sm text-star-white/80">{t(item.description)}</p>
               </div>
             </div>
           ))}
@@ -180,19 +186,19 @@ export const DestinationDetail = () => {
       {/* ── 5. Flights departing soon ───────────────────────────────────────── */}
       <Section delay={0.4}>
         <div className="glass-card p-6">
-          <h2 className="text-2xl font-bold text-star-white mb-2">Flights Departing Soon</h2>
+          <h2 className="text-2xl font-bold text-star-white mb-2">{t('pages.destination.flightsSoonTitle')}</h2>
           <p className="text-star-white/60 text-sm mb-6">
-            Live availability — up to 5 upcoming departures to {name}
+            {t('pages.destination.flightsSoonSubtitle', { name: t(name) })}
           </p>
 
           {flightsLoading ? (
-            <LoadingSpinner size="sm" text="Checking flight schedules…" />
+            <LoadingSpinner size="sm" text={t('pages.destination.loadingSchedules')} />
           ) : flights.length === 0 ? (
             <div className="text-center py-10">
               <Rocket size={36} className="mx-auto mb-3 text-star-white/30" />
-              <p className="text-star-white/60">No upcoming flights to {name} right now.</p>
+              <p className="text-star-white/60">{t('pages.destination.noFlightsTitle', { name: t(name) })}</p>
               <p className="text-star-white/40 text-sm mt-1">
-                Check back soon — new routes are added regularly.
+                {t('pages.destination.noFlightsHint')}
               </p>
             </div>
           ) : (
@@ -212,14 +218,14 @@ export const DestinationDetail = () => {
                   </div>
                   <div className="flex items-center gap-4">
                     <div className="text-right">
-                      <p className="text-xs text-star-white/50">From</p>
+                      <p className="text-xs text-star-white/50">{t('pages.destination.priceFrom')}</p>
                       <p className={`font-bold ${accentColor}`}>{formatCurrency(flight.economy_price)}</p>
                     </div>
                     <Link
-                      to={`/flights?destination=${encodeURIComponent(name)}`}
+                      to={`/flights?destination=${encodeURIComponent(nameEn)}`}
                       className="px-4 py-2 rounded-lg bg-cosmic-gradient text-white text-sm font-semibold hover:opacity-90 transition-opacity whitespace-nowrap"
                     >
-                      Book
+                      {t('pages.destination.bookButton')}
                     </Link>
                   </div>
                 </div>

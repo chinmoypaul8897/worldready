@@ -5,11 +5,13 @@ import { useUser } from '../../hooks/useUserContext';
 import { Button } from '../common';
 import { UserIdentification } from '../user/UserIdentification';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 export const Header = () => {
   const location = useLocation();
   const { user, logout } = useUser();
   const [showUserModal, setShowUserModal] = useState(false);
+  const { t } = useTranslation('common');
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -27,7 +29,7 @@ export const Header = () => {
               <Rocket className="text-cosmic-purple" size={32} />
             </motion.div>
             <span className="text-2xl font-bold bg-cosmic-gradient bg-clip-text text-transparent">
-              Galaxium Travels
+              {t('common.header.brandName')}
             </span>
           </Link>
 
@@ -41,7 +43,7 @@ export const Header = () => {
                   : 'text-star-white/70 hover:text-star-white'
               }`}
             >
-              Home
+              {t('common.nav.home')}
             </Link>
             <Link
               to="/flights"
@@ -51,7 +53,7 @@ export const Header = () => {
                   : 'text-star-white/70 hover:text-star-white'
               }`}
             >
-              Flights
+              {t('common.nav.flights')}
             </Link>
             {user && (
               <Link
@@ -62,7 +64,7 @@ export const Header = () => {
                     : 'text-star-white/70 hover:text-star-white'
                 }`}
               >
-                My Bookings
+                {t('common.nav.myBookings')}
               </Link>
             )}
           </nav>
@@ -82,21 +84,21 @@ export const Header = () => {
                   className="flex items-center gap-2"
                 >
                   <LogOut size={16} />
-                  <span className="hidden md:inline">Logout</span>
+                  <span className="hidden md:inline">{t('common.header.logout')}</span>
                 </Button>
               </div>
             ) : (
               <>
                 {location.pathname === '/' ? (
                   <Link to="/flights">
-                    <Button size="sm">Book a Flight</Button>
+                    <Button size="sm">{t('common.header.bookAFlight')}</Button>
                   </Link>
                 ) : (
                   <Button
                     size="sm"
                     onClick={() => setShowUserModal(true)}
                   >
-                    Login
+                    {t('common.header.login')}
                   </Button>
                 )}
               </>
@@ -114,7 +116,7 @@ export const Header = () => {
                 : 'text-star-white/70 hover:text-star-white'
             }`}
           >
-            Home
+            {t('common.nav.home')}
           </Link>
           <Link
             to="/flights"
@@ -124,7 +126,7 @@ export const Header = () => {
                 : 'text-star-white/70 hover:text-star-white'
             }`}
           >
-            Flights
+            {t('common.nav.flights')}
           </Link>
           {user && (
             <Link
@@ -135,7 +137,7 @@ export const Header = () => {
                   : 'text-star-white/70 hover:text-star-white'
               }`}
             >
-              My Bookings
+              {t('common.nav.myBookings')}
             </Link>
           )}
         </nav>

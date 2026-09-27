@@ -1,0 +1,19 @@
+{
+  "tool": "count-literals.mjs",
+  "dir": "C:\\Users\\chinm\\bob-hackathon-app",
+  "staged": false,
+  "generatedUtc": "2026-09-27T01:24:31.288Z",
+  "total": 155,
+  "byPass": {
+    "jsx": 18,
+    "data": 137,
+    "toasts": 0
+  },
+  "perFile": {
+    "src/components/bookings/BookingModal.tsx": 2,
+    "src/components/flights/FlightCard.tsx": 2,
+    "src/components/flights/FlightFilters.tsx": 13,
+    "src/pages/DestinationDetail.tsx": 1,
+    "src/data/destinations.ts": 137
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "header": {
+    "brandName": "Galaxium Travels",
+    "logout": "Logout",
+    "bookAFlight": "Book a Flight",
+    "login": "Login"
+  },
+  "nav": {
+    "home": "Home",
+    "flights": "Flights",
+    "myBookings": "My Bookings"
+  },
+  "footer": {
+    "copyright": "© {{year}} Galaxium Travels. All rights reserved.",
+    "madeWith": "Made with",
+    "forSpaceTravelers": "for space travelers"
+  },
+  "modal": {
+    "closeLabel": "Close modal"
+  },
+  "userIdentification": {
+    "titleCreateAccount": "Create Account",
+    "titleSignIn": "Sign In",
+    "subtitleCreate": "Create an account to book your flight",
+    "subtitleSignIn": "Enter your name and email to continue",
+    "labelName": "Name",
+    "placeholderName": "John Doe",
+    "labelEmail": "Email",
+    "placeholderEmail": "john@example.com",
+    "buttonCreate": "Create Account",
+    "buttonContinue": "Continue",
+    "switchToSignIn": "Already have an account? Sign in",
+    "switchToRegister": "Don't have an account? Register",
+    "errorFillFields": "Please fill in all fields",
+    "errorInvalidEmail": "Please enter a valid email address",
+    "successAccountCreated": "Account created successfully!",
+    "errorUserNotFound": "User not found. Please register or check your credentials.",
+    "successWelcomeBack": "Welcome back, {{name}}!",
+    "errorGeneric": "An error occurred"
+  },
+  "button": {
+    "loading": "Loading..."
+  }
+}

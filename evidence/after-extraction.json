@@ -1,0 +1,65 @@
+{
+  "task": "P05 — T03 parallel extraction (5 subagents) + T04 wiring + T05 merge",
+  "generatedBy": "Claude Code worker P05 (night shift)",
+  "date": "2026-09-27",
+  "commitBaseline": "v0-before = f053de3 (literals 320, traps 0/30)",
+  "build": {
+    "command": "VITE_DEMO=1 npm run build",
+    "result": "green",
+    "note": "tsc -b + vite build succeeded; only an upstream chunk-size warning (not an error)"
+  },
+  "englishParity": {
+    "tool": "scripts/english-parity.mjs",
+    "before": "https://chinmoypaul8897.github.io/worldready/before/ (live v0-before)",
+    "after": "local dist (VITE_DEMO=1)",
+    "routes": ["/", "/flights", "/bookings", "/destinations/mars", "/destinations/europa"],
+    "totalChangedCharacters": 0,
+    "result": "PASS — English renders byte-identical to the original app"
+  },
+  "literals": {
+    "tool": "scripts/count-literals.mjs",
+    "before": 320,
+    "after": 155,
+    "breakdown": { "jsxAndAttributes": 18, "dataFile": 137, "toast": 0 },
+    "trueHardcodedEnglishResidual": 0,
+    "note": "All 155 counted items are false positives of the heuristic, not hard-coded English: 5 are date-format pattern strings ('MMM dd', 'MMM dd, yyyy'); 10 are filter/enum values intentionally kept English per the data rule (economy/business/galaxium, morning/afternoon/evening/night, inner_planets/outer_planets/moons); 3 are i18next labelKey references (flights.filters.seat*); 137 are i18next key-paths stored in src/data/destinations.ts (e.g. 'destinations.earth.tagline') that resolve through t() at render. The counter cannot distinguish an i18n key-path or a format string from user-visible English. Reaching a literal count of 0 is not achievable with the current counter while the app legitimately keeps English filter values and date-format strings; see NEXT WORKER NOTES for the recommended counter refinement or a destinations design-3 refactor."
+  },
+  "keyResolution": {
+    "check": "every literal t('...') key and every destinations.ts data key-path resolves under nsSeparator:'.'",
+    "literalKeysChecked": 206,
+    "literalKeysUnresolved": 0,
+    "dataKeyPathsChecked": 137,
+    "dataKeyPathsUnresolved": 0
+  },
+  "keyParity": {
+    "tool": "scripts/key-parity.mjs",
+    "reference": "en",
+    "pseudo": "OK (0 missing, 0 extra; cats one/other)",
+    "fr": "missing locale (owned by T06)",
+    "ar": "missing locale (owned by T06)",
+    "note": "en+pseudo complete; fr/ar are intentionally not created in this task"
+  },
+  "locales": {
+    "path": "src/locales/en/<namespace>.json",
+    "namespaces": ["pages", "flights", "bookings", "common", "destinations"],
+    "enStringCount": 348,
+    "pseudoGenerated": true
+  },
+  "bobCost": {
+    "t03_extraction_5_subagents": {
+      "orchestrator": 2.669,
+      "subagents": [1.180, 0.440, 0.329, 0.216, 0.330],
+      "subagentsTotal": 2.495,
+      "total": 5.164,
+      "cap": 5.0,
+      "note": "subagents are billed as separate task rows; the --max-cost watchdog saw only the 2.669 orchestrator cost, so the true total slightly exceeds the 5.0 cap"
+    },
+    "t04_runtime_wiring": 0.675,
+    "t03_prior_stalled_attempt": 0.525,
+    "t05a_merge_fixes": 1.094,
+    "p05PromptTotal": 7.458,
+    "accountTotalUsed": 10.025,
+    "accountBalanceRemaining": 29.975,
+    "accountLimit": 40
+  }
+}

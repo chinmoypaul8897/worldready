@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import type { Flight, SeatClass, Quote, Hold } from '../../types';
 import { Modal, Button } from '../common';
 import {
@@ -29,6 +30,7 @@ interface BookingModalProps {
 
 export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModalProps) => {
   const { user } = useUser();
+  const { t } = useTranslation('bookings');
   const [step, setStep] = useState<Step>('select');
   const [selectedClass, setSelectedClass] = useState<SeatClass>('economy');
   const [isLoading, setIsLoading] = useState(false);
@@ -65,7 +67,7 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
 
   const seatClasses = [
     {
-      name: 'Economy',
+      name: t('bookings.seatClass.economy'),
       class: 'economy' as SeatClass,
       price: flight.economy_price,
       seats: flight.economy_seats_available,
@@ -73,10 +75,14 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
       color: 'text-blue-400',
       bgColor: 'bg-blue-500/10',
       borderColor: 'border-blue-500/30',
-      features: ['Standard seating', 'In-flight entertainment', 'Complimentary snacks'],
+      features: [
+        t('bookings.features.economy.standardSeating'),
+        t('bookings.features.economy.entertainment'),
+        t('bookings.features.economy.snacks'),
+      ],
     },
     {
-      name: 'Business',
+      name: t('bookings.seatClass.business'),
       class: 'business' as SeatClass,
       price: flight.business_price,
       seats: flight.business_seats_available,
@@ -84,10 +90,15 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
       color: 'text-purple-400',
       bgColor: 'bg-purple-500/10',
       borderColor: 'border-purple-500/30',
-      features: ['Premium seating', 'Priority boarding', 'Gourmet meals', 'Extra legroom'],
+      features: [
+        t('bookings.features.business.premiumSeating'),
+        t('bookings.features.business.priorityBoarding'),
+        t('bookings.features.business.gourmetMeals'),
+        t('bookings.features.business.extraLegroom'),
+      ],
     },
     {
-      name: 'Galaxium Class',
+      name: t('bookings.seatClass.galaxiumClass'),
       class: 'galaxium' as SeatClass,
       price: flight.galaxium_price,
       seats: flight.galaxium_seats_available,
@@ -95,7 +106,12 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
       color: 'text-alien-green',
       bgColor: 'bg-alien-green/10',
       borderColor: 'border-alien-green/30',
-      features: ['Luxury pods', 'VIP lounge access', 'Personal concierge', 'Zero-G experience'],
+      features: [
+        t('bookings.features.galaxium.luxuryPods'),
+        t('bookings.features.galaxium.vipLounge'),
+        t('bookings.features.galaxium.concierge'),
+        t('bookings.features.galaxium.zeroG'),
+      ],
     },
   ];
 
@@ -116,24 +132,24 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
           <h3 className="text-lg font-bold text-star-white">
             {flight.origin} → {flight.destination}
           </h3>
-          <p className="text-xs text-star-white/60">Flight #{flight.flight_id}</p>
+          <p className="text-xs text-star-white/60">{t('bookings.card.flightId', { id: flight.flight_id })}</p>
         </div>
       </div>
       <div className="grid grid-cols-3 gap-3 text-sm">
         <div>
-          <p className="text-xs text-star-white/60 mb-1">Departure</p>
+          <p className="text-xs text-star-white/60 mb-1">{t('bookings.modal.departure')}</p>
           <p className="text-star-white font-medium">
             {formatDate(flight.departure_time, 'MMM dd')}
           </p>
         </div>
         <div>
-          <p className="text-xs text-star-white/60 mb-1">Arrival</p>
+          <p className="text-xs text-star-white/60 mb-1">{t('bookings.modal.arrival')}</p>
           <p className="text-star-white font-medium">
             {formatDate(flight.arrival_time, 'MMM dd')}
           </p>
         </div>
         <div>
-          <p className="text-xs text-star-white/60 mb-1">Duration</p>
+          <p className="text-xs text-star-white/60 mb-1">{t('bookings.modal.duration')}</p>
           <p className="text-star-white font-medium">
             {calculateDuration(flight.departure_time, flight.arrival_time)}
           </p>
@@ -144,7 +160,7 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
 
   const handleGetQuote = async () => {
     if (!user) {
-      toast.error('Please sign in to get a quote');
+      toast.error(t('bookings.toast.signInRequired'));
       return;
     }
 
@@ -160,7 +176,7 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
       setQuote(newQuote);
       setStep('quote');
     } catch {
-      toast.error('Failed to get quote. Make sure the inventory service is running.');
+      toast.error(t('bookings.toast.getQuoteFailed'));
     } finally {
       setIsLoading(false);
     }
@@ -187,9 +203,9 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
         });
       }
 
-      toast.success('Seat held! You have 15 minutes to confirm.');
+      toast.success(t('bookings.toast.seatHeld'));
     } catch {
-      toast.error('Failed to place hold');
+      toast.error(t('bookings.toast.placeHoldFailed'));
     } finally {
       setIsLoading(false);
     }
@@ -203,12 +219,12 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
       const confirmed = await confirmHold(hold.holdId);
       removeHold(user.user_id, hold.holdId);
       toast.success(
-        `Booking confirmed! Reference: #${confirmed.externalBookingReference}`
+        t('bookings.toast.bookingConfirmed', { ref: confirmed.externalBookingReference })
       );
       onSuccess();
       onClose();
     } catch {
-      toast.error('Failed to confirm booking');
+      toast.error(t('bookings.toast.confirmFailed'));
     } finally {
       setIsLoading(false);
     }
@@ -221,10 +237,10 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
     try {
       await releaseHold(hold.holdId);
       removeHold(user.user_id, hold.holdId);
-      toast.success('Hold released');
+      toast.success(t('bookings.toast.holdReleased'));
       onClose();
     } catch {
-      toast.error('Failed to release hold');
+      toast.error(t('bookings.toast.releaseFailed'));
     } finally {
       setIsLoading(false);
     }
@@ -233,11 +249,11 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
   const getModalTitle = () => {
     switch (step) {
       case 'select':
-        return 'Book Your Flight';
+        return t('bookings.modal.titleSelect');
       case 'quote':
-        return 'Your Price Quote';
+        return t('bookings.modal.titleQuote');
       case 'hold':
-        return 'Seat Reserved';
+        return t('bookings.modal.titleHold');
     }
   };
 
@@ -247,7 +263,7 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
       {flightSummary}
 
       <div>
-        <h4 className="text-sm font-semibold text-star-white mb-3">Select Seat Class</h4>
+        <h4 className="text-sm font-semibold text-star-white mb-3">{t('bookings.modal.selectSeatClass')}</h4>
         <div className="space-y-3">
           {seatClasses.map((sc) => {
             const Icon = sc.icon;
@@ -276,7 +292,7 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
                       {formatCurrency(sc.price)}
                     </div>
                     <div className="text-xs text-star-white/60">
-                      {isSoldOut ? 'Sold Out' : `${sc.seats} left`}
+                      {isSoldOut ? t('bookings.modal.soldOut') : t('bookings.modal.seatsLeft', { count: sc.seats })}
                     </div>
                   </div>
                 </div>
@@ -293,7 +309,7 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
 
       {user && (
         <div className="glass-card p-4 bg-white/5">
-          <h4 className="text-sm font-semibold text-star-white mb-2">Passenger</h4>
+          <h4 className="text-sm font-semibold text-star-white mb-2">{t('bookings.modal.passenger')}</h4>
           <p className="text-star-white">{user.name}</p>
           <p className="text-star-white/60 text-sm">{user.email}</p>
         </div>
@@ -301,10 +317,10 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
 
       <div className="flex gap-3">
         <Button variant="secondary" onClick={onClose} disabled={isLoading} className="flex-1">
-          Cancel
+          {t('bookings.modal.cancel')}
         </Button>
         <Button onClick={handleGetQuote} isLoading={isLoading} className="flex-1">
-          Get Quote →
+          {t('bookings.modal.getQuote')}
         </Button>
       </div>
     </div>
@@ -317,31 +333,31 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
       <div className="space-y-6">
         <div className="flex items-center gap-2 p-3 rounded-lg bg-cosmic-purple/10 border border-cosmic-purple/30">
           <Tag size={16} className="text-cosmic-purple" />
-          <span className="text-xs text-star-white/60">Quote ID</span>
+          <span className="text-xs text-star-white/60">{t('bookings.modal.quoteId')}</span>
           <span className="font-mono font-bold text-cosmic-purple ml-auto">{quote?.quoteId}</span>
         </div>
 
         {flightSummary}
 
         <div className="glass-card p-4 bg-white/5 space-y-3">
-          <h4 className="text-sm font-semibold text-star-white">Price Breakdown</h4>
+          <h4 className="text-sm font-semibold text-star-white">{t('bookings.modal.priceBreakdown')}</h4>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Icon size={16} className={selectedClassData?.color} />
-              <span className="text-sm text-star-white/70">{selectedClassData?.name} × 1</span>
+              <span className="text-sm text-star-white/70">{t('bookings.modal.seatLineItem', { name: selectedClassData?.name })}</span>
             </div>
             <span className="text-star-white font-medium">
               {formatCurrency(quote?.pricePerSeat || 0)}
             </span>
           </div>
           <div className="border-t border-white/10 pt-3 flex items-center justify-between">
-            <span className="font-semibold text-star-white">Total</span>
+            <span className="font-semibold text-star-white">{t('bookings.modal.total')}</span>
             <span className="text-xl font-bold text-alien-green">
               {formatCurrency(quote?.totalPrice || 0)}
             </span>
           </div>
           <p className="text-xs text-star-white/50">
-            Quote valid for 24 hours · Price calculated by inventory service
+            {t('bookings.modal.quoteNote')}
           </p>
         </div>
 
@@ -352,10 +368,10 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
             disabled={isLoading}
             className="flex-1"
           >
-            <ArrowLeft size={16} /> Back
+            <ArrowLeft size={16} /> {t('bookings.modal.back')}
           </Button>
           <Button onClick={handlePlaceHold} isLoading={isLoading} className="flex-1">
-            <Timer size={16} /> Place Hold →
+            <Timer size={16} /> {t('bookings.modal.placeHold')}
           </Button>
         </div>
       </div>
@@ -367,7 +383,7 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
     <div className="space-y-6">
       <div className="flex items-center gap-2 p-3 rounded-lg bg-alien-green/10 border border-alien-green/30">
         <Zap size={16} className="text-alien-green" />
-        <span className="text-xs text-star-white/60">Hold ID</span>
+        <span className="text-xs text-star-white/60">{t('bookings.modal.holdId')}</span>
         <span className="font-mono font-bold text-alien-green ml-auto">{hold?.holdId}</span>
       </div>
 
@@ -380,18 +396,18 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
         }`}
       >
         <p className="text-xs text-star-white/60 mb-2 uppercase tracking-widest">
-          {isExpired ? 'Hold Expired' : 'Time to Confirm'}
+          {isExpired ? t('bookings.modal.holdExpired') : t('bookings.modal.timeToConfirm')}
         </p>
         <div
           className={`text-5xl font-mono font-bold tabular-nums ${
             isExpired ? 'text-red-500' : 'text-solar-orange'
           }`}
         >
-          {isExpired ? 'EXPIRED' : timerDisplay}
+          {isExpired ? t('bookings.modal.expired') : timerDisplay}
         </div>
         {!isExpired && (
           <p className="text-xs text-star-white/50 mt-2">
-            Seat is reserved — confirm before time runs out
+            {t('bookings.modal.seatReservedNote')}
           </p>
         )}
       </div>
@@ -401,7 +417,7 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
       <div className="flex items-center justify-between p-4 rounded-xl bg-cosmic-gradient">
         <div className="flex items-center gap-2">
           <DollarSign className="text-white" size={20} />
-          <span className="text-white font-semibold">Total</span>
+          <span className="text-white font-semibold">{t('bookings.modal.total')}</span>
         </div>
         <span className="text-xl font-bold text-white">
           {formatCurrency(quote?.totalPrice || 0)}
@@ -410,7 +426,7 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
 
       {isExpired ? (
         <Button variant="secondary" onClick={onClose} className="w-full">
-          Close
+          {t('bookings.modal.close')}
         </Button>
       ) : (
         <>
@@ -421,14 +437,14 @@ export const BookingModal = ({ isOpen, onClose, flight, onSuccess }: BookingModa
               isLoading={isLoading}
               className="flex-1"
             >
-              Release Hold
+              {t('bookings.modal.releaseHold')}
             </Button>
             <Button onClick={handleConfirmHold} isLoading={isLoading} className="flex-1">
-              Confirm Booking
+              {t('bookings.modal.confirmBooking')}
             </Button>
           </div>
           <p className="text-xs text-star-white/50 text-center">
-            Closing keeps your hold active — find it in My Bookings
+            {t('bookings.modal.closingNote')}
           </p>
         </>
       )}

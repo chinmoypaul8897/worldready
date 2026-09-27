@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import type { Flight, StoredHold } from '../../types';
 import { Card, Button } from '../common';
 import { Zap, Plane, Crown, Rocket, Timer, CheckCircle, XCircle } from 'lucide-react';
@@ -17,6 +18,7 @@ interface HoldCardProps {
 
 export const HoldCard = ({ storedHold, flight, onAction }: HoldCardProps) => {
   const { user } = useUser();
+  const { t } = useTranslation('bookings');
   const [timeLeft, setTimeLeft] = useState(0);
   const [isConfirming, setIsConfirming] = useState(false);
   const [isReleasing, setIsReleasing] = useState(false);
@@ -53,11 +55,11 @@ export const HoldCard = ({ storedHold, flight, onAction }: HoldCardProps) => {
   const getSeatClassName = () => {
     switch (storedHold.seatClass) {
       case 'business':
-        return 'Business';
+        return t('bookings.seatClass.business');
       case 'galaxium':
-        return 'Galaxium Class';
+        return t('bookings.seatClass.galaxiumClass');
       default:
-        return 'Economy';
+        return t('bookings.seatClass.economy');
     }
   };
 
@@ -67,10 +69,10 @@ export const HoldCard = ({ storedHold, flight, onAction }: HoldCardProps) => {
     try {
       const confirmed = await confirmHold(storedHold.holdId);
       removeHold(user.user_id, storedHold.holdId);
-      toast.success(`Booking confirmed! Reference: #${confirmed.externalBookingReference}`);
+      toast.success(t('bookings.toast.bookingConfirmed', { ref: confirmed.externalBookingReference }));
       onAction();
     } catch {
-      toast.error('Failed to confirm booking');
+      toast.error(t('bookings.toast.confirmFailed'));
     } finally {
       setIsConfirming(false);
     }
@@ -82,10 +84,10 @@ export const HoldCard = ({ storedHold, flight, onAction }: HoldCardProps) => {
     try {
       await releaseHold(storedHold.holdId);
       removeHold(user.user_id, storedHold.holdId);
-      toast.success('Hold released');
+      toast.success(t('bookings.toast.holdReleased'));
       onAction();
     } catch {
-      toast.error('Failed to release hold');
+      toast.error(t('bookings.toast.releaseFailed'));
     } finally {
       setIsReleasing(false);
     }
@@ -118,13 +120,13 @@ export const HoldCard = ({ storedHold, flight, onAction }: HoldCardProps) => {
                 {isExpired ? (
                   <>
                     <XCircle className="text-red-500" size={16} />
-                    <span className="text-sm font-semibold text-red-500">Expired</span>
+                    <span className="text-sm font-semibold text-red-500">{t('bookings.hold.expired')}</span>
                   </>
                 ) : (
                   <>
                     <Timer className="text-solar-orange" size={16} />
                     <span className="text-sm font-semibold text-solar-orange">
-                      Held · {timerDisplay}
+                      {t('bookings.hold.heldTimer', { timer: timerDisplay })}
                     </span>
                   </>
                 )}
@@ -140,10 +142,10 @@ export const HoldCard = ({ storedHold, flight, onAction }: HoldCardProps) => {
               <h3 className="text-xl font-bold text-star-white mb-1">
                 {flight.origin} → {flight.destination}
               </h3>
-              <p className="text-sm text-star-white/60">Flight #{flight.flight_id}</p>
+              <p className="text-sm text-star-white/60">{t('bookings.card.flightId', { id: flight.flight_id })}</p>
             </div>
           ) : (
-            <p className="text-sm text-star-white/60">Flight #{storedHold.flightId}</p>
+            <p className="text-sm text-star-white/60">{t('bookings.card.flightId', { id: storedHold.flightId })}</p>
           )}
 
           <div className="flex items-center justify-between pt-2 border-t border-white/10">
@@ -170,7 +172,7 @@ export const HoldCard = ({ storedHold, flight, onAction }: HoldCardProps) => {
               disabled={isLoading}
               className="flex-1"
             >
-              Release
+              {t('bookings.hold.release')}
             </Button>
             <Button
               size="sm"
@@ -179,7 +181,7 @@ export const HoldCard = ({ storedHold, flight, onAction }: HoldCardProps) => {
               disabled={isLoading}
               className="flex-1"
             >
-              <CheckCircle size={14} /> Confirm
+              <CheckCircle size={14} /> {t('bookings.hold.confirm')}
             </Button>
           </div>
         )}
@@ -194,7 +196,7 @@ export const HoldCard = ({ storedHold, flight, onAction }: HoldCardProps) => {
             }}
             className="w-full"
           >
-            Dismiss
+            {t('bookings.hold.dismiss')}
           </Button>
         )}
       </Card>

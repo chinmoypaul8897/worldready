@@ -1,0 +1,41 @@
+{
+  "tool": "english-parity.mjs",
+  "before": "https://chinmoypaul8897.github.io/worldready/before/",
+  "after": "./dist",
+  "lang": "en",
+  "fixedTime": "2026-06-01T12:00:00Z",
+  "generatedUtc": "2026-09-27T01:25:21.214Z",
+  "totalChangedChars": 0,
+  "routes": [
+    {
+      "route": "/",
+      "changedChars": 0,
+      "beforeChars": 1396,
+      "afterChars": 1396
+    },
+    {
+      "route": "/flights",
+      "changedChars": 0,
+      "beforeChars": 2446,
+      "afterChars": 2446
+    },
+    {
+      "route": "/bookings",
+      "changedChars": 0,
+      "beforeChars": 2446,
+      "afterChars": 2446
+    },
+    {
+      "route": "/destinations/mars",
+      "changedChars": 0,
+      "beforeChars": 1334,
+      "afterChars": 1334
+    },
+    {
+      "route": "/destinations/europa",
+      "changedChars": 0,
+      "beforeChars": 1372,
+      "afterChars": 1372
+    }
+  ]
+}

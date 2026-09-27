@@ -1,19 +1,38 @@
+// Display-string fields (name, tagline, description, facts.*, hazards[*], gallery[*].alt,
+// gallery[*].description) now hold i18next key paths.
+// Callers should resolve them via: t(destination.name), t(destination.tagline), etc.
+// The `nameEn` field retains the stable English text for programmatic lookups (e.g. getDestinationByName).
+
 export interface DestinationData {
   slug: string;
+  /** i18next key — resolve with t(destination.name) */
   name: string;
+  /** Stable English name used for lookups; do NOT translate */
+  nameEn: string;
+  /** i18next key — resolve with t(destination.tagline) */
   tagline: string;
+  /** i18next key — resolve with t(destination.description) */
   description: string;
   facts: {
+    /** i18next key */
     gravity: string;
+    /** i18next key */
     distanceFromEarth: string;
+    /** i18next key */
     typicalTransitTime: string;
+    /** i18next key */
     surfaceTemp: string;
+    /** i18next key */
     moons: string;
+    /** i18next key */
     atmosphere: string;
   };
+  /** i18next keys — resolve each element with t(key) */
   hazards: string[];
   gallery: {
+    /** i18next key for alt text */
     alt: string;
+    /** i18next key for caption */
     description: string;
     colorClass: string;
   }[];
@@ -25,28 +44,28 @@ export interface DestinationData {
 const destinations: DestinationData[] = [
   {
     slug: 'earth',
-    name: 'Earth',
-    tagline: 'The cradle of humanity — and the perfect place to return to.',
-    description:
-      'Earth remains the most habitable world in the known solar system, with a breathable nitrogen-oxygen atmosphere, liquid water oceans, and a magnetic field that shields surface life from solar radiation. Whether you\'re departing or arriving, orbital approach offers unrivalled views of swirling cloud systems and turquoise seas.',
+    name: 'destinations.earth.name',
+    nameEn: 'Earth',
+    tagline: 'destinations.earth.tagline',
+    description: 'destinations.earth.description',
     facts: {
-      gravity: '9.81 m/s²',
-      distanceFromEarth: '0 km',
-      typicalTransitTime: 'Home port',
-      surfaceTemp: '-89 °C to +57 °C',
-      moons: '1 (Luna)',
-      atmosphere: 'Nitrogen 78 %, Oxygen 21 %',
+      gravity: 'destinations.earth.facts.gravity',
+      distanceFromEarth: 'destinations.earth.facts.distanceFromEarth',
+      typicalTransitTime: 'destinations.earth.facts.typicalTransitTime',
+      surfaceTemp: 'destinations.earth.facts.surfaceTemp',
+      moons: 'destinations.earth.facts.moons',
+      atmosphere: 'destinations.earth.facts.atmosphere',
     },
     hazards: [
-      'Dense air traffic in low-Earth orbit — strict approach corridors enforced',
-      'Electromagnetic interference from surface networks may disrupt navigation',
-      'Weather re-entry delays are common at equatorial spaceports',
-      'Customs and biosecurity screening required for all interplanetary arrivals',
+      'destinations.earth.hazards.item0',
+      'destinations.earth.hazards.item1',
+      'destinations.earth.hazards.item2',
+      'destinations.earth.hazards.item3',
     ],
     gallery: [
-      { alt: 'Blue Marble view', description: 'Blue Marble — Atlantic from orbit', colorClass: 'bg-blue-500/20' },
-      { alt: 'Coastal landing strip', description: 'Cape Canaveral approach corridor', colorClass: 'bg-cyan-500/20' },
-      { alt: 'Night lights', description: 'City grid illumination, night side', colorClass: 'bg-indigo-500/20' },
+      { alt: 'destinations.earth.gallery.item0.alt', description: 'destinations.earth.gallery.item0.description', colorClass: 'bg-blue-500/20' },
+      { alt: 'destinations.earth.gallery.item1.alt', description: 'destinations.earth.gallery.item1.description', colorClass: 'bg-cyan-500/20' },
+      { alt: 'destinations.earth.gallery.item2.alt', description: 'destinations.earth.gallery.item2.description', colorClass: 'bg-indigo-500/20' },
     ],
     accentColor: 'text-space-blue',
     bgAccent: 'bg-blue-500/10',
@@ -54,29 +73,29 @@ const destinations: DestinationData[] = [
   },
   {
     slug: 'mars',
-    name: 'Mars',
-    tagline: 'Rust-red horizons and the promise of a second home.',
-    description:
-      'Mars is humanity\'s boldest frontier — a terrestrial planet with a thin carbon dioxide atmosphere, polar ice caps, and the largest volcano in the solar system. Olympus Base offers pressurised habitats, rover excursions across Valles Marineris, and spectacular iron-oxide sunsets.',
+    name: 'destinations.mars.name',
+    nameEn: 'Mars',
+    tagline: 'destinations.mars.tagline',
+    description: 'destinations.mars.description',
     facts: {
-      gravity: '3.72 m/s²',
-      distanceFromEarth: '~225 million km (avg)',
-      typicalTransitTime: '8 h',
-      surfaceTemp: '-125 °C to +20 °C',
-      moons: '2 (Phobos, Deimos)',
-      atmosphere: 'CO₂ 95 %, thin — unsuitable for breathing',
+      gravity: 'destinations.mars.facts.gravity',
+      distanceFromEarth: 'destinations.mars.facts.distanceFromEarth',
+      typicalTransitTime: 'destinations.mars.facts.typicalTransitTime',
+      surfaceTemp: 'destinations.mars.facts.surfaceTemp',
+      moons: 'destinations.mars.facts.moons',
+      atmosphere: 'destinations.mars.facts.atmosphere',
     },
     hazards: [
-      'Dust storms can ground all surface operations for weeks',
-      'EVA suit required at all times outside pressurised zones',
-      'Radiation exposure ~2× Earth levels — shielding mandatory',
-      'Gravity adjustment syndrome affects most travellers for 48–72 h',
-      'Perchlorate soil contamination — never remove gloves outdoors',
+      'destinations.mars.hazards.item0',
+      'destinations.mars.hazards.item1',
+      'destinations.mars.hazards.item2',
+      'destinations.mars.hazards.item3',
+      'destinations.mars.hazards.item4',
     ],
     gallery: [
-      { alt: 'Olympus Mons', description: 'Olympus Mons caldera at dawn', colorClass: 'bg-orange-600/20' },
-      { alt: 'Valles Marineris', description: 'Valles Marineris canyon system', colorClass: 'bg-red-700/20' },
-      { alt: 'Polar ice cap', description: 'North polar CO₂ ice cap, summer', colorClass: 'bg-rose-300/20' },
+      { alt: 'destinations.mars.gallery.item0.alt', description: 'destinations.mars.gallery.item0.description', colorClass: 'bg-orange-600/20' },
+      { alt: 'destinations.mars.gallery.item1.alt', description: 'destinations.mars.gallery.item1.description', colorClass: 'bg-red-700/20' },
+      { alt: 'destinations.mars.gallery.item2.alt', description: 'destinations.mars.gallery.item2.description', colorClass: 'bg-rose-300/20' },
     ],
     accentColor: 'text-solar-orange',
     bgAccent: 'bg-solar-orange/10',
@@ -84,28 +103,28 @@ const destinations: DestinationData[] = [
   },
   {
     slug: 'moon',
-    name: 'Moon',
-    tagline: 'Humanity\'s first step — now a bustling gateway world.',
-    description:
-      'Just 384,000 km from Earth, the Moon is the solar system\'s most accessible off-world destination. Lunar Gateway Station and Artemis Base Camp provide modern amenities, while the stark regolith plains and Earth-rise views make for an unforgettable experience.',
+    name: 'destinations.moon.name',
+    nameEn: 'Moon',
+    tagline: 'destinations.moon.tagline',
+    description: 'destinations.moon.description',
     facts: {
-      gravity: '1.62 m/s²',
-      distanceFromEarth: '~384,000 km',
-      typicalTransitTime: '3 h',
-      surfaceTemp: '-173 °C to +127 °C',
-      moons: 'N/A — the Moon itself',
-      atmosphere: 'Virtually none (exosphere only)',
+      gravity: 'destinations.moon.facts.gravity',
+      distanceFromEarth: 'destinations.moon.facts.distanceFromEarth',
+      typicalTransitTime: 'destinations.moon.facts.typicalTransitTime',
+      surfaceTemp: 'destinations.moon.facts.surfaceTemp',
+      moons: 'destinations.moon.facts.moons',
+      atmosphere: 'destinations.moon.facts.atmosphere',
     },
     hazards: [
-      'No atmosphere — space suit required outside at all times',
-      'Micro-meteorite impacts are a persistent risk in the regolith zone',
-      'Temperature swings exceed 300 °C between day and night',
-      'Abrasive lunar dust can damage seals and optical surfaces',
+      'destinations.moon.hazards.item0',
+      'destinations.moon.hazards.item1',
+      'destinations.moon.hazards.item2',
+      'destinations.moon.hazards.item3',
     ],
     gallery: [
-      { alt: 'Earthrise', description: 'Earthrise over the Sea of Tranquility', colorClass: 'bg-gray-400/20' },
-      { alt: 'Artemis Base', description: 'Artemis Base Camp habitat cluster', colorClass: 'bg-slate-400/20' },
-      { alt: 'Crater rim', description: 'Shackleton crater rim, south pole', colorClass: 'bg-zinc-400/20' },
+      { alt: 'destinations.moon.gallery.item0.alt', description: 'destinations.moon.gallery.item0.description', colorClass: 'bg-gray-400/20' },
+      { alt: 'destinations.moon.gallery.item1.alt', description: 'destinations.moon.gallery.item1.description', colorClass: 'bg-slate-400/20' },
+      { alt: 'destinations.moon.gallery.item2.alt', description: 'destinations.moon.gallery.item2.description', colorClass: 'bg-zinc-400/20' },
     ],
     accentColor: 'text-star-white',
     bgAccent: 'bg-white/10',
@@ -113,29 +132,29 @@ const destinations: DestinationData[] = [
   },
   {
     slug: 'venus',
-    name: 'Venus',
-    tagline: 'Hellscape below, paradise above the clouds.',
-    description:
-      'Venus is the solar system\'s most extreme planet — crushing atmospheric pressure, sulphuric acid clouds, and surface temperatures hot enough to melt lead. Galaxium\'s Cloud City habitats float at 50 km altitude where temperature and pressure are surprisingly Earth-like, offering surreal amber skies and lightning storms below.',
+    name: 'destinations.venus.name',
+    nameEn: 'Venus',
+    tagline: 'destinations.venus.tagline',
+    description: 'destinations.venus.description',
     facts: {
-      gravity: '8.87 m/s²',
-      distanceFromEarth: '~38 million km (closest)',
-      typicalTransitTime: '6 h',
-      surfaceTemp: '~465 °C (surface) / 0–30 °C (cloud layer)',
-      moons: '0',
-      atmosphere: 'CO₂ 96 %, H₂SO₄ clouds — lethal at surface',
+      gravity: 'destinations.venus.facts.gravity',
+      distanceFromEarth: 'destinations.venus.facts.distanceFromEarth',
+      typicalTransitTime: 'destinations.venus.facts.typicalTransitTime',
+      surfaceTemp: 'destinations.venus.facts.surfaceTemp',
+      moons: 'destinations.venus.facts.moons',
+      atmosphere: 'destinations.venus.facts.atmosphere',
     },
     hazards: [
-      'Surface descent is strictly prohibited — habitat stays airborne',
-      'Sulphuric acid rain can dissolve exposed equipment within hours',
-      'Atmospheric turbulence rating 9/10 — expect a rough arrival',
-      'Pressurisation failure evacuation time: under 90 seconds',
-      'All exterior maintenance requires level-4 acid-resistant suits',
+      'destinations.venus.hazards.item0',
+      'destinations.venus.hazards.item1',
+      'destinations.venus.hazards.item2',
+      'destinations.venus.hazards.item3',
+      'destinations.venus.hazards.item4',
     ],
     gallery: [
-      { alt: 'Cloud City', description: 'Aerostat Cloud City at 50 km altitude', colorClass: 'bg-yellow-500/20' },
-      { alt: 'Lightning storm', description: 'Sulphuric acid lightning storms below', colorClass: 'bg-amber-600/20' },
-      { alt: 'Solar panels', description: 'Solar array wings above the cloud deck', colorClass: 'bg-yellow-300/20' },
+      { alt: 'destinations.venus.gallery.item0.alt', description: 'destinations.venus.gallery.item0.description', colorClass: 'bg-yellow-500/20' },
+      { alt: 'destinations.venus.gallery.item1.alt', description: 'destinations.venus.gallery.item1.description', colorClass: 'bg-amber-600/20' },
+      { alt: 'destinations.venus.gallery.item2.alt', description: 'destinations.venus.gallery.item2.description', colorClass: 'bg-yellow-300/20' },
     ],
     accentColor: 'text-solar-orange',
     bgAccent: 'bg-yellow-500/10',
@@ -143,29 +162,29 @@ const destinations: DestinationData[] = [
   },
   {
     slug: 'jupiter',
-    name: 'Jupiter',
-    tagline: 'King of planets — come for the storms, stay for the scale.',
-    description:
-      'Jupiter\'s swirling bands of ammonia and hydrogen stretch across a disc 11 times wider than Earth. Galileo Station orbits above the Great Red Spot, offering research suites, observation decks, and the most dramatic sky-scape in the solar system. Not for the faint-hearted.',
+    name: 'destinations.jupiter.name',
+    nameEn: 'Jupiter',
+    tagline: 'destinations.jupiter.tagline',
+    description: 'destinations.jupiter.description',
     facts: {
-      gravity: '24.79 m/s² (at cloud tops)',
-      distanceFromEarth: '~628 million km (avg)',
-      typicalTransitTime: '18 h',
-      surfaceTemp: '-108 °C (cloud tops)',
-      moons: '95 known (Io, Europa, Ganymede, Callisto — largest)',
-      atmosphere: 'H₂ 90 %, He 10 % — immense pressure at depth',
+      gravity: 'destinations.jupiter.facts.gravity',
+      distanceFromEarth: 'destinations.jupiter.facts.distanceFromEarth',
+      typicalTransitTime: 'destinations.jupiter.facts.typicalTransitTime',
+      surfaceTemp: 'destinations.jupiter.facts.surfaceTemp',
+      moons: 'destinations.jupiter.facts.moons',
+      atmosphere: 'destinations.jupiter.facts.atmosphere',
     },
     hazards: [
-      'Radiation belts around Jupiter are among the most intense in the solar system',
-      'Magnetic field disrupts electronics — shielded hull required',
-      'No solid surface — descent below cloud tops is a one-way journey',
-      'Orbital insertion requires precise timing to avoid moon conjunctions',
-      'Gravitational tidal stresses can cause hull fatigue on long stays',
+      'destinations.jupiter.hazards.item0',
+      'destinations.jupiter.hazards.item1',
+      'destinations.jupiter.hazards.item2',
+      'destinations.jupiter.hazards.item3',
+      'destinations.jupiter.hazards.item4',
     ],
     gallery: [
-      { alt: 'Great Red Spot', description: 'Great Red Spot storm system, 350-year duration', colorClass: 'bg-orange-400/20' },
-      { alt: 'Galileo Station', description: 'Galileo Station orbital platform', colorClass: 'bg-amber-700/20' },
-      { alt: 'Moon transit', description: 'Io transit shadow across the equatorial band', colorClass: 'bg-red-400/20' },
+      { alt: 'destinations.jupiter.gallery.item0.alt', description: 'destinations.jupiter.gallery.item0.description', colorClass: 'bg-orange-400/20' },
+      { alt: 'destinations.jupiter.gallery.item1.alt', description: 'destinations.jupiter.gallery.item1.description', colorClass: 'bg-amber-700/20' },
+      { alt: 'destinations.jupiter.gallery.item2.alt', description: 'destinations.jupiter.gallery.item2.description', colorClass: 'bg-red-400/20' },
     ],
     accentColor: 'text-solar-orange',
     bgAccent: 'bg-orange-500/10',
@@ -173,28 +192,28 @@ const destinations: DestinationData[] = [
   },
   {
     slug: 'europa',
-    name: 'Europa',
-    tagline: 'Beneath the ice: the best chance of alien life in our solar system.',
-    description:
-      'Europa\'s fractured ice shell hides a vast subsurface ocean that may harbour microbial life. Research Station Icebreaker sits at the surface, while deep-drilling missions descend toward the water below. Every visit contributes to one of the most exciting scientific endeavours in human history.',
+    name: 'destinations.europa.name',
+    nameEn: 'Europa',
+    tagline: 'destinations.europa.tagline',
+    description: 'destinations.europa.description',
     facts: {
-      gravity: '1.315 m/s²',
-      distanceFromEarth: '~628 million km (avg)',
-      typicalTransitTime: '19 h',
-      surfaceTemp: '-160 °C to -220 °C',
-      moons: 'Moon of Jupiter',
-      atmosphere: 'Thin oxygen exosphere — not breathable',
+      gravity: 'destinations.europa.facts.gravity',
+      distanceFromEarth: 'destinations.europa.facts.distanceFromEarth',
+      typicalTransitTime: 'destinations.europa.facts.typicalTransitTime',
+      surfaceTemp: 'destinations.europa.facts.surfaceTemp',
+      moons: 'destinations.europa.facts.moons',
+      atmosphere: 'destinations.europa.facts.atmosphere',
     },
     hazards: [
-      'Jupiter\'s radiation at Europa\'s orbit is intense — exterior exposure is time-limited to 1 hour',
-      'Ice crust seismic "ice-quakes" can crack landing pad anchorings',
-      'Cryoventing plumes erupt unpredictably — avoid surface EVA near fracture lines',
-      'All samples require level-5 biosafety protocols — no surface material leaves containment',
+      'destinations.europa.hazards.item0',
+      'destinations.europa.hazards.item1',
+      'destinations.europa.hazards.item2',
+      'destinations.europa.hazards.item3',
     ],
     gallery: [
-      { alt: 'Ice fractures', description: 'Linea fracture network from orbit', colorClass: 'bg-cyan-400/20' },
-      { alt: 'Icebreaker Station', description: 'Icebreaker Station drill array, surface', colorClass: 'bg-teal-400/20' },
-      { alt: 'Jupiter in sky', description: 'Jupiter rising over Europa\'s ice plain', colorClass: 'bg-blue-400/20' },
+      { alt: 'destinations.europa.gallery.item0.alt', description: 'destinations.europa.gallery.item0.description', colorClass: 'bg-cyan-400/20' },
+      { alt: 'destinations.europa.gallery.item1.alt', description: 'destinations.europa.gallery.item1.description', colorClass: 'bg-teal-400/20' },
+      { alt: 'destinations.europa.gallery.item2.alt', description: 'destinations.europa.gallery.item2.description', colorClass: 'bg-blue-400/20' },
     ],
     accentColor: 'text-alien-green',
     bgAccent: 'bg-alien-green/10',
@@ -202,29 +221,29 @@ const destinations: DestinationData[] = [
   },
   {
     slug: 'pluto',
-    name: 'Pluto',
-    tagline: 'The edge of the known — for travellers who want more.',
-    description:
-      'Pluto sits at the outer frontier of our solar system, a nitrogen-ice world with heart-shaped plains, soaring methane mountains, and a hazy blue atmosphere. Sputnik Base is the most remote inhabited outpost in human history, and arrival is a rite of passage for serious space explorers.',
+    name: 'destinations.pluto.name',
+    nameEn: 'Pluto',
+    tagline: 'destinations.pluto.tagline',
+    description: 'destinations.pluto.description',
     facts: {
-      gravity: '0.62 m/s²',
-      distanceFromEarth: '~5.9 billion km (avg)',
-      typicalTransitTime: '36 h',
-      surfaceTemp: '-233 °C to -223 °C',
-      moons: '5 (Charon, Styx, Nix, Kerberos, Hydra)',
-      atmosphere: 'N₂, CH₄, CO — thin and seasonal',
+      gravity: 'destinations.pluto.facts.gravity',
+      distanceFromEarth: 'destinations.pluto.facts.distanceFromEarth',
+      typicalTransitTime: 'destinations.pluto.facts.typicalTransitTime',
+      surfaceTemp: 'destinations.pluto.facts.surfaceTemp',
+      moons: 'destinations.pluto.facts.moons',
+      atmosphere: 'destinations.pluto.facts.atmosphere',
     },
     hazards: [
-      'Extreme cold requires next-generation cryo-insulated EVA suits',
-      'Low gravity increases fall risk — standard locomotion training required',
-      'Communication lag to Earth exceeds 4 hours — emergency response is self-reliant',
-      'Nitrogen geysers can emerge without warning near Tombaugh Regio',
-      'Methane frost on landing pads creates slippery surfaces — approach speed limits enforced',
+      'destinations.pluto.hazards.item0',
+      'destinations.pluto.hazards.item1',
+      'destinations.pluto.hazards.item2',
+      'destinations.pluto.hazards.item3',
+      'destinations.pluto.hazards.item4',
     ],
     gallery: [
-      { alt: 'Tombaugh Regio', description: 'Tombaugh Regio nitrogen ice plains ("The Heart")', colorClass: 'bg-purple-400/20' },
-      { alt: 'Charon from surface', description: 'Charon looming over Sputnik Base', colorClass: 'bg-violet-500/20' },
-      { alt: 'Blue haze atmosphere', description: 'Blue haze layers in Pluto\'s thin atmosphere', colorClass: 'bg-indigo-400/20' },
+      { alt: 'destinations.pluto.gallery.item0.alt', description: 'destinations.pluto.gallery.item0.description', colorClass: 'bg-purple-400/20' },
+      { alt: 'destinations.pluto.gallery.item1.alt', description: 'destinations.pluto.gallery.item1.description', colorClass: 'bg-violet-500/20' },
+      { alt: 'destinations.pluto.gallery.item2.alt', description: 'destinations.pluto.gallery.item2.description', colorClass: 'bg-indigo-400/20' },
     ],
     accentColor: 'text-cosmic-purple',
     bgAccent: 'bg-cosmic-purple/10',
@@ -236,9 +255,10 @@ const destinations: DestinationData[] = [
 export const getDestinationBySlug = (slug: string): DestinationData | null =>
   destinations.find((d) => d.slug === slug.toLowerCase()) ?? null;
 
-// Lookup by display name (used to linkify destination names in FlightCard)
+// Lookup by display name (used to linkify destination names in FlightCard).
+// Uses the stable `nameEn` field (English text) rather than the i18n key stored in `name`.
 export const getDestinationByName = (name: string): DestinationData | null =>
-  destinations.find((d) => d.name.toLowerCase() === name.toLowerCase()) ?? null;
+  destinations.find((d) => d.nameEn.toLowerCase() === name.toLowerCase()) ?? null;
 
 // All destinations for the homepage grid
 export const ALL_DESTINATIONS: ReadonlyArray<DestinationData> = destinations;

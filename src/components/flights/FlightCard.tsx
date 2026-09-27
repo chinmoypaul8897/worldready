@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import type { Flight, SeatClass } from '../../types';
 import { Card, Button } from '../common';
 import { Plane, Clock, Users, Crown, Rocket } from 'lucide-react';
@@ -12,6 +13,7 @@ interface FlightCardProps {
 }
 
 export const FlightCard = ({ flight, onBook }: FlightCardProps) => {
+  const { t } = useTranslation('flights');
   const totalSeats = flight.economy_seats_available + flight.business_seats_available + flight.galaxium_seats_available;
   const isSoldOut = totalSeats === 0;
   const destData = getDestinationByName(flight.destination);
@@ -29,7 +31,7 @@ export const FlightCard = ({ flight, onBook }: FlightCardProps) => {
 
   const seatClasses = [
     {
-      name: 'Economy',
+      name: t('flights.card.classEconomy'),
       class: 'economy' as SeatClass,
       price: flight.economy_price,
       seats: flight.economy_seats_available,
@@ -39,7 +41,7 @@ export const FlightCard = ({ flight, onBook }: FlightCardProps) => {
       borderColor: 'border-blue-500/30',
     },
     {
-      name: 'Business',
+      name: t('flights.card.classBusiness'),
       class: 'business' as SeatClass,
       price: flight.business_price,
       seats: flight.business_seats_available,
@@ -49,7 +51,7 @@ export const FlightCard = ({ flight, onBook }: FlightCardProps) => {
       borderColor: 'border-purple-500/30',
     },
     {
-      name: 'Galaxium Class',
+      name: t('flights.card.classGalaxium'),
       class: 'galaxium' as SeatClass,
       price: flight.galaxium_price,
       seats: flight.galaxium_seats_available,
@@ -79,7 +81,7 @@ export const FlightCard = ({ flight, onBook }: FlightCardProps) => {
                 {flight.origin} → {destLabel}
               </h3>
               <p className="text-sm text-star-white/60">
-                Flight #{flight.flight_id}
+                {t('flights.card.flightNumber', { id: flight.flight_id })}
               </p>
             </div>
           </div>
@@ -90,7 +92,7 @@ export const FlightCard = ({ flight, onBook }: FlightCardProps) => {
           {/* Departure & Arrival */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="text-xs text-star-white/60 mb-1">Departure</p>
+              <p className="text-xs text-star-white/60 mb-1">{t('flights.card.departure')}</p>
               <p className="text-sm font-medium text-star-white">
                 {formatDate(flight.departure_time, 'MMM dd, yyyy')}
               </p>
@@ -99,7 +101,7 @@ export const FlightCard = ({ flight, onBook }: FlightCardProps) => {
               </p>
             </div>
             <div>
-              <p className="text-xs text-star-white/60 mb-1">Arrival</p>
+              <p className="text-xs text-star-white/60 mb-1">{t('flights.card.arrival')}</p>
               <p className="text-sm font-medium text-star-white">
                 {formatDate(flight.arrival_time, 'MMM dd, yyyy')}
               </p>
@@ -113,13 +115,13 @@ export const FlightCard = ({ flight, onBook }: FlightCardProps) => {
           <div className="flex items-center gap-2 text-star-white/70">
             <Clock size={16} />
             <span className="text-sm">
-              Duration: {calculateDuration(flight.departure_time, flight.arrival_time)}
+              {t('flights.card.duration', { duration: calculateDuration(flight.departure_time, flight.arrival_time) })}
             </span>
           </div>
 
           {/* Seat Classes */}
           <div className="space-y-2">
-            <p className="text-xs text-star-white/60 mb-2">Available Seat Classes</p>
+            <p className="text-xs text-star-white/60 mb-2">{t('flights.card.availableSeatClasses')}</p>
             {seatClasses.map((seatClass) => {
               const Icon = seatClass.icon;
               const isClassSoldOut = seatClass.seats === 0;
@@ -144,7 +146,7 @@ export const FlightCard = ({ flight, onBook }: FlightCardProps) => {
                       <div className="flex items-center gap-1 text-xs">
                         <Users size={12} className={isLowSeats ? 'text-solar-orange' : 'text-star-white/60'} />
                         <span className={isLowSeats ? 'text-solar-orange font-semibold' : 'text-star-white/60'}>
-                          {isClassSoldOut ? 'Sold Out' : `${seatClass.seats} left`}
+                          {isClassSoldOut ? t('flights.card.soldOut') : t('flights.card.seatsLeft', { count: seatClass.seats })}
                         </span>
                       </div>
                     </div>
@@ -161,7 +163,7 @@ export const FlightCard = ({ flight, onBook }: FlightCardProps) => {
           disabled={isSoldOut}
           className="w-full"
         >
-          {isSoldOut ? 'All Classes Sold Out' : 'Select Seat Class'}
+          {isSoldOut ? t('flights.card.allSoldOut') : t('flights.card.selectSeatClass')}
         </Button>
       </Card>
     </motion.div>

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import type { Flight, ErrorResponse } from '../types';
 import { LoadingSpinner } from '../components/common';
 import { FlightCard } from '../components/flights/FlightCard';
@@ -13,6 +14,7 @@ import toast from 'react-hot-toast';
 import { motion } from 'framer-motion';
 
 export const Flights = () => {
+  const { t } = useTranslation('pages');
   const { user } = useUser();
   const [flights, setFlights] = useState<Flight[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -33,7 +35,7 @@ export const Flights = () => {
     } catch (err) {
       const error = err as ErrorResponse;
       if (retryCount < MAX_RETRIES) {
-        toast.error(`Failed to load flights. Retrying... (${retryCount + 1}/${MAX_RETRIES})`);
+        toast.error(t('pages.flights.retryError', { attempt: retryCount + 1, max: MAX_RETRIES }));
         console.warn(`Retry attempt ${retryCount + 1} after error:`, error);
         
         // Wait before retrying
@@ -42,13 +44,13 @@ export const Flights = () => {
         // Retry with incremented count
         return loadFlights(retryCount + 1);
       } else {
-        toast.error('Failed to load flights after multiple attempts');
+        toast.error(t('pages.flights.maxRetriesError'));
         console.error('Max retries reached:', error);
       }
     } finally {
       setIsLoading(false);
     }
-  }, [filters]);
+  }, [filters, t]);
 
   // Fetch flights when filters change
   useEffect(() => {
@@ -100,10 +102,10 @@ export const Flights = () => {
         className="text-center"
       >
         <h1 className="text-4xl md:text-5xl font-bold text-star-white mb-4">
-          Available <span className="bg-cosmic-gradient bg-clip-text text-transparent">Flights</span>
+          {t('pages.flights.titlePart1')} <span className="bg-cosmic-gradient bg-clip-text text-transparent">{t('pages.flights.titlePart2')}</span>
         </h1>
         <p className="text-star-white/70 text-lg">
-          Choose your destination and embark on an interplanetary adventure
+          {t('pages.flights.subtitle')}
         </p>
       </motion.div>
 
@@ -118,7 +120,7 @@ export const Flights = () => {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-star-white/50" size={20} />
           <input
             type="text"
-            placeholder="Search by origin or destination..."
+            placeholder={t('pages.flights.searchPlaceholder')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-lg text-star-white placeholder-star-white/50 focus:outline-none focus:ring-2 focus:ring-cosmic-purple"
@@ -137,12 +139,12 @@ export const Flights = () => {
 
       {/* Results Count */}
       <div className="text-center text-star-white/70">
-        Showing {displayFlights.length} flight{displayFlights.length !== 1 ? 's' : ''}
+        {t('pages.flights.showingCount', { count: displayFlights.length })}
       </div>
 
       {/* Flights Grid */}
       {isLoading ? (
-        <LoadingSpinner size="lg" text="Loading flights..." />
+        <LoadingSpinner size="lg" text={t('pages.flights.loadingText')} />
       ) : displayFlights.length === 0 ? (
         <motion.div
           initial={{ opacity: 0 }}
@@ -150,7 +152,7 @@ export const Flights = () => {
           className="text-center py-12"
         >
           <p className="text-star-white/70 text-lg">
-            No flights found matching your criteria
+            {t('pages.flights.noResults')}
           </p>
         </motion.div>
       ) : (
