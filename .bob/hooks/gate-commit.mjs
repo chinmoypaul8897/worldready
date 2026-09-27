@@ -3,7 +3,9 @@
 // or while locale key parity fails. Exit 2 blocks the tool; exit 0 allows it.
 
 import { spawnSync } from 'node:child_process';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 
 function readStdin() {
   try { return readFileSync(0, 'utf8'); } catch { return ''; }
@@ -25,10 +27,28 @@ function run(args) {
 }
 
 // 1) No hard-coded user-visible strings in staged files.
-const lit = run(['scripts/count-literals.mjs', '--staged']);
+//    Run with --json to a temp file (outside the repo so it is never staged)
+//    so we can read the total count and the per-file breakdown for a precise
+//    block message.
+const jsonOut = join(tmpdir(), `count-literals-${process.pid}.json`);
+const lit = run(['scripts/count-literals.mjs', '--staged', '--json', jsonOut]);
 if (lit.code !== 0) {
-  console.error('Commit blocked: staged files still contain hard-coded UI strings. '
-    + 'Move them into i18next keys (t(...)). Run `node scripts/count-literals.mjs --staged` to see them.');
+  // Build a human-readable message from the JSON report when available.
+  let msg = 'Commit blocked: staged files still contain hard-coded UI strings.';
+  try {
+    const report = JSON.parse(readFileSync(jsonOut, 'utf8'));
+    const total = report.total ?? 0;
+    const perFile = report.perFile ?? {};
+    const files = Object.keys(perFile).filter(f => (perFile[f] ?? 0) > 0);
+    if (total > 0 && files.length > 0) {
+      const fileList = files
+        .map(f => `${f} (${perFile[f]})`)
+        .join(', ');
+      const noun = total === 1 ? 'string' : 'strings';
+      msg = `Blocked: ${total} hard-coded ${noun} in ${fileList} — move it into an i18next key (t(...)).`;
+    }
+  } catch { /* fall back to generic message */ }
+  console.error(msg);
   process.exit(2);
 }
 

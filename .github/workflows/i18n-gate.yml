@@ -1,0 +1,76 @@
+# WorldReady i18n gate
+#
+# What this gate enforces:
+#   1. Zero hard-coded English strings remain in the source tree.
+#   2. All locale files (en / fr / ar / pseudo) have identical key sets and
+#      plural forms — no missing or extra keys anywhere.
+#   3. The project still builds successfully after the i18n retrofit.
+#   4. The independent verifier scripts (scripts/, eslint.i18n.config.mjs,
+#      vite.config.ts) and the demo mock services (src/services/api.ts,
+#      src/services/demoApi.ts) are frozen so the "0 hard-coded strings"
+#      proof cannot be gamed by editing the ruler.
+#
+# Why the frozen baseline is bd87f41ec49b747915d2f3967a35fa488fac97ba
+# and NOT the v0-before tag:
+#   v0-before marks the state of the repo *before* the WorldReady retrofit
+#   began — the verifier scripts did not exist yet at that tag, so diffing
+#   against it would always report them as new/changed and trip the check
+#   even on a legitimate PR. bd87f41 is the commit at which all
+#   Claude-owned verifier files reached their final frozen state, so it is
+#   the correct baseline for "nothing has been tampered with".
+
+name: WorldReady i18n gate
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Full history needed for the frozen-baseline diff and the v0-before tag.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 2. Node 22 — matches the project's target runtime.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # 3. Install dependencies.
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. No hard-coded English strings (must be 0).
+      #    count-literals.mjs only exits non-zero in --staged mode, so we
+      #    read the JSON total directly instead of relying on the exit code.
+      - name: No hard-coded English strings (must be 0)
+        run: |
+          node scripts/count-literals.mjs --json count.json
+          node -e "const t=require('./count.json').total; if(t>0){console.error('FAIL: '+t+' hard-coded English string(s) — the WorldReady gate blocks this. See count.json / the log above.');process.exit(1)} else {console.log('OK: 0 hard-coded English strings')}"
+
+      # 5. Locale key parity — exits non-zero on any missing/extra key or plural form.
+      - name: Locale key parity (en/fr/ar/pseudo)
+        run: node scripts/key-parity.mjs
+
+      # 6. Build must pass.
+      - name: Build
+        run: npm run build
+
+      # 7. Claude-owned files frozen (verifiers + demo mock).
+      #    Baseline is bd87f41 (not v0-before — see comment at top of file).
+      - name: Claude-owned files frozen (verifiers + demo mock)
+        run: |
+          BASE=bd87f41ec49b747915d2f3967a35fa488fac97ba
+          CHANGED=$(git diff --name-only "$BASE" HEAD -- scripts/ eslint.i18n.config.mjs src/services/api.ts src/services/demoApi.ts vite.config.ts)
+          if [ -n "$CHANGED" ]; then
+            echo "FAIL: Claude-owned protected files changed since the frozen baseline:"; echo "$CHANGED"; exit 1
+          fi
+          echo "OK: verifiers + demo mock unchanged since the frozen baseline"
