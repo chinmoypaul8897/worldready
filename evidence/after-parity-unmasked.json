@@ -5,39 +5,39 @@
   "lang": "en",
   "fixedTime": "2026-06-01T12:00:00Z",
   "mask": [],
-  "maskSwitcher": true,
-  "generatedUtc": "2026-09-27T05:44:30.312Z",
-  "totalChangedChars": 0,
+  "maskSwitcher": false,
+  "generatedUtc": "2026-09-27T05:44:05.951Z",
+  "totalChangedChars": 45,
   "routes": [
     {
       "route": "/",
-      "changedChars": 0,
+      "changedChars": 9,
       "beforeChars": 1396,
-      "afterChars": 1396
+      "afterChars": 1405
     },
     {
       "route": "/flights",
-      "changedChars": 0,
+      "changedChars": 9,
       "beforeChars": 2446,
-      "afterChars": 2446
+      "afterChars": 2455
     },
     {
       "route": "/bookings",
-      "changedChars": 0,
+      "changedChars": 9,
       "beforeChars": 2446,
-      "afterChars": 2446
+      "afterChars": 2455
     },
     {
       "route": "/destinations/mars",
-      "changedChars": 0,
+      "changedChars": 9,
       "beforeChars": 1334,
-      "afterChars": 1334
+      "afterChars": 1343
     },
     {
       "route": "/destinations/europa",
-      "changedChars": 0,
+      "changedChars": 9,
       "beforeChars": 1372,
-      "afterChars": 1372
+      "afterChars": 1381
     }
   ]
 }

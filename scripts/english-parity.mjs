@@ -45,6 +45,8 @@ function parseArgs(argv) {
     diff: null,
     fixedTime: '2026-06-01T12:00:00Z',
     lang: 'en',
+    mask: [],
+    maskSwitcher: false,
   };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
@@ -55,12 +57,16 @@ function parseArgs(argv) {
     else if (a === '--diff') out.diff = argv[++i];
     else if (a === '--fixed-time') out.fixedTime = argv[++i];
     else if (a === '--lang') out.lang = argv[++i];
+    else if (a === '--mask') out.mask.push(...argv[++i].split(',').map((s) => s.trim()).filter(Boolean));
+    else if (a === '--mask-switcher') out.maskSwitcher = true;
     else if (a === '--help' || a === '-h') { printHelp(); process.exit(0); }
   }
   return out;
 }
 function printHelp() {
-  console.log('Usage: node scripts/english-parity.mjs --before <urlOrDir> --after <urlOrDir> [--routes ...] [--json ...] [--diff ...] [--fixed-time ISO]');
+  console.log('Usage: node scripts/english-parity.mjs --before <urlOrDir> --after <urlOrDir> [--routes ...] [--json ...] [--diff ...] [--fixed-time ISO] [--mask <css,css>] [--mask-switcher]');
+  console.log('  --mask <css>       blank elements matching these CSS selectors before comparing (non-content chrome).');
+  console.log('  --mask-switcher    blank the EN/FR/AR language switcher (new UI absent from the before build).');
 }
 
 // ── minimal static file server (for local dist dirs) ─────────────────────────
@@ -150,7 +156,7 @@ function lineDiff(before, after) {
 }
 
 // ── grab visible text of one route ───────────────────────────────────────────
-async function grabRoute(context, base, route, fixedTime, lang) {
+async function grabRoute(context, base, route, fixedTime, lang, mask, maskSwitcher) {
   const page = await context.newPage();
   // Freeze the clock so relative-time / countdown output is identical across builds.
   try { await page.clock.setFixedTime(new Date(fixedTime)); } catch { /* older PW */ }
@@ -167,13 +173,24 @@ async function grabRoute(context, base, route, fixedTime, lang) {
   // give async data (mock API) + animations a moment
   await page.waitForTimeout(1200);
 
-  // Mask known countdown/timer nodes before reading text.
-  await page.evaluate(() => {
-    const selectors = ['.tabular-nums', '[class*="tabular-nums"]'];
+  // Mask known countdown/timer nodes, any caller-supplied selectors, and the
+  // (new-UI) EN/FR/AR language switcher before reading text.
+  await page.evaluate(({ mask, maskSwitcher }) => {
+    const selectors = ['.tabular-nums', '[class*="tabular-nums"]', ...(mask || [])];
     for (const sel of selectors) {
-      document.querySelectorAll(sel).forEach((el) => { el.textContent = '[TIMER]'; });
+      try { document.querySelectorAll(sel).forEach((el) => { el.textContent = '[MASKED]'; }); } catch { /* bad selector */ }
     }
-  }).catch(() => {});
+    if (maskSwitcher) {
+      // The language switcher is a set of buttons whose exact label is EN/FR/AR
+      // (see src/components/common/LanguageSwitcher.tsx). No content button uses
+      // those exact strings, so this targets only the switcher. It exists solely
+      // in the AFTER build, so masking it makes existing-content parity symmetric.
+      document.querySelectorAll('button').forEach((el) => {
+        const t = (el.textContent || '').trim();
+        if (t === 'EN' || t === 'FR' || t === 'AR') el.textContent = '';
+      });
+    }
+  }, { mask, maskSwitcher }).catch(() => {});
 
   let text = '';
   try { text = await page.locator('body').innerText({ timeout: 5000 }); } catch { text = ''; }
@@ -202,8 +219,8 @@ async function main() {
 
   for (const route of args.routes) {
     const [bText, aText] = [
-      await grabRoute(context, before.base, route, args.fixedTime, args.lang),
-      await grabRoute(context, after.base, route, args.fixedTime, args.lang),
+      await grabRoute(context, before.base, route, args.fixedTime, args.lang, args.mask, args.maskSwitcher),
+      await grabRoute(context, after.base, route, args.fixedTime, args.lang, args.mask, args.maskSwitcher),
     ];
     const changed = editDistance(bText, aText);
     totalChanged += changed;
@@ -228,6 +245,8 @@ async function main() {
       after: args.after,
       lang: args.lang,
       fixedTime: args.fixedTime,
+      mask: args.mask,
+      maskSwitcher: args.maskSwitcher,
       generatedUtc: new Date().toISOString(),
       totalChangedChars: totalChanged,
       routes: perRoute,

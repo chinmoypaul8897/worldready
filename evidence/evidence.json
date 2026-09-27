@@ -1,0 +1,71 @@
+{
+  "_comment": "Single source of truth for the WorldReady viewer counters + evidence drawer. Authored by Claude Code (worker P07). Numbers are produced by the independent verifiers in scripts/ (never by IBM Bob). trapsFixed/trapsByCategory/bobcoins are finalized after the T13/T14 sweep by P07.",
+  "generatedUtc": "2026-09-27T00:00:00Z",
+  "finalizedBy": "P07",
+  "liveUrls": {
+    "viewer": "https://chinmoypaul8897.github.io/worldready/",
+    "before": "https://chinmoypaul8897.github.io/worldready/before/",
+    "after": "https://chinmoypaul8897.github.io/worldready/after/",
+    "repo": "https://github.com/chinmoypaul8897/worldready",
+    "actions": "https://github.com/chinmoypaul8897/worldready/actions"
+  },
+  "headline": {
+    "hardCodedStrings": {
+      "before": 305,
+      "after": 0,
+      "label": "hard-coded, user-visible English strings",
+      "source": "scripts/count-literals.mjs (refined ruler) on v0-before vs main",
+      "files": ["evidence/before-literals-refined.json", "evidence/after-literals.json"],
+      "oldRuler": { "before": 320, "after": 155, "note": "the 155 were all false positives (key paths, format patterns, English-kept enum values); see evidence/literals-method.md" }
+    },
+    "trapsFixed": {
+      "fixed": 24,
+      "total": 30,
+      "label": "engineered i18n traps fixed",
+      "note": "PRELIMINARY (pre-sweep). Finalized after the T13/T14 sweep. Held-out key; no Bob prompt referenced any trap.",
+      "source": "scripts/score-traps.mjs --key <held-out> --dir .",
+      "file": "evidence/after-traps.json"
+    },
+    "englishChanged": {
+      "existingContent": 0,
+      "withSwitcher": 45,
+      "label": "characters of existing English content changed by the retrofit",
+      "note": "0 in existing content (the EN/FR/AR switcher is new UI; unmasked delta is 45 = 9 chars x 5 routes, all additions).",
+      "source": "scripts/english-parity.mjs --mask-switcher (before vs after, frozen clock)",
+      "files": ["evidence/after-parity.json", "evidence/after-parity-unmasked.json"]
+    },
+    "languages": {
+      "before": 1,
+      "after": 3,
+      "list": ["en", "fr", "ar"],
+      "plusPseudo": true,
+      "label": "shipped languages (+ a pseudo-locale used to prove coverage)",
+      "source": "src/locales/{en,fr,ar,pseudo}; scripts/key-parity.mjs"
+    },
+    "bobcoins": {
+      "usedTotal": 15.16,
+      "label": "Bobcoins IBM Bob spent building this (of 40)",
+      "note": "PRELIMINARY; finalized after P07's Bob tasks.",
+      "source": "Bob task DB (~/.bob/db/bob.db)"
+    }
+  },
+  "details": {
+    "keyParity": { "result": "PASS", "locales": { "fr": "{one,many,other}", "ar": "{zero,one,two,few,many,other}", "pseudo": "{one,other}" }, "missing": 0, "extra": 0, "source": "scripts/key-parity.mjs", "file": "evidence/after-key-parity.json" },
+    "rtl": { "physicalClassesBefore": 12, "physicalClassesAfter": 0, "directionalArrows": "3/3 mirrored (rtl:-scale-x-100)", "htmlDirBefore": "ltr, no dir attribute", "htmlDirAfter": "rtl for ar", "arabicFont": "Noto Sans Arabic, scoped to [lang=ar]/[dir=rtl]", "source": "evidence/after-translation.json" },
+    "arabicPlural": { "key": "pages.flights.showingCount", "categories": ["zero", "one", "two", "few", "many", "other"], "counts": [0, 1, 2, 3, 11, 100], "note": "all six Arabic CLDR plural categories exercised by the real after bundle" },
+    "translatorRoundTrip": { "file": "docs/translator.csv", "rows": 352, "note": "human-review edits land in the morning (P10)" },
+    "provenance": { "trapKeyEarlyExposure": "An early commit (918222d) accidentally contained the trap list for ~3 minutes before any Bob task ran; no Bob prompt ever referenced it; the plain-Bob baseline on the same folder is the fairness control.", "trapKeySha256": "ef68d1a6e1ba4d320b3071b187cb838ac59b943af69186157f99e55ec5d5ae3e" }
+  },
+  "bobSessions": [
+    { "id": "T01", "task": "i18n plan (key convention, 5-worker ownership map, Intl/RTL/data rules)", "mode": "Plan + Explore subagent + document understanding", "bobcoins": 0.576, "taskId": "4593193355a8c601be89e9368f417114" },
+    { "id": "T02", "task": ".bob kit: i18n-extractor mode (fileRegex), i18n-extract skill, PreToolUse commit-gate hook", "mode": "Agent", "bobcoins": 0.400, "taskId": "1da972e2c73ac0b46b3757e612b08bea" },
+    { "id": "T02b", "task": "Mode-restriction proof: Bob refused to edit a Claude-owned checker", "mode": "i18n Extractor", "bobcoins": 0.024, "taskId": "243260a8b02b2935a12e62c5a1fde565" },
+    { "id": "T11", "task": "Plain-Bob baseline (no kit): 3/5 bookings traps, literals 55->14, stopped by cap", "mode": "Agent (no kit)", "bobcoins": 1.064, "taskId": "090ce6865907faf00e558d448673a5ff" },
+    { "id": "T03", "task": "Parallel i18n extraction - 5 general subagents at once (348 en strings)", "mode": "i18n Extractor + 5 parallel subagents", "bobcoins": 5.16, "taskId": "f44585c5aed55170d1beb12b66454ab6" },
+    { "id": "T04", "task": "Runtime wiring: i18next + LanguageDetector, LanguageSwitcher, Intl formatters", "mode": "Agent (parallel task)", "bobcoins": 0.675, "taskId": "ba080509d8970ec1abd49ef8614d5bc9" },
+    { "id": "T05a", "task": "Merge fixes: nsSeparator '.', destination key resolution", "mode": "i18n Extractor", "bobcoins": 1.094, "taskId": "26647736b7e88b2bcd01d5ea0db1f9d5" },
+    { "id": "T05b", "task": "Place LanguageSwitcher in the header", "mode": "i18n Extractor", "bobcoins": 0.106, "taskId": "8e3b8c75eb676be5b7fd96dd4f77e958" },
+    { "id": "T06", "task": "French (Quebec) + Arabic translation of all 5 namespaces + translator.csv", "mode": "Agent + document understanding + Office write", "bobcoins": 3.62, "taskId": "60fa3dfe0da14b05066c173069cb3efb" },
+    { "id": "T08", "task": "RTL layout pass: logical utilities, mirrored icons, Noto Sans Arabic", "mode": "Agent + Explore subagent", "bobcoins": 1.34, "taskId": "d8984dc930b951148242923f8bb9bdd4" }
+  ]
+}

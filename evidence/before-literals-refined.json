@@ -1,0 +1,36 @@
+{
+  "tool": "count-literals.mjs",
+  "dir": "C:\\Users\\chinm\\wr-v0-before",
+  "staged": false,
+  "generatedUtc": "2026-09-27T05:41:26.273Z",
+  "total": 305,
+  "byPass": {
+    "jsx": 153,
+    "data": 130,
+    "toasts": 22
+  },
+  "excluded": {
+    "keyPath": 0,
+    "datePattern": 5,
+    "enum": 10,
+    "total": 15
+  },
+  "enLocaleBundlePresent": false,
+  "perFile": {
+    "src/components/bookings/BookingCard.tsx": 9,
+    "src/components/bookings/BookingModal.tsx": 33,
+    "src/components/bookings/HoldCard.tsx": 11,
+    "src/components/common/Button.tsx": 1,
+    "src/components/common/Modal.tsx": 1,
+    "src/components/flights/FlightCard.tsx": 8,
+    "src/components/flights/FlightFilters.tsx": 30,
+    "src/components/layout/Footer.tsx": 3,
+    "src/components/layout/Header.tsx": 10,
+    "src/components/user/UserIdentification.tsx": 15,
+    "src/pages/DestinationDetail.tsx": 17,
+    "src/pages/Flights.tsx": 10,
+    "src/pages/Home.tsx": 11,
+    "src/pages/MyBookings.tsx": 16,
+    "src/data/destinations.ts": 130
+  }
+}

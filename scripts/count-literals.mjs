@@ -48,6 +48,12 @@ const ESLINT_CONFIG = new URL('../eslint.i18n.config.mjs', import.meta.url).path
 const DATA_EXCLUDE_KEYS = new Set([
   'slug',
   'name',
+  // nameEn — the stable English planet name used as the flight-search FILTER
+  // value and for programmatic lookups (getDestinationByName); the code marks it
+  // "do NOT translate". Same id role as `name` (the display `name` field now
+  // holds an i18next key path; the T05a refactor split the English value out into
+  // nameEn). Kept English by design (trap DA-04), so it is an id, not user copy.
+  'nameEn',
   'accentColor',
   'bgAccent',
   'borderAccent',
@@ -55,6 +61,105 @@ const DATA_EXCLUDE_KEYS = new Set([
 ]);
 
 const TOAST_METHODS = new Set(['success', 'error', 'loading', 'custom', 'message']);
+
+// ── documented exclusions (architect ruling, P07, 07:15 IST) ─────────────────
+// The three passes above are heuristic: they flag any string literal in a
+// user-visible position. But three kinds of literal are NOT hard-coded English
+// copy, and counting them overstates the "hard-coded strings" metric. Each is
+// excluded here, on evidence, and the excluded totals are reported separately so
+// the subtraction is auditable. See evidence/literals-method.md.
+//
+//   (a) i18next KEY PATHS — a string that exactly equals a key that exists in
+//       src/locales/en/*.json (e.g. 'destinations.mars.tagline',
+//       'flights.filters.seatEconomy'). These are resolved by t(...) at render;
+//       the visible text lives in the locale files, not the code. Excluded ONLY
+//       when the en locale bundle exists (so on v0-before, which has no locales,
+//       inline English marketing copy in src/data still counts — as it should).
+//   (b) DATE-FNS / Intl FORMAT PATTERNS — strings made only of date-field tokens
+//       and separators (e.g. 'MMM dd', 'MMM dd, yyyy'). They are format
+//       specifiers passed to formatDate/Intl, not sentences; the localized output
+//       is produced by the formatter per-locale.
+//   (c) ENUM / FILTER VALUES kept English on purpose — the internal option values
+//       the UI sends to the API (the visible LABEL next to each is translated via
+//       t()). Kept canonical/English by design so filtering/sorting is stable
+//       across locales; never shown as prose.
+
+// (c) explicit enum/filter/sort values — internal API values, not user copy.
+const ENUM_ALLOWLIST = new Set([
+  // seat classes (FlightFilters seat-class buttons; label via t(labelKey))
+  'economy', 'business', 'galaxium',
+  // time-of-day filter values (label via t())
+  'morning', 'afternoon', 'evening', 'night',
+  // route-category filter values (label via t())
+  'inner_planets', 'outer_planets', 'moons',
+  // sort field + order values (<option value>, kept English for the API)
+  'departure_time', 'base_price', 'duration', 'seats_available', 'asc', 'desc',
+]);
+
+// (a) load the flattened set of en key paths, e.g. "flights.filters.seatEconomy".
+// namespace = file basename; nested objects join with '.'. Plural suffixes
+// (_zero/_one/_two/_few/_many/_other) are also collapsed to their base key so a
+// code reference to the base key (t('...seatsLeft', {count})) is recognised too.
+const PLURAL_SUFFIX = /_(zero|one|two|few|many|other)$/;
+function loadEnKeyPaths(dir) {
+  const set = new Set();
+  const enDir = join(dir, 'src', 'locales', 'en');
+  if (!existsSync(enDir)) return set; // no locales yet (e.g. v0-before) → (a) is a no-op
+  let files;
+  try { files = readdirSync(enDir).filter((f) => f.endsWith('.json')); } catch { return set; }
+  const addLeaf = (path) => {
+    set.add(path);
+    if (PLURAL_SUFFIX.test(path)) set.add(path.replace(PLURAL_SUFFIX, ''));
+  };
+  const recurse = (obj, prefix) => {
+    for (const [k, v] of Object.entries(obj)) {
+      const p = prefix ? `${prefix}.${k}` : k;
+      if (v && typeof v === 'object' && !Array.isArray(v)) recurse(v, p);
+      else addLeaf(p);
+    }
+  };
+  for (const f of files) {
+    const ns = f.replace(/\.json$/, '');
+    try {
+      const json = JSON.parse(readFileSync(join(enDir, f), 'utf8'));
+      recurse(json, ns);
+    } catch { /* skip malformed */ }
+  }
+  return set;
+}
+
+// (b) date/Intl format pattern detector. A string is a format pattern iff it is
+// composed ONLY of date-field token letters and separators, AND it looks like a
+// real pattern (has a separator, OR a token run of length >= 3, OR a yy+ run).
+// This admits 'MMM dd' / 'MMM dd, yyyy' / 'HH:mm' but not short real words that
+// happen to use token letters (e.g. 'add', 'may').
+const DATE_TOKENS = 'GyYMLwWDdEeccaHhKkmsSzZXx';
+const DATE_TOKEN_RE = new RegExp(`^[${DATE_TOKENS}\\s,./:·'\\-]+$`);
+function isDatePattern(s) {
+  if (!s || s.length < 3) return false;
+  // the whole string is only date-field token letters and separators
+  if (!DATE_TOKEN_RE.test(s)) return false;
+  // a real date field is a run of the SAME letter (MM, dd, yy, HH, MMM, yyyy),
+  // NOT an arbitrary run of different token letters — so 'Max' (M+a+x) is NOT a
+  // token. Split into maximal same-character runs and keep the ones that are
+  // date-token letters.
+  const sameCharRuns = (s.match(/(.)\1*/g) || []).filter((r) => DATE_TOKENS.includes(r[0]));
+  const hasStrongToken = sameCharRuns.some((r) => r.length >= 3); // MMM, MMMM, yyy, yyyy, EEE…
+  const hasMultiCharToken = sameCharRuns.some((r) => r.length >= 2); // MM, dd, yy, HH, mm…
+  const hasSeparator = /[\s,./:·'\-]/.test(s);
+  // strong token alone (e.g. 'MMMM', 'yyyy'), or a separated pattern that
+  // contains at least one multi-char field (e.g. 'MMM dd', 'HH:mm').
+  return hasStrongToken || (hasSeparator && hasMultiCharToken);
+}
+
+// classify one candidate literal; returns null if it counts as real English, or
+// the exclusion bucket ('keyPath' | 'datePattern' | 'enum') if it is excluded.
+function exclusionBucket(value, keyPaths) {
+  if (keyPaths.has(value)) return 'keyPath';
+  if (isDatePattern(value)) return 'datePattern';
+  if (ENUM_ALLOWLIST.has(value)) return 'enum';
+  return null;
+}
 
 // ── args ───────────────────────────────────────────────────────────────────
 function parseArgs(argv) {
@@ -112,8 +217,25 @@ function relPath(dir, file) {
   return r.split(sep).join(posix.sep);
 }
 
+// pull the exact flagged literal text out of the source using the message range,
+// stripping surrounding quotes. Returns '' if it can't (multi-line / no quotes),
+// in which case the hit is treated as real English (kept).
+function literalFromRange(lines, m) {
+  if (!m.endLine || m.endLine !== m.line) return '';
+  const line = lines[m.line - 1];
+  if (line == null) return '';
+  let text = line.slice(m.column - 1, m.endColumn - 1);
+  const q = text[0];
+  if ((q === "'" || q === '"' || q === '`') && text[text.length - 1] === q) {
+    text = text.slice(1, -1);
+  } else {
+    return ''; // not a bare quoted literal → keep (count it)
+  }
+  return text;
+}
+
 // ── Pass A: ESLint JSX literals ──────────────────────────────────────────────
-async function countJsx(dir, files) {
+async function countJsx(dir, files, keyPaths, excluded) {
   const jsxFiles = files.filter((f) => f.endsWith('.tsx') || f.endsWith('.jsx'));
   if (jsxFiles.length === 0) return { total: 0, perFile: {} };
 
@@ -128,9 +250,18 @@ async function countJsx(dir, files) {
   let total = 0;
   for (const r of results) {
     const hits = r.messages.filter((m) => m.ruleId === 'i18next/no-literal-string');
-    if (hits.length) {
-      perFile[relPath(dir, r.filePath)] = hits.length;
-      total += hits.length;
+    if (!hits.length) continue;
+    const lines = readFileSync(r.filePath, 'utf8').split(/\r?\n/);
+    let kept = 0;
+    for (const m of hits) {
+      const value = literalFromRange(lines, m);
+      const bucket = value ? exclusionBucket(value, keyPaths) : null;
+      if (bucket) { excluded[bucket]++; continue; }
+      kept++;
+    }
+    if (kept) {
+      perFile[relPath(dir, r.filePath)] = kept;
+      total += kept;
     }
   }
   return { total, perFile };
@@ -151,7 +282,7 @@ function isStringish(node) {
 }
 
 // ── Pass B: data-file user-visible strings ───────────────────────────────────
-function countData(dir, files) {
+function countData(dir, files, keyPaths, excluded) {
   const dataFiles = files.filter((f) => {
     const rel = relPath(dir, f);
     return /(^|\/)src\/data\/[^/]+\.ts$/.test(rel);
@@ -190,7 +321,14 @@ function countData(dir, files) {
         if (!isKey && !isModuleSpecifier) {
           const key = nearestKey(node);
           if (key !== null && !DATA_EXCLUDE_KEYS.has(key)) {
-            count++;
+            // exclude i18next key paths / date patterns / enum values (see top)
+            const value =
+              ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)
+                ? node.text
+                : '';
+            const bucket = value ? exclusionBucket(value, keyPaths) : null;
+            if (bucket) excluded[bucket]++;
+            else count++;
           }
         }
       }
@@ -207,7 +345,7 @@ function countData(dir, files) {
 }
 
 // ── Pass C: toast() literal arguments ────────────────────────────────────────
-function countToasts(dir, files) {
+function countToasts(dir, files, keyPaths, excluded) {
   const tsFiles = files.filter((f) => f.endsWith('.ts') || f.endsWith('.tsx'));
   const perFile = {};
   let total = 0;
@@ -231,7 +369,15 @@ function countToasts(dir, files) {
     const visit = (node) => {
       if (ts.isCallExpression(node) && isToastCallee(node.expression)) {
         const arg0 = node.arguments[0];
-        if (arg0 && isStringish(arg0)) count++;
+        if (arg0 && isStringish(arg0)) {
+          const value =
+            ts.isStringLiteral(arg0) || ts.isNoSubstitutionTemplateLiteral(arg0)
+              ? arg0.text
+              : '';
+          const bucket = value ? exclusionBucket(value, keyPaths) : null;
+          if (bucket) excluded[bucket]++;
+          else count++;
+        }
       }
       ts.forEachChild(node, visit);
     };
@@ -266,12 +412,16 @@ async function main() {
     files = walk(join(dir, 'src'), ['.ts', '.tsx', '.js', '.jsx']);
   }
 
-  const jsx = await countJsx(dir, files);
-  const data = countData(dir, files);
-  const toasts = countToasts(dir, files);
+  const keyPaths = loadEnKeyPaths(dir);
+  const excluded = { keyPath: 0, datePattern: 0, enum: 0 };
+
+  const jsx = await countJsx(dir, files, keyPaths, excluded);
+  const data = countData(dir, files, keyPaths, excluded);
+  const toasts = countToasts(dir, files, keyPaths, excluded);
 
   const perFile = mergePerFile(jsx.perFile, data.perFile, toasts.perFile);
   const total = jsx.total + data.total + toasts.total;
+  const excludedTotal = excluded.keyPath + excluded.datePattern + excluded.enum;
 
   // ── output ───────────────────────────────────────────────────────────────
   console.log(`\nHard-coded user-visible string count  —  dir: ${dir}${args.staged ? '  (staged only)' : ''}`);
@@ -279,7 +429,10 @@ async function main() {
   console.log(`  Data-file user-visible strings (src/data/*.ts): ${data.total}`);
   console.log(`  toast() literal arguments: ${toasts.total}`);
   console.log(`  ------------------------------------------------`);
-  console.log(`  TOTAL: ${total}\n`);
+  console.log(`  TOTAL (real hard-coded English): ${total}`);
+  console.log(`  excluded as non-copy (not counted): ${excludedTotal}` +
+    `  [i18next key paths ${excluded.keyPath} · date/Intl patterns ${excluded.datePattern} · enum/filter values ${excluded.enum}]`);
+  console.log(`  ${keyPaths.size ? 'en locale bundle present → key-path exclusion active' : 'no en locale bundle → key-path exclusion inactive (inline copy counts)'}\n`);
 
   const sorted = Object.entries(perFile).sort((a, b) => b[1] - a[1]);
   if (sorted.length) {
@@ -296,6 +449,8 @@ async function main() {
       generatedUtc: new Date().toISOString(),
       total,
       byPass: { jsx: jsx.total, data: data.total, toasts: toasts.total },
+      excluded: { ...excluded, total: excludedTotal },
+      enLocaleBundlePresent: keyPaths.size > 0,
       perFile,
     };
     writeFileSync(args.json, JSON.stringify(report, null, 2));

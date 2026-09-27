@@ -67,6 +67,13 @@ jobs:
           cp -r after-src/viewer/* site/
           cp -r before-src/dist/* site/before/
           cp -r after-src/dist/* site/after/
+          # The real after i18n locale bundle, so the viewer's Arabic plural
+          # showcase renders from the SAME JSON the after app bundles (not a copy).
+          if [ -d after-src/src/locales ]; then
+            mkdir -p site/locales
+            cp -r after-src/src/locales/* site/locales/
+            echo "Copied locale bundle to site/locales."
+          fi
           # Optional evidence JSON (owned by another worker's lane).
           if compgen -G "after-src/evidence/*.json" > /dev/null; then
             mkdir -p site/evidence

@@ -2,22 +2,20 @@
   "tool": "key-parity.mjs",
   "dir": ".",
   "ref": "en",
-  "generatedUtc": "2026-09-27T01:24:42.126Z",
+  "generatedUtc": "2026-09-27T05:49:21.165Z",
   "locales": {
     "fr": {
-      "present": false,
+      "present": true,
       "categories": [
         "one",
         "many",
         "other"
       ],
-      "missing": [
-        "<entire locale>"
-      ],
+      "missing": [],
       "extra": []
     },
     "ar": {
-      "present": false,
+      "present": true,
       "categories": [
         "zero",
         "one",
@@ -26,9 +24,7 @@
         "many",
         "other"
       ],
-      "missing": [
-        "<entire locale>"
-      ],
+      "missing": [],
       "extra": []
     },
     "pseudo": {
