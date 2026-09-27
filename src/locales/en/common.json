@@ -14,7 +14,8 @@
   "footer": {
     "copyright": "© {{year}} Galaxium Travels. All rights reserved.",
     "madeWith": "Made with",
-    "forSpaceTravelers": "for space travelers"
+    "forSpaceTravelers": "for space travelers",
+    "promo": "Limited-time offer: free seat upgrade this week!"
   },
   "modal": {
     "closeLabel": "Close modal"

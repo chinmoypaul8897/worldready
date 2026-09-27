@@ -14,6 +14,9 @@ export const Footer = () => {
             {t('common.footer.copyright', { year: currentYear })}
           </div>
 
+          {/* DEMO (fixed): the string now lives in an i18next key with en/fr/ar/pseudo translations */}
+          <div className="text-star-white/70 text-sm">{t('common.footer.promo')}</div>
+
           {/* Made with love */}
           <div className="flex items-center gap-2 text-star-white/70 text-sm">
             <span>{t('common.footer.madeWith')}</span>
