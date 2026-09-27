@@ -14,7 +14,8 @@
   "footer": {
     "copyright": "© {{year}} Galaxium Travels. Tous droits réservés.",
     "madeWith": "Fait avec",
-    "forSpaceTravelers": "pour les voyageurs spatiaux"
+    "forSpaceTravelers": "pour les voyageurs spatiaux",
+    "promo": "Offre à durée limitée : surclassement de place gratuit cette semaine !"
   },
   "modal": {
     "closeLabel": "Fermer la fenêtre modale"

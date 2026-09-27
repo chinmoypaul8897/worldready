@@ -14,7 +14,8 @@
   "footer": {
     "copyright": "© {{year}} Galaxium Travels. جميع الحقوق محفوظة.",
     "madeWith": "صُنع بـ",
-    "forSpaceTravelers": "للمسافرين في الفضاء"
+    "forSpaceTravelers": "للمسافرين في الفضاء",
+    "promo": "عرض لفترة محدودة: ترقية مقعد مجانية هذا الأسبوع!"
   },
   "modal": {
     "closeLabel": "إغلاق النافذة المنبثقة"
